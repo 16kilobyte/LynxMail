@@ -1,0 +1,3 @@
+rootProject.name = 'LynxMail'
+
+include ':app'
