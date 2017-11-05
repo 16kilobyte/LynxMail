@@ -1,4 +1,4 @@
-import { AppRegistry } from 'react-native';
-import App from './App';
+import { AppRegistry } from 'react-native'
+import LynxMail from './src'
 
-AppRegistry.registerComponent('LynxMail', () => App);
+AppRegistry.registerComponent('LynxMail', () => LynxMail);
