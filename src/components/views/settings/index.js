@@ -1,12 +1,8 @@
 import React, { Component } from 'react'
-import {
-  View,
-  ScrollView,
-  Button,
-  Text,
-  StyleSheet
-} from 'react-native'
+import { View } from 'react-native'
 import { connect } from 'react-redux'
+import { Card, Button, Text } from "react-native-elements";
+import { onSignOut } from "../../../actions/auth";
 
 import Styles from './style'
 
@@ -17,12 +13,31 @@ class SettingsView extends Component {
   };
 
   render() {
-    return (
-      <ScrollView style={Styles.scrollview}>
-        <View style={Styles.content}>
-         
+    const { navigation } = this.props;
+
+    return (<View style={{ paddingVertical: 20 }}>
+      <Card title="John Doe">
+        <View
+          style={{
+            backgroundColor: "#bcbec1",
+            alignItems: "center",
+            justifyContent: "center",
+            width: 80,
+            height: 80,
+            borderRadius: 40,
+            alignSelf: "center",
+            marginBottom: 20
+          }}
+        >
+          <Text style={{ color: "white", fontSize: 28 }}>JD</Text>
         </View>
-      </ScrollView>
+        <Button
+          backgroundColor="#03A9F4"
+          title="SIGN OUT"
+          onPress={() => onSignOut().then(() => navigation.navigate("SignedOut"))}
+        />
+      </Card>
+    </View>
     )
   }
 }
