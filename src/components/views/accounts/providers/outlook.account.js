@@ -5,48 +5,43 @@ import {
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
-import {ReactNativeAD, ADLoginView, Logger} from 'react-native-azure-ad'
+import { AzureInstance, AzureLoginView } from 'react-native-azure-ad-2'
 import Styles from './style'
 
-Logger.setLevel('VERBOSE')
-const config = {
-  client_id : '584f5e41-234f-480f-87b7-cbefb4e6d35f',
-  // redirectUrl : 'http://localhost:8080(optional)',
-  // authorityHost : 'https://login.microsoftonline.com/<tenant id>/oauth2/authorize(optional)',
-  // tenant  : 'common(optional)',
-  client_secret : 'iVF5dhQODL5cxLWk1qCJ3mz',
-  resources : [
-    'https://graph.microsoft.com',
-    'https://outlook.office.com',
-    'https://outlook.office365.com',
-    'https://wiadvancetechnology.sharepoint.com',
-    'https://graph.windows.net',
-  ]
-}
+const CREDENTIAILS = {
+  client_id: '584f5e41-234f-480f-87b7-cbefb4e6d35f',
+  client_secret: 'iVF5dhQODL5cxLWk1qCJ3mz',
+  scope: 'User.ReadBasic.All Mail.Read offline_access'
+};
+
+const Instance = new AzureInstance(CREDENTIAILS);
+
 class OutlookAccountView extends Component {
   static navigationOptions = {
     title: 'Outlook',
     headerTintColor: '#0061b2'
   };
 
-  constructor(props) {
-    super(props)
-    new ReactNativeAD(config)
+  constructor(props){
+		super(props);
+		this.azureInstance = new AzureInstance(CREDENTIAILS);
   }
-
-  onLoginSuccess(cred) {
-    console.log(cred)
-  }
+  
+	_onLoginSuccess() {
+		this.azureInstance.getUserInfo().then(result => {
+			console.log(result);
+		}).catch(err => {
+			console.log(err);
+		})
+	}
 
   render() {
     return (
-      <View style={Styles.container}>
-        <ADLoginView context={ReactNativeAD.getContext(config.client_id)}
-          needLogout={false}
-          hideAfterLogin={true}
-          onSuccess={this.onLoginSuccess.bind(this)}
+        <AzureLoginView style={Styles.container}
+          azureInstance={this.azureInstance}
+          loadingMessage="Requesting access token"
+          onSuccess={this._onLoginSuccess.bind(this)}
         />
-      </View>
     )
   }
 }
