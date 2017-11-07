@@ -70155,6 +70155,14 @@ var _add = require(721                            ); // 721 = ../views/accounts/
 
 var _add2 = _interopRequireDefault(_add);
 
+var _outlook = require(727                                          ); // 727 = ../views/accounts/providers/outlook.account
+
+var _outlook2 = _interopRequireDefault(_outlook);
+
+var _google = require(729                                         ); // 729 = ../views/accounts/providers/google.account
+
+var _google2 = _interopRequireDefault(_google);
+
 var _account = require(719                    ); // 719 = ../../actions/account
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
@@ -70186,7 +70194,16 @@ function _wrapComponent(id) {
 
 var AccountStackNavigation = exports.AccountStackNavigation = (0, _reactNavigation.StackNavigator)({
   AddAccount: {
-    screen: _add2.default
+    screen: _add2.default,
+    path: 'addAccount'
+  },
+  OutlookAccount: {
+    screen: _outlook2.default,
+    path: 'outlookAccount'
+  },
+  GoogleAccount: {
+    screen: _google2.default,
+    path: 'googleAccount'
   }
 });
 
@@ -70300,7 +70317,7 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
       return _react3.default.createElement(Main, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 119
+          lineNumber: 130
         }
       });
     }
@@ -84911,18 +84928,11 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
   }
 
   _createClass(AddAccountView, [{
-    key: 'renderFlatListItem',
-    value: function renderFlatListItem(item) {
-      return _react3.default.createElement(
-        _reactNative.Text,
-        { style: _style2.default.item, __source: {
-            fileName: _jsxFileName,
-            lineNumber: 17
-          }
-        },
-        item.key
-      );
-    }
+    key: '_addOutlookAccountPressButton',
+    value: function _addOutlookAccountPressButton() {}
+  }, {
+    key: '_addGoogleAccountPressButton',
+    value: function _addGoogleAccountPressButton() {}
   }, {
     key: 'render',
     value: function render() {
@@ -84932,36 +84942,56 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
         _reactNative.ScrollView,
         { style: _style2.default.container, __source: {
             fileName: _jsxFileName,
-            lineNumber: 23
+            lineNumber: 26
           }
         },
         _react3.default.createElement(
-          _reactNative.View,
-          { style: _style2.default.item, __source: {
+          _reactNative.TouchableOpacity,
+          { onPress: function onPress() {
+              navigation.navigate("OutlookAccount");
+            }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 24
+              lineNumber: 27
             }
           },
-          _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-            source: require(725                                  ), __source: { // 725 = ../../images/outlooklogo272x138.png
-              fileName: _jsxFileName,
-              lineNumber: 25
-            }
-          })
+          _react3.default.createElement(
+            _reactNative.View,
+            { style: _style2.default.item, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 30
+              }
+            },
+            _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
+              source: require(725                                  ), __source: { // 725 = ../../images/outlooklogo272x138.png
+                fileName: _jsxFileName,
+                lineNumber: 31
+              }
+            })
+          )
         ),
         _react3.default.createElement(
-          _reactNative.View,
-          { style: _style2.default.item, __source: {
+          _reactNative.TouchableOpacity,
+          { onPress: function onPress() {
+              navigation.navigate("GoogleAccount");
+            }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 28
+              lineNumber: 35
             }
           },
-          _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-            source: require(726                                ), __source: { // 726 = ../../images/googlelogo272x92.png
-              fileName: _jsxFileName,
-              lineNumber: 29
-            }
-          })
+          _react3.default.createElement(
+            _reactNative.View,
+            { style: _style2.default.item, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 38
+              }
+            },
+            _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
+              source: require(726                                ), __source: { // 726 = ../../images/googlelogo272x92.png
+                fileName: _jsxFileName,
+                lineNumber: 39
+              }
+            })
+          )
         )
       );
     }
@@ -84997,12 +85027,19 @@ exports.default = _reactNative.StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 1,
-    marginRight: 2,
-    marginBottom: 1,
-    marginLeft: 2,
-    height: 100,
-    backgroundColor: '#ffffff'
+    marginTop: 4,
+    marginRight: 8,
+    marginBottom: 4,
+    marginLeft: 8,
+    height: 120,
+    backgroundColor: '#ffffff',
+    shadowColor: '#333333',
+    shadowOpacity: 0.3,
+    shadowOffset: {
+      height: 1,
+      width: 1
+    },
+    shadowRadius: 1
   }
 });
 }, 722, null, "LynxMail/src/components/views/accounts/style.js");
@@ -85010,6 +85047,868 @@ __d(/* LynxMail/src/components/images/outlooklogo272x138.png */function(global, 
 }, 725, null, "LynxMail/src/components/images/outlooklogo272x138.png");
 __d(/* LynxMail/src/components/images/googlelogo272x92.png */function(global, require, module, exports) {module.exports=require(324                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/components/images","width":272,"height":92,"scales":[1],"hash":"8f9327db2597fa57d2f42b4a6c5a9855","name":"googlelogo272x92","type":"png"}); // 324 = react-native/Libraries/Image/AssetRegistry
 }, 726, null, "LynxMail/src/components/images/googlelogo272x92.png");
+__d(/* LynxMail/src/components/views/accounts/providers/outlook.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(36     ); // 36 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(160                                                             ); // 160 = ./../../../../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/accounts/providers/outlook.account.js';
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _reactRedux = require(492          ); // 492 = react-redux
+
+var _reactNativeAzureAd = require(730                    ); // 730 = react-native-azure-ad
+
+var _style = require(728      ); // 728 = ./style
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  OutlookAccountView: {
+    displayName: 'OutlookAccountView'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/accounts/providers/outlook.account.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+_reactNativeAzureAd.Logger.setLevel('VERBOSE');
+var config = {
+  client_id: '584f5e41-234f-480f-87b7-cbefb4e6d35f',
+
+  resources: ['https://graph.microsoft.com', 'https://outlook.office.com', 'https://outlook.office365.com', 'https://wiadvancetechnology.sharepoint.com', 'https://graph.windows.net']
+};
+
+var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = function (_Component) {
+  _inherits(OutlookAccountView, _Component);
+
+  function OutlookAccountView(props) {
+    _classCallCheck(this, OutlookAccountView);
+
+    var _this = _possibleConstructorReturn(this, (OutlookAccountView.__proto__ || Object.getPrototypeOf(OutlookAccountView)).call(this, props));
+
+    new _reactNativeAzureAd.ReactNativeAD(config);
+    return _this;
+  }
+
+  _createClass(OutlookAccountView, [{
+    key: 'onLoginSuccess',
+    value: function onLoginSuccess(cred) {
+      console.log(cred);
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: _style2.default.container, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 43
+          }
+        },
+        _react3.default.createElement(_reactNativeAzureAd.ADLoginView, { context: _reactNativeAzureAd.ReactNativeAD.getContext(config.client_id),
+          needLogout: false,
+          hideAfterLogin: true,
+          onSuccess: this.onLoginSuccess.bind(this),
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 44
+          }
+        })
+      );
+    }
+  }]);
+
+  return OutlookAccountView;
+}(_react2.Component), _class.navigationOptions = {
+  title: 'Outlook',
+  headerTintColor: '#0061b2'
+}, _temp));
+
+exports.default = (0, _reactRedux.connect)()(OutlookAccountView);
+}, 727, null, "LynxMail/src/components/views/accounts/providers/outlook.account.js");
+__d(/* react-native-azure-ad/src/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.Logger = exports.ReactNativeAD = exports.ADLoginView = undefined;
+
+var _ADLoginView = require(731            ); // 731 = ./ADLoginView
+
+var _ADLoginView2 = _interopRequireDefault(_ADLoginView);
+
+var _ReactNativeAD = require(733              ); // 733 = ./ReactNativeAD
+
+var _ReactNativeAD2 = _interopRequireDefault(_ReactNativeAD);
+
+var _logger = require(734          ); // 734 = ./logger.js
+
+var _logger2 = _interopRequireDefault(_logger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.ADLoginView = _ADLoginView2.default;
+exports.ReactNativeAD = _ReactNativeAD2.default;
+exports.Logger = _logger2.default;
+}, 730, null, "react-native-azure-ad/src/index.js");
+__d(/* react-native-azure-ad/src/ADLoginView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(36     ); // 36 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(160                                       ); // 160 = ./../../react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/Users/elourenco/Workspace/pessoal/LynxMail/node_modules/react-native-azure-ad/src/ADLoginView.js';
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _const = require(732         ); // 732 = ./const.js
+
+var _const2 = _interopRequireDefault(_const);
+
+var _ReactNativeAD = require(733                 ); // 733 = ./ReactNativeAD.js
+
+var _ReactNativeAD2 = _interopRequireDefault(_ReactNativeAD);
+
+var _reactTimerMixin = require(390                ); // 390 = react-timer-mixin
+
+var _reactTimerMixin2 = _interopRequireDefault(_reactTimerMixin);
+
+var _logger = require(734       ); // 734 = ./logger
+
+var _logger2 = _interopRequireDefault(_logger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  ADLoginView: {
+    displayName: 'ADLoginView'
+  }
+};
+
+var _reactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/elourenco/Workspace/pessoal/LynxMail/node_modules/react-native-azure-ad/src/ADLoginView.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _reactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var loginUrl = 'https://login.microsoftonline.com/<tenant id>/oauth2/authorize';
+var tokenUrl = 'https://login.microsoftonline.com/common/oauth2/token';
+
+var ADLoginView = _wrapComponent('ADLoginView')((_temp = _class = function (_React$Component) {
+  _inherits(ADLoginView, _React$Component);
+
+  function ADLoginView(props) {
+    _classCallCheck(this, ADLoginView);
+
+    var _this = _possibleConstructorReturn(this, (ADLoginView.__proto__ || Object.getPrototypeOf(ADLoginView)).call(this, props));
+
+    if (!_this.props.context instanceof _ReactNativeAD2.default) throw new Error('property `context` of ADLoginView should be an instance of ReactNativeAD, but got', _this.props.context);
+    var context = _this.props.context;
+    var tenant = context.getConfig().tenant;
+    _this._needRedirect = _this.props.needLogout || false;
+    _this.state = {
+      page: _this._getLoginUrl(tenant || 'common'),
+      visible: true
+    };
+    _this._lock = false;
+    return _this;
+  }
+
+  _createClass(ADLoginView, [{
+    key: 'componentWillUpdate',
+    value: function componentWillUpdate(nextProps, nextState) {
+      if (this.state.visible === nextState.visible && this.state.page === nextState.page) return false;
+      return true;
+    }
+  }, {
+    key: 'componentDidUpdate',
+    value: function componentDidUpdate(prevProps, prevState) {
+      if (prevState.visible !== this.state.visible) this.props.onVisibilityChange && this.props.onVisibilityChange(this.state.visible);
+      _logger2.default.debug('ADLoginView updated.');
+    }
+  }, {
+    key: 'componentWillReceiveProps',
+    value: function componentWillReceiveProps(nextProps) {
+      if (!this.props.needLogout && nextProps.needLogout) {
+        var _context = this.props.context;
+        var tenant = _context.getConfig().tenant;
+        this._needRedirect = nextProps.needLogout || false;
+        this.setState({
+          page: this._getLoginUrl(tenant || 'common'),
+          visible: true
+        });
+      }
+    }
+  }, {
+    key: 'render',
+    value: function render() {
+      var _this2 = this;
+
+      var js = 'document.getElementsByTagName(\'body\')[0].style.height = \'' + _reactNative.Dimensions.get('window').height + 'px\';';
+
+      return this.state.visible ? _react3.default.createElement(_reactNative.WebView, {
+        ref: 'ADLoginView',
+        automaticallyAdjustContentInsets: false,
+        style: [this.props.style, {
+          flex: 1,
+          alignSelf: 'stretch',
+          width: _reactNative.Dimensions.get('window').width,
+          height: _reactNative.Dimensions.get('window').height
+        }],
+        source: { uri: this.state.page },
+        javaScriptEnabled: true,
+        domStorageEnabled: true,
+        onLoadEnd: function onLoadEnd() {
+          if (_this2._needRedirect) {
+            _this2._needRedirect = false;
+            var tenant = _this2.props.context.getConfig().tenant || 'common';
+            _this2.setState({ page: _this2._getLoginUrl(tenant) });
+          }
+        },
+        decelerationRate: 'normal',
+        javaScriptEnabledAndroid: true,
+        onNavigationStateChange: this._handleADToken.bind(this),
+        onShouldStartLoadWithRequest: function onShouldStartLoadWithRequest(e) {
+          return true;
+        },
+        startInLoadingState: false,
+        injectedJavaScript: js,
+        scalesPageToFit: true, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 83
+        }
+      }) : null;
+    }
+  }, {
+    key: '_getLoginUrl',
+    value: function _getLoginUrl() {
+      var tenant = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'common';
+
+
+      var authUrl = String(this.props.authority_host || loginUrl).replace('<tenant id>', tenant);
+      var context = this.props.context || null;
+      var redirect = context.getConfig().redirect_uri;
+      var prompt = context.getConfig().prompt;
+
+      if (context !== null) {
+        var result = authUrl + '?response_type=code' + ('&client_id=' + context.getConfig().client_id) + (redirect ? '&redirect_url=' + context.getConfig().redirect_uri + '&nonce=rnad-' + Date.now() : '') + (prompt ? '&prompt=' + context.getConfig().prompt : '');
+
+        if (this._needRedirect) result = 'https://login.windows.net/' + this.props.context.getConfig().client_id + '/oauth2/logout';
+        return result;
+      } else {
+        throw new Error('AD context should not be null/undefined.');
+      }
+    }
+  }, {
+    key: '_handleADToken',
+    value: function _handleADToken(e) {
+      _logger2.default.verbose('ADLoginView navigate to', e.url);
+      if (this._lock) return true;
+      var code = /((\?|\&)code\=)[^\&]+/.exec(e.url);
+
+      if (this._needRedirect) {
+        return true;
+      }
+
+      if (this.props.onURLChange) this.props.onURLChange(e);
+
+      if (code !== null) {
+        this._lock = true;
+        _logger2.default.verbose('ADLoginView._handleADToken code=', code[0]);
+        code = String(code[0]).replace(/(\?|\&)?code\=/, '');
+        this.setState({ visible: !this.props.hideAfterLogin });
+        this.props.onVisibilityChange && this.props.onVisibilityChange(false);
+        this._getResourceAccessToken(code).catch(function (err) {
+          _logger2.default.error('ADLoginView._getResourceAccessToken', err);
+        });
+        return true;
+      }
+
+      return true;
+    }
+  }, {
+    key: '_checkProperties',
+    value: function _checkProperties(config) {
+
+      ['client_id', 'redirect_uri', 'authority_host'].forEach(function (prop) {
+        if (!config.hasOwnProperty(prop)) throw new Error('ReactNativeAD config object must have `' + prop + '` property');
+      });
+    }
+  }, {
+    key: '_getResourceAccessToken',
+    value: function _getResourceAccessToken(code) {
+      var _this3 = this;
+
+      var context = this.props.context;
+
+      if (!context) throw new Error('property `context` of ADLoginView should not be null/undefined');
+
+      var adConfig = this.props.context.getConfig();
+
+      var _adConfig$client_id = adConfig.client_id,
+          client_id = _adConfig$client_id === undefined ? null : _adConfig$client_id,
+          _adConfig$redirect_ur = adConfig.redirect_uri,
+          redirect_uri = _adConfig$redirect_ur === undefined ? null : _adConfig$redirect_ur,
+          _adConfig$client_secr = adConfig.client_secret,
+          client_secret = _adConfig$client_secr === undefined ? null : _adConfig$client_secr,
+          _adConfig$resources = adConfig.resources,
+          resources = _adConfig$resources === undefined ? null : _adConfig$resources;
+
+      if (typeof resources === 'string') resources = [resources];else if (Array.isArray(resources)) resources = resources.length === 0 ? null : resources;
+
+      _logger2.default.verbose('ADLoginView get access token for resources=', resources);
+
+      var promises = [];
+      var config = { client_id: client_id, redirect_uri: redirect_uri, code: code, client_secret: client_secret,
+
+        resource: 'common'
+      };
+
+      if (resources === null || resources === void 0) {
+        promises.push(context.grantAccessToken(_const2.default.GRANT_TYPE.AUTHORIZATION_CODE, config));
+      } else {
+          promises = resources.map(function (rcs, i) {
+            var cfg = _extends({}, config, { resource: rcs });
+            return context.grantAccessToken(_const2.default.GRANT_TYPE.AUTHORIZATION_CODE, cfg);
+          });
+        }
+      return Promise.all(promises).then(function (resps) {
+
+        _logger2.default.verbose('ADLoginView response access info ', resps);
+
+        if (!_this3.props.context) throw new Error('value of property `context` is invalid=', _this3.props.context);
+
+        var context = _this3.props.context;
+        var onSuccess = _this3.props.onSuccess || function () {};
+
+        if (context !== null && typeof _this3.props.onSuccess === 'function') onSuccess(context.getCredentials());
+        _this3._lock = false;
+      }).catch(function (err) {
+        throw new Error('Failed to acquire token for resources', err.stack);
+      });
+    }
+  }]);
+
+  return ADLoginView;
+}(_react3.default.Component), _class.defaultProps = {
+  authority_host: loginUrl,
+  tenant: 'common',
+  onSuccess: function onSuccess() {},
+  onPageRequest: null
+}, _temp));
+
+exports.default = ADLoginView;
+}, 731, null, "react-native-azure-ad/src/ADLoginView.js");
+__d(/* react-native-azure-ad/src/const.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.default = {
+
+  GRANT_TYPE: {
+    AUTHORIZATION_CODE: 'authorization_code',
+    REFRESH_TOKEN: 'refresh_token'
+  }
+
+};
+}, 732, null, "react-native-azure-ad/src/const.js");
+__d(/* react-native-azure-ad/src/ReactNativeAD.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _reactNative2 = _interopRequireDefault(_reactNative);
+
+var _const = require(732         ); // 732 = ./const.js
+
+var _const2 = _interopRequireDefault(_const);
+
+var _reactTimerMixin = require(390                ); // 390 = react-timer-mixin
+
+var _reactTimerMixin2 = _interopRequireDefault(_reactTimerMixin);
+
+var _logger = require(734       ); // 734 = ./logger
+
+var _logger2 = _interopRequireDefault(_logger);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var defaultTokenUrl = 'https://login.microsoftonline.com/common/oauth2/token';
+
+var _contexts = {};
+
+var ReactNativeAD = function () {
+  _createClass(ReactNativeAD, null, [{
+    key: 'getContext',
+    value: function getContext(client_id) {
+      return _contexts[client_id];
+    }
+  }, {
+    key: 'removeContext',
+    value: function removeContext(client_id) {
+      delete _contexts[client_id];
+    }
+  }, {
+    key: 'ResourceOwnerPasswordCredential',
+    value: function (_ResourceOwnerPasswordCredential) {
+      function ResourceOwnerPasswordCredential(_x) {
+        return _ResourceOwnerPasswordCredential.apply(this, arguments);
+      }
+
+      ResourceOwnerPasswordCredential.toString = function () {
+        return _ResourceOwnerPasswordCredential.toString();
+      };
+
+      return ResourceOwnerPasswordCredential;
+    }(function (data) {
+
+      var url = 'https://login.windows.net/' + data.tenant_id + '/oauth2/token';
+      var resource = data.resource,
+          client_id = data.client_id,
+          username = data.username,
+          password = data.password;
+
+      var urlencode = ['resource=' + encodeURIComponent(resource), 'grant_type=password', 'client_id=' + client_id, 'username=' + username, 'password=' + password].join('$');
+
+      fetch(url, { method: 'POST', body: urlencode });
+    })
+  }]);
+
+  function ReactNativeAD(config) {
+    _classCallCheck(this, ReactNativeAD);
+
+    if (config === null || config === void 0) throw new Error('Invalid ADConfig object', config);
+    if (typeof config.client_id !== 'string') throw new Error('client_id is not provided.');
+    this.config = config;
+    this.credentials = {};
+    _contexts[config.client_id] = this;
+  }
+
+  _createClass(ReactNativeAD, [{
+    key: 'getConfig',
+    value: function getConfig() {
+      _logger2.default.verbose('getConfig', this.config);
+      return this.config;
+    }
+  }, {
+    key: 'getCredentials',
+    value: function getCredentials() {
+      _logger2.default.verbose('getCredentials', this.credentials);
+      return this.credentials;
+    }
+  }, {
+    key: 'saveCredentials',
+    value: function saveCredentials(data) {
+      var _this = this;
+
+      return new Promise(function (resolve, reject) {
+
+        var pairs = [];
+        _logger2.default.verbose('saveCredentials', data);
+        for (var resource in data) {
+
+          if (resource && data[resource]) {
+            pairs.push([_this.config.client_id + '.' + resource, JSON.stringify(data[resource])]);
+          } else console.warn('counld not save credential for ' + resource + '=' + data[resource] + ' for its key/value is null/undefeind.');
+        }
+
+        _extends(_this.credentials, data);
+
+        _reactNative.AsyncStorage.multiSet(pairs, function (err) {
+          _logger2.default.verbose('saveCredentials', 'done', _this.credentials);
+          if (err) reject(err);else resolve();
+        });
+        console.log(_this.credentials);
+      });
+    }
+  }, {
+    key: 'getAccessToken',
+    value: function getAccessToken(resource) {
+
+      var result = null;
+      result = this.credentials ? this.credentials[resource] : null;
+      _logger2.default.debug('getAccessToken', resource, result);
+      if (result !== null) {
+        return result.access_token;
+      }
+      return null;
+    }
+  }, {
+    key: 'assureToken',
+    value: function assureToken(resource) {
+      var context = this;
+
+      return this.checkCredential(resource).then(function (cred) {
+        if (!cred) return context.refreshToken(resource);else {
+            var expires_on = cred.expires_on * 1000;
+
+            if (Date.now() - expires_on <= -60000) return Promise.resolve(cred.access_token);else {
+                _logger2.default.debug('cached token expired, refresh token.');
+                return context.refreshToken(resource);
+              }
+          }
+      });
+    }
+  }, {
+    key: 'refreshToken',
+    value: function refreshToken(resourceId) {
+      var _this2 = this;
+
+      return new Promise(function (resolve, reject) {
+        _this2.checkCredential(resourceId).then(function (cred) {
+          var config = {
+            refresh_token: cred ? cred.refresh_token : null,
+            client_id: _this2.config.client_id,
+            client_secret: _this2.config.client_secret,
+            resource: resourceId
+          };
+          var grantType = _const2.default.GRANT_TYPE.REFRESH_TOKEN;
+          if (!cred) grantType = _const2.default.GRANT_TYPE.AUTHORIZATION_CODE;
+          _logger2.default.debug('refresh token with config=', config, 'grant_type=' + grantType);
+          _this2.grantAccessToken(grantType, config).then(function (resp) {
+            resolve(resp.response.access_token);
+          }).catch(function (err) {
+            _logger2.default.warn(err);
+            reject(err);
+          });
+        });
+      });
+    }
+  }, {
+    key: 'checkCredential',
+    value: function checkCredential(resourceId) {
+      var context = this;
+      return new Promise(function (resolve, reject) {
+        var config = context.config;
+        var resourceKey = _getResourceKey(context.config, resourceId);
+        var cachedCred = context.credentials[resourceId];
+        _logger2.default.verbose('checkCredential:\'' + resourceId + ' cached at ' + resourceKey + '=' + cachedCred);
+
+        if (!cachedCred || cachedCred === void 0) {
+          try {
+            _reactNative.AsyncStorage.getItem(resourceKey).then(function (credStr) {
+              _logger2.default.debug('checkCredential from AsyncStorage data=' + credStr);
+
+              var result = null;
+              if (credStr) {
+                result = JSON.parse(credStr);
+              }
+              resolve(result);
+            });
+          } catch (err) {
+            console.debug('async storage err', err);
+            reject(err);
+          }
+        } else {
+          resolve(cachedCred);
+        }
+      });
+    }
+  }, {
+    key: 'grantAccessToken',
+    value: function grantAccessToken(grantType, params) {
+      var _this3 = this;
+
+      params.resource = params.resource || 'common';
+      if (grantType === 'password') params['client_id'] = this.config.client_id;
+      return new Promise(function (resolve, reject) {
+        try {
+          _logger2.default.debug(grantType + ' access token for resource ' + params.resource);
+          var tm = _reactTimerMixin2.default.setTimeout(function () {
+            reject('time out');
+          }, 15000);
+
+          var body = 'grant_type=' + grantType + _serialize(params);
+          fetch(_this3.config.token_uri ? _this3.config.token_uri : defaultTokenUrl, {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: body
+          }).then(function (response) {
+            _reactTimerMixin2.default.clearTimeout(tm);
+            return response.text();
+          }).then(function (res) {
+            var cred = {
+              resource: params.resource,
+              response: JSON.parse(res.replace('access_token=', ''))
+            };
+
+            _this3.credentials[params.resource] = cred.response;
+
+            var cacheKey = _getResourceKey(_this3.config, params.resource);
+            if (cred.response.access_token) {
+              _logger2.default.debug('save credential ' + cacheKey + ' ', cred.response);
+              _reactNative.AsyncStorage.setItem(cacheKey, JSON.stringify(cred.response));
+
+              resolve(cred);
+            } else {
+              _logger2.default.debug('failed to grant token for resource ' + cacheKey, cred.response);
+              reject(cred);
+            }
+          }).catch(reject);
+        } catch (err) {
+          reject(err);
+        }
+      });
+    }
+  }]);
+
+  return ReactNativeAD;
+}();
+
+exports.default = ReactNativeAD;
+
+function _getResourceKey(config, resourceId) {
+  return config.client_id + '.' + resourceId;
+}
+
+function _serialize(params) {
+  var paramStr = '';
+  for (var prop in params) {
+    if (params[prop] !== null && params[prop] !== void 0 && prop !== 'grant_type') paramStr += '&' + prop + '=' + encodeURIComponent(params[prop]);
+  }
+  return paramStr;
+}
+}, 733, null, "react-native-azure-ad/src/ReactNativeAD.js");
+__d(/* react-native-azure-ad/src/logger.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+var levels = {
+  ERROR: 4,
+  WARN: 3,
+  INFO: 2,
+  DEBUG: 1,
+  VERBOSE: 0
+};
+var level = 4;
+
+exports.default = {
+  setLevel: function setLevel(val) {
+    console.log('log level set to ', val);
+    level = levels[val];
+  },
+
+  verbose: function verbose() {
+    var _console;
+
+    for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
+      args[_key] = arguments[_key];
+    }
+
+    if (level <= 0) (_console = console).log.apply(_console, ['VERBOSE:'].concat(args));
+  },
+
+  debug: function debug() {
+    var _console2;
+
+    for (var _len2 = arguments.length, args = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+      args[_key2] = arguments[_key2];
+    }
+
+    if (level <= 1) (_console2 = console).log.apply(_console2, ['DEBUG:'].concat(args));
+  },
+
+  info: function info() {
+    var _console3;
+
+    for (var _len3 = arguments.length, args = Array(_len3), _key3 = 0; _key3 < _len3; _key3++) {
+      args[_key3] = arguments[_key3];
+    }
+
+    if (level <= 2) (_console3 = console).log.apply(_console3, ['INFO:'].concat(args));
+  },
+
+  warn: function warn() {
+    var _console4;
+
+    for (var _len4 = arguments.length, args = Array(_len4), _key4 = 0; _key4 < _len4; _key4++) {
+      args[_key4] = arguments[_key4];
+    }
+
+    if (level <= 3) (_console4 = console).warn.apply(_console4, ['WARN:'].concat(args));
+  },
+
+  error: function error() {
+    var _console5;
+
+    for (var _len5 = arguments.length, args = Array(_len5), _key5 = 0; _key5 < _len5; _key5++) {
+      args[_key5] = arguments[_key5];
+    }
+
+    if (level <= 4) (_console5 = console).error.apply(_console5, ['ERROR:'].concat(args));
+  }
+
+};
+}, 734, null, "react-native-azure-ad/src/logger.js");
+__d(/* LynxMail/src/components/views/accounts/providers/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react = require(36     ); // 36 = react
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactNative = require(12            ); // 12 = react-native
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1
+  }
+});
+}, 728, null, "LynxMail/src/components/views/accounts/providers/style.js");
+__d(/* LynxMail/src/components/views/accounts/providers/google.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(36     ); // 36 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(160                                                             ); // 160 = ./../../../../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/accounts/providers/google.account.js';
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _reactRedux = require(492          ); // 492 = react-redux
+
+var _style = require(728      ); // 728 = ./style
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  GoogleAccountView: {
+    displayName: 'GoogleAccountView'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/accounts/providers/google.account.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var GoogleAccountView = _wrapComponent('GoogleAccountView')((_temp = _class = function (_Component) {
+  _inherits(GoogleAccountView, _Component);
+
+  function GoogleAccountView() {
+    _classCallCheck(this, GoogleAccountView);
+
+    return _possibleConstructorReturn(this, (GoogleAccountView.__proto__ || Object.getPrototypeOf(GoogleAccountView)).apply(this, arguments));
+  }
+
+  _createClass(GoogleAccountView, [{
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(
+        _reactNative.ScrollView,
+        { style: _style2.default.scrollview, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 21
+          }
+        },
+        _react3.default.createElement(_reactNative.View, { style: _style2.default.content, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 22
+          }
+        })
+      );
+    }
+  }]);
+
+  return GoogleAccountView;
+}(_react2.Component), _class.navigationOptions = {
+  title: 'Google',
+  headerTintColor: '#0061b2'
+}, _temp));
+
+exports.default = (0, _reactRedux.connect)()(GoogleAccountView);
+}, 729, null, "LynxMail/src/components/views/accounts/providers/google.account.js");
 __d(/* LynxMail/src/reducers/auth-reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });

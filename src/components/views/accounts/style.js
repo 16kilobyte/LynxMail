@@ -10,11 +10,18 @@ export default StyleSheet.create({
     flexDirection: 'column',
     justifyContent: 'center',
     alignItems: 'center',
-    marginTop: 1,
-    marginRight:2,
-    marginBottom:1,
-    marginLeft:2,
-    height: 100,
-    backgroundColor: '#ffffff'
+    marginTop: 4,
+    marginRight:8,
+    marginBottom:4,
+    marginLeft:8,
+    height: 120,
+    backgroundColor: '#ffffff',
+    shadowColor: '#000000',
+    shadowOpacity: 0.3,
+    shadowOffset: {
+      height: 1,
+      width: 0
+    },
+    shadowRadius: 1,
    },
 })
