@@ -10,29 +10,13 @@ import EventTabBarNavigation from './event.tabnavigation';
 import ContactTabBarNavigation from './contact.tabnavigation';
 import SettingsTabBarNavigation from './settings.tabnavigation';
 
-import SignIn from '../views/Auth/sign-in';
-import SignUp from '../views/Auth/sign-up';
+import AddAccountView from '../views/accounts/add.account';
 
-import { isSignedIn } from "../../actions/auth";
+import { hasAccount } from "../../actions/account";
 
-const headerStyle = {
-  marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
-};
-
-export const AuthStackNavigation = StackNavigator({
-  SignUp: {
-    screen: SignUp,
-    navigationOptions: {
-      title: "Sign Up",
-      headerStyle
-    }
-  },
-  SignIn: {
-    screen: SignIn,
-    navigationOptions: {
-      title: "Sign In",
-      headerStyle
-    }
+export const AccountStackNavigation = StackNavigator({
+  AddAccount: {
+    screen: AddAccountView
   }
 });
 
@@ -83,17 +67,17 @@ export const MainTabBarNavigation = TabNavigator({
   }
 )
 
-export const createRootNavigator = (signedIn = false) => {
+export const createRootNavigator = (hasAccount = false) => {
   return StackNavigator(
     {
-      SignedIn: {
+      Main: {
         screen: MainTabBarNavigation,
         navigationOptions: {
           gesturesEnabled: false
         }
       },
-      SignedOut: {
-        screen: AuthStackNavigation,
+      AddAccount: {
+        screen: AccountStackNavigation,
         navigationOptions: {
           gesturesEnabled: false
         }
@@ -102,7 +86,7 @@ export const createRootNavigator = (signedIn = false) => {
     {
       headerMode: "none",
       mode: "modal",
-      initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+      initialRouteName: hasAccount ? "Main" : "AddAccount"
     }
   );
 };
@@ -112,26 +96,26 @@ class MainContainer extends Component {
     super(props);
 
     this.state = {
-      signedIn: false,
-      checkedSignIn: false
+      hasAccount: false,
+      checkedHasAccount: false
     };
   }
 
   componentWillMount() {
-    isSignedIn()
-      .then(res => this.setState({ signedIn: res, checkedSignIn: true }))
+    hasAccount()
+      .then(res => this.setState({ hasAccount: res, checkedHasAccount: true }))
       .catch(err => alert("An error occurred"));
   }
 
   render() {
-    const { checkedSignIn, signedIn } = this.state;
+    const { checkedHasAccount, hasAccount } = this.state;
 
     // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
-    if (!checkedSignIn) {
+    if (!checkedHasAccount) {
       return null;
     }
 
-    const Main = createRootNavigator(signedIn);
+    const Main = createRootNavigator(hasAccount);
     return <Main />;
   }
 }

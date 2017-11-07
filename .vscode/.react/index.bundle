@@ -1293,7 +1293,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 _reactNative.AppRegistry.registerComponent('LynxMail', function () {
   return _src2.default;
 });
-}, 665, null, "LynxMail/index.js");
+}, 0, null, "LynxMail/index.js");
 __d(/* react-native-implementation */function(global, require, module, exports) {
 'use strict';
 
@@ -58346,7 +58346,7 @@ var _stores = require(520       ); // 520 = ./stores
 
 var _stores2 = _interopRequireDefault(_stores);
 
-var _main = require(664     ); // 664 = ./main
+var _main = require(722     ); // 722 = ./main
 
 var _main2 = _interopRequireDefault(_main);
 
@@ -60738,7 +60738,7 @@ var _navigationReducer = require(531                   ); // 531 = ./navigation-
 
 var _navigationReducer2 = _interopRequireDefault(_navigationReducer);
 
-var _authReducer = require(663             ); // 663 = ./auth-reducer
+var _authReducer = require(721             ); // 721 = ./auth-reducer
 
 var _authReducer2 = _interopRequireDefault(_authReducer);
 
@@ -69729,7 +69729,7 @@ exports.default = (0, _reactNavigation.DrawerNavigator)(routeConfigs, navigatorC
 __d(/* LynxMail/src/components/containers/main.container.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.createRootNavigator = exports.MainTabBarNavigation = exports.AuthStackNavigation = undefined;
+exports.createRootNavigator = exports.MainTabBarNavigation = exports.AccountStackNavigation = undefined;
 
 var _react2 = require(36     ); // 36 = react
 
@@ -69769,15 +69769,11 @@ var _settings = require(660                       ); // 660 = ./settings.tabnavi
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _signIn = require(723                    ); // 723 = ../views/Auth/sign-in
+var _add = require(720                            ); // 720 = ../views/accounts/add.account
 
-var _signIn2 = _interopRequireDefault(_signIn);
+var _add2 = _interopRequireDefault(_add);
 
-var _signUp = require(724                    ); // 724 = ../views/Auth/sign-up
-
-var _signUp2 = _interopRequireDefault(_signUp);
-
-var _auth = require(722                 ); // 722 = ../../actions/auth
+var _account = require(718                    ); // 718 = ../../actions/account
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -69806,24 +69802,9 @@ function _wrapComponent(id) {
   };
 }
 
-var headerStyle = {
-  marginTop: _reactNative.Platform.OS === "android" ? _reactNative.StatusBar.currentHeight : 0
-};
-
-var AuthStackNavigation = exports.AuthStackNavigation = (0, _reactNavigation.StackNavigator)({
-  SignUp: {
-    screen: _signUp2.default,
-    navigationOptions: {
-      title: "Sign Up",
-      headerStyle: headerStyle
-    }
-  },
-  SignIn: {
-    screen: _signIn2.default,
-    navigationOptions: {
-      title: "Sign In",
-      headerStyle: headerStyle
-    }
+var AccountStackNavigation = exports.AccountStackNavigation = (0, _reactNavigation.StackNavigator)({
+  AddAccount: {
+    screen: _add2.default
   }
 });
 
@@ -69874,17 +69855,17 @@ var MainTabBarNavigation = exports.MainTabBarNavigation = (0, _reactNavigation.T
 });
 
 var createRootNavigator = exports.createRootNavigator = function createRootNavigator() {
-  var signedIn = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
+  var hasAccount = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : false;
 
   return (0, _reactNavigation.StackNavigator)({
-    SignedIn: {
+    Main: {
       screen: MainTabBarNavigation,
       navigationOptions: {
         gesturesEnabled: false
       }
     },
-    SignedOut: {
-      screen: AuthStackNavigation,
+    AddAccount: {
+      screen: AccountStackNavigation,
       navigationOptions: {
         gesturesEnabled: false
       }
@@ -69892,7 +69873,7 @@ var createRootNavigator = exports.createRootNavigator = function createRootNavig
   }, {
     headerMode: "none",
     mode: "modal",
-    initialRouteName: signedIn ? "SignedIn" : "SignedOut"
+    initialRouteName: hasAccount ? "Main" : "AddAccount"
   });
 };
 
@@ -69905,8 +69886,8 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
     var _this = _possibleConstructorReturn(this, (MainContainer.__proto__ || Object.getPrototypeOf(MainContainer)).call(this, props));
 
     _this.state = {
-      signedIn: false,
-      checkedSignIn: false
+      hasAccount: false,
+      checkedHasAccount: false
     };
     return _this;
   }
@@ -69916,8 +69897,8 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
     value: function componentWillMount() {
       var _this2 = this;
 
-      (0, _auth.isSignedIn)().then(function (res) {
-        return _this2.setState({ signedIn: res, checkedSignIn: true });
+      (0, _account.hasAccount)().then(function (res) {
+        return _this2.setState({ hasAccount: res, checkedHasAccount: true });
       }).catch(function (err) {
         return alert("An error occurred");
       });
@@ -69926,18 +69907,18 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
     key: 'render',
     value: function render() {
       var _state = this.state,
-          checkedSignIn = _state.checkedSignIn,
-          signedIn = _state.signedIn;
+          checkedHasAccount = _state.checkedHasAccount,
+          hasAccount = _state.hasAccount;
 
-      if (!checkedSignIn) {
+      if (!checkedHasAccount) {
         return null;
       }
 
-      var Main = createRootNavigator(signedIn);
+      var Main = createRootNavigator(hasAccount);
       return _react3.default.createElement(Main, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 135
+          lineNumber: 119
         }
       });
     }
@@ -75125,11 +75106,11 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(491          ); // 491 = react-redux
 
-var _reactNativeElements = require(666                    ); // 666 = react-native-elements
+var _reactNativeElements = require(662                    ); // 662 = react-native-elements
 
-var _auth = require(722                    ); // 722 = ../../../actions/auth
+var _account = require(718                       ); // 718 = ../../../actions/account
 
-var _style = require(662      ); // 662 = ./style
+var _style = require(719      ); // 719 = ./style
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -75221,7 +75202,7 @@ var SettingsView = _wrapComponent('SettingsView')((_temp = _class = function (_C
             backgroundColor: '#03A9F4',
             title: 'SIGN OUT',
             onPress: function onPress() {
-              return (0, _auth.onSignOut)().then(function () {
+              return (0, _account.onSignOut)().then(function () {
                 return navigation.navigate("SignedOut");
               });
             },
@@ -75248,99 +75229,99 @@ __d(/* react-native-elements/src/index.js */function(global, require, module, ex
 });
 exports.Header = exports.Rating = exports.Avatar = exports.Slider = exports.Tile = exports.normalize = exports.registerCustomIconType = exports.getIconType = exports.colors = exports.Icon = exports.SearchBar = exports.CheckBox = exports.Divider = exports.Text = exports.SocialIcon = exports.PricingCard = exports.ListItem = exports.List = exports.FormValidationMessage = exports.FormLabel = exports.FormInput = exports.Card = exports.ButtonGroup = exports.Button = exports.Badge = undefined;
 
-var _Button = require(667               ); // 667 = ./buttons/Button
+var _Button = require(663               ); // 663 = ./buttons/Button
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Icon = require(692           ); // 692 = ./icons/Icon
+var _Icon = require(688           ); // 688 = ./icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _List = require(693          ); // 693 = ./list/List
+var _List = require(689          ); // 689 = ./list/List
 
 var _List2 = _interopRequireDefault(_List);
 
-var _ListItem = require(694              ); // 694 = ./list/ListItem
+var _ListItem = require(690              ); // 690 = ./list/ListItem
 
 var _ListItem2 = _interopRequireDefault(_ListItem);
 
-var _SocialIcon = require(697                  ); // 697 = ./social/SocialIcon
+var _SocialIcon = require(693                  ); // 693 = ./social/SocialIcon
 
 var _SocialIcon2 = _interopRequireDefault(_SocialIcon);
 
-var _badge = require(696            ); // 696 = ./badge/badge
+var _badge = require(692            ); // 692 = ./badge/badge
 
 var _badge2 = _interopRequireDefault(_badge);
 
-var _CheckBox = require(698                  ); // 698 = ./checkbox/CheckBox
+var _CheckBox = require(694                  ); // 694 = ./checkbox/CheckBox
 
 var _CheckBox2 = _interopRequireDefault(_CheckBox);
 
-var _Divider = require(699                ); // 699 = ./divider/Divider
+var _Divider = require(695                ); // 695 = ./divider/Divider
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Slider = require(700              ); // 700 = ./slider/Slider
+var _Slider = require(696              ); // 696 = ./slider/Slider
 
 var _Slider2 = _interopRequireDefault(_Slider);
 
-var _ButtonGroup = require(701                    ); // 701 = ./buttons/ButtonGroup
+var _ButtonGroup = require(697                    ); // 697 = ./buttons/ButtonGroup
 
 var _ButtonGroup2 = _interopRequireDefault(_ButtonGroup);
 
-var _Card = require(702          ); // 702 = ./card/Card
+var _Card = require(698          ); // 698 = ./card/Card
 
 var _Card2 = _interopRequireDefault(_Card);
 
-var _Tile = require(704          ); // 704 = ./tile/Tile
+var _Tile = require(700          ); // 700 = ./tile/Tile
 
 var _Tile2 = _interopRequireDefault(_Tile);
 
-var _Avatar = require(695              ); // 695 = ./avatar/Avatar
+var _Avatar = require(691              ); // 691 = ./avatar/Avatar
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
-var _Rating = require(706              ); // 706 = ./rating/Rating
+var _Rating = require(702              ); // 702 = ./rating/Rating
 
 var _Rating2 = _interopRequireDefault(_Rating);
 
-var _Header = require(712              ); // 712 = ./header/Header
+var _Header = require(708              ); // 708 = ./header/Header
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _PricingCard = require(717                    ); // 717 = ./pricing/PricingCard
+var _PricingCard = require(713                    ); // 713 = ./pricing/PricingCard
 
 var _PricingCard2 = _interopRequireDefault(_PricingCard);
 
-var _FormInput = require(718               ); // 718 = ./form/FormInput
+var _FormInput = require(714               ); // 714 = ./form/FormInput
 
 var _FormInput2 = _interopRequireDefault(_FormInput);
 
-var _FormLabel = require(719               ); // 719 = ./form/FormLabel
+var _FormLabel = require(715               ); // 715 = ./form/FormLabel
 
 var _FormLabel2 = _interopRequireDefault(_FormLabel);
 
-var _FormValidationMessage = require(720                           ); // 720 = ./form/FormValidationMessage
+var _FormValidationMessage = require(716                           ); // 716 = ./form/FormValidationMessage
 
 var _FormValidationMessage2 = _interopRequireDefault(_FormValidationMessage);
 
-var _Search = require(721             ); // 721 = ./input/Search
+var _Search = require(717             ); // 717 = ./input/Search
 
 var _Search2 = _interopRequireDefault(_Search);
 
-var _Text = require(669          ); // 669 = ./text/Text
+var _Text = require(665          ); // 665 = ./text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _colors = require(668              ); // 668 = ./config/colors
+var _colors = require(664              ); // 664 = ./config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _getIconType = require(672                    ); // 672 = ./helpers/getIconType
+var _getIconType = require(668                    ); // 668 = ./helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _normalizeText = require(671                      ); // 671 = ./helpers/normalizeText
+var _normalizeText = require(667                      ); // 667 = ./helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
@@ -75371,7 +75352,7 @@ exports.Slider = _Slider2.default;
 exports.Avatar = _Avatar2.default;
 exports.Rating = _Rating2.default;
 exports.Header = _Header2.default;
-}, 666, null, "react-native-elements/src/index.js");
+}, 662, null, "react-native-elements/src/index.js");
 __d(/* react-native-elements/src/buttons/Button.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75390,11 +75371,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -75402,15 +75383,15 @@ var _MaterialIcons = require(650                                      ); // 650 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _getIconType = require(672                     ); // 672 = ../helpers/getIconType
+var _getIconType = require(668                     ); // 668 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -75703,7 +75684,7 @@ var stylesObject = {
 var styles = _reactNative.StyleSheet.create(stylesObject);
 
 exports.default = Button;
-}, 667, null, "react-native-elements/src/buttons/Button.js");
+}, 663, null, "react-native-elements/src/buttons/Button.js");
 __d(/* react-native-elements/src/config/colors.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75727,7 +75708,7 @@ exports.default = {
   white: '#ffffff',
   error: '#ff190c'
 };
-}, 668, null, "react-native-elements/src/config/colors.js");
+}, 664, null, "react-native-elements/src/config/colors.js");
 __d(/* react-native-elements/src/text/Text.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75745,11 +75726,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
@@ -75801,7 +75782,7 @@ TextElement.propTypes = {
 };
 
 exports.default = TextElement;
-}, 669, null, "react-native-elements/src/text/Text.js");
+}, 665, null, "react-native-elements/src/text/Text.js");
 __d(/* react-native-elements/src/config/fonts.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75837,7 +75818,7 @@ exports.default = {
     }
   }
 };
-}, 670, null, "react-native-elements/src/config/fonts.js");
+}, 666, null, "react-native-elements/src/config/fonts.js");
 __d(/* react-native-elements/src/helpers/normalizeText.js */function(global, require, module, exports) {
 
 var React = require(12            );var PixelRatio = React.PixelRatio, // 12 = react-native
@@ -75890,17 +75871,17 @@ var normalize = function normalize(size) {
 };
 
 module.exports = normalize;
-}, 671, null, "react-native-elements/src/helpers/normalizeText.js");
+}, 667, null, "react-native-elements/src/helpers/normalizeText.js");
 __d(/* react-native-elements/src/helpers/getIconType.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.registerCustomIconType = undefined;
 
-var _Zocial = require(673                               ); // 673 = react-native-vector-icons/Zocial
+var _Zocial = require(669                               ); // 669 = react-native-vector-icons/Zocial
 
 var _Zocial2 = _interopRequireDefault(_Zocial);
 
-var _Octicons = require(675                                 ); // 675 = react-native-vector-icons/Octicons
+var _Octicons = require(671                                 ); // 671 = react-native-vector-icons/Octicons
 
 var _Octicons2 = _interopRequireDefault(_Octicons);
 
@@ -75912,31 +75893,31 @@ var _MaterialCommunityIcons = require(599                                       
 
 var _MaterialCommunityIcons2 = _interopRequireDefault(_MaterialCommunityIcons);
 
-var _Ionicons = require(677                                 ); // 677 = react-native-vector-icons/Ionicons
+var _Ionicons = require(673                                 ); // 673 = react-native-vector-icons/Ionicons
 
 var _Ionicons2 = _interopRequireDefault(_Ionicons);
 
-var _Foundation = require(679                                   ); // 679 = react-native-vector-icons/Foundation
+var _Foundation = require(675                                   ); // 675 = react-native-vector-icons/Foundation
 
 var _Foundation2 = _interopRequireDefault(_Foundation);
 
-var _EvilIcons = require(681                                  ); // 681 = react-native-vector-icons/EvilIcons
+var _EvilIcons = require(677                                  ); // 677 = react-native-vector-icons/EvilIcons
 
 var _EvilIcons2 = _interopRequireDefault(_EvilIcons);
 
-var _Entypo = require(683                               ); // 683 = react-native-vector-icons/Entypo
+var _Entypo = require(679                               ); // 679 = react-native-vector-icons/Entypo
 
 var _Entypo2 = _interopRequireDefault(_Entypo);
 
-var _FontAwesome = require(685                                    ); // 685 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(681                                    ); // 681 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _SimpleLineIcons = require(687                                        ); // 687 = react-native-vector-icons/SimpleLineIcons
+var _SimpleLineIcons = require(683                                        ); // 683 = react-native-vector-icons/SimpleLineIcons
 
 var _SimpleLineIcons2 = _interopRequireDefault(_SimpleLineIcons);
 
-var _Feather = require(689                                ); // 689 = react-native-vector-icons/Feather
+var _Feather = require(685                                ); // 685 = react-native-vector-icons/Feather
 
 var _Feather2 = _interopRequireDefault(_Feather);
 
@@ -75979,7 +75960,7 @@ exports.default = function (type) {
       return _MaterialIcons2.default;
   }
 };
-}, 672, null, "react-native-elements/src/helpers/getIconType.js");
+}, 668, null, "react-native-elements/src/helpers/getIconType.js");
 __d(/* react-native-vector-icons/Zocial.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -75989,7 +75970,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Zocial = require(674                      ); // 674 = ./glyphmaps/Zocial.json
+var _Zocial = require(670                      ); // 670 = ./glyphmaps/Zocial.json
 
 var _Zocial2 = _interopRequireDefault(_Zocial);
 
@@ -76003,7 +75984,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 673, null, "react-native-vector-icons/Zocial.js");
+}, 669, null, "react-native-vector-icons/Zocial.js");
 __d(/* react-native-vector-icons/glyphmaps/Zocial.json */function(global, require, module, exports) {module.exports = module.exports = {
   "acrobat": 61696,
   "amazon": 61697,
@@ -76106,7 +76087,7 @@ __d(/* react-native-vector-icons/glyphmaps/Zocial.json */function(global, requir
   "yelp": 61794,
   "youtube": 61795
 };
-}, 674, null, "react-native-vector-icons/glyphmaps/Zocial.json");
+}, 670, null, "react-native-vector-icons/glyphmaps/Zocial.json");
 __d(/* react-native-vector-icons/Octicons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76116,7 +76097,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Octicons = require(676                        ); // 676 = ./glyphmaps/Octicons.json
+var _Octicons = require(672                        ); // 672 = ./glyphmaps/Octicons.json
 
 var _Octicons2 = _interopRequireDefault(_Octicons);
 
@@ -76130,7 +76111,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 675, null, "react-native-vector-icons/Octicons.js");
+}, 671, null, "react-native-vector-icons/Octicons.js");
 __d(/* react-native-vector-icons/glyphmaps/Octicons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "alert": 61696,
   "arrow-down": 61697,
@@ -76310,7 +76291,7 @@ __d(/* react-native-vector-icons/glyphmaps/Octicons.json */function(global, requ
   "x": 61871,
   "zap": 61872
 };
-}, 676, null, "react-native-vector-icons/glyphmaps/Octicons.json");
+}, 672, null, "react-native-vector-icons/glyphmaps/Octicons.json");
 __d(/* react-native-vector-icons/Ionicons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -76320,7 +76301,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Ionicons = require(678                        ); // 678 = ./glyphmaps/Ionicons.json
+var _Ionicons = require(674                        ); // 674 = ./glyphmaps/Ionicons.json
 
 var _Ionicons2 = _interopRequireDefault(_Ionicons);
 
@@ -76334,7 +76315,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 677, null, "react-native-vector-icons/Ionicons.js");
+}, 673, null, "react-native-vector-icons/Ionicons.js");
 __d(/* react-native-vector-icons/glyphmaps/Ionicons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "ios-add": 61698,
   "ios-add-circle": 61697,
@@ -77271,7 +77252,7 @@ __d(/* react-native-vector-icons/glyphmaps/Ionicons.json */function(global, requ
   "md-wine": 62377,
   "md-woman": 62378
 };
-}, 678, null, "react-native-vector-icons/glyphmaps/Ionicons.json");
+}, 674, null, "react-native-vector-icons/glyphmaps/Ionicons.json");
 __d(/* react-native-vector-icons/Foundation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77281,7 +77262,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Foundation = require(680                          ); // 680 = ./glyphmaps/Foundation.json
+var _Foundation = require(676                          ); // 676 = ./glyphmaps/Foundation.json
 
 var _Foundation2 = _interopRequireDefault(_Foundation);
 
@@ -77295,7 +77276,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 679, null, "react-native-vector-icons/Foundation.js");
+}, 675, null, "react-native-vector-icons/Foundation.js");
 __d(/* react-native-vector-icons/glyphmaps/Foundation.json */function(global, require, module, exports) {module.exports = module.exports = {
   "address-book": 61696,
   "alert": 61697,
@@ -77581,7 +77562,7 @@ __d(/* react-native-vector-icons/glyphmaps/Foundation.json */function(global, re
   "zoom-in": 61977,
   "zoom-out": 61978
 };
-}, 680, null, "react-native-vector-icons/glyphmaps/Foundation.json");
+}, 676, null, "react-native-vector-icons/glyphmaps/Foundation.json");
 __d(/* react-native-vector-icons/EvilIcons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77591,7 +77572,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _EvilIcons = require(682                         ); // 682 = ./glyphmaps/EvilIcons.json
+var _EvilIcons = require(678                         ); // 678 = ./glyphmaps/EvilIcons.json
 
 var _EvilIcons2 = _interopRequireDefault(_EvilIcons);
 
@@ -77605,7 +77586,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 681, null, "react-native-vector-icons/EvilIcons.js");
+}, 677, null, "react-native-vector-icons/EvilIcons.js");
 __d(/* react-native-vector-icons/glyphmaps/EvilIcons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "archive": 61696,
   "arrow-down": 61697,
@@ -77678,7 +77659,7 @@ __d(/* react-native-vector-icons/glyphmaps/EvilIcons.json */function(global, req
   "unlock": 61764,
   "user": 61765
 };
-}, 682, null, "react-native-vector-icons/glyphmaps/EvilIcons.json");
+}, 678, null, "react-native-vector-icons/glyphmaps/EvilIcons.json");
 __d(/* react-native-vector-icons/Entypo.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77688,7 +77669,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Entypo = require(684                      ); // 684 = ./glyphmaps/Entypo.json
+var _Entypo = require(680                      ); // 680 = ./glyphmaps/Entypo.json
 
 var _Entypo2 = _interopRequireDefault(_Entypo);
 
@@ -77702,7 +77683,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 683, null, "react-native-vector-icons/Entypo.js");
+}, 679, null, "react-native-vector-icons/Entypo.js");
 __d(/* react-native-vector-icons/glyphmaps/Entypo.json */function(global, require, module, exports) {module.exports = module.exports = {
   "500px": 61696,
   "500px-with-circle": 61697,
@@ -78116,7 +78097,7 @@ __d(/* react-native-vector-icons/glyphmaps/Entypo.json */function(global, requir
   "youtube": 62105,
   "youtube-with-circle": 62106
 };
-}, 684, null, "react-native-vector-icons/glyphmaps/Entypo.json");
+}, 680, null, "react-native-vector-icons/glyphmaps/Entypo.json");
 __d(/* react-native-vector-icons/FontAwesome.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78126,7 +78107,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _FontAwesome = require(686                           ); // 686 = ./glyphmaps/FontAwesome.json
+var _FontAwesome = require(682                           ); // 682 = ./glyphmaps/FontAwesome.json
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
@@ -78140,7 +78121,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 685, null, "react-native-vector-icons/FontAwesome.js");
+}, 681, null, "react-native-vector-icons/FontAwesome.js");
 __d(/* react-native-vector-icons/glyphmaps/FontAwesome.json */function(global, require, module, exports) {module.exports = module.exports = {
   "glass": 61440,
   "music": 61441,
@@ -78929,7 +78910,7 @@ __d(/* react-native-vector-icons/glyphmaps/FontAwesome.json */function(global, r
   "wpexplorer": 62174,
   "meetup": 62176
 };
-}, 686, null, "react-native-vector-icons/glyphmaps/FontAwesome.json");
+}, 682, null, "react-native-vector-icons/glyphmaps/FontAwesome.json");
 __d(/* react-native-vector-icons/SimpleLineIcons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -78939,7 +78920,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _SimpleLineIcons = require(688                               ); // 688 = ./glyphmaps/SimpleLineIcons.json
+var _SimpleLineIcons = require(684                               ); // 684 = ./glyphmaps/SimpleLineIcons.json
 
 var _SimpleLineIcons2 = _interopRequireDefault(_SimpleLineIcons);
 
@@ -78953,7 +78934,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 687, null, "react-native-vector-icons/SimpleLineIcons.js");
+}, 683, null, "react-native-vector-icons/SimpleLineIcons.js");
 __d(/* react-native-vector-icons/glyphmaps/SimpleLineIcons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "user": 57349,
   "people": 57345,
@@ -79145,7 +79126,7 @@ __d(/* react-native-vector-icons/glyphmaps/SimpleLineIcons.json */function(globa
   "social-vkontakte": 58904,
   "social-steam": 58912
 };
-}, 688, null, "react-native-vector-icons/glyphmaps/SimpleLineIcons.json");
+}, 684, null, "react-native-vector-icons/glyphmaps/SimpleLineIcons.json");
 __d(/* react-native-vector-icons/Feather.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -79155,7 +79136,7 @@ var _createIconSet = require(600                    ); // 600 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Feather = require(690                       ); // 690 = ./glyphmaps/Feather.json
+var _Feather = require(686                       ); // 686 = ./glyphmaps/Feather.json
 
 var _Feather2 = _interopRequireDefault(_Feather);
 
@@ -79169,7 +79150,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 689, null, "react-native-vector-icons/Feather.js");
+}, 685, null, "react-native-vector-icons/Feather.js");
 __d(/* react-native-vector-icons/glyphmaps/Feather.json */function(global, require, module, exports) {module.exports = module.exports = {
   "activity": 59648,
   "airplay": 59649,
@@ -79412,7 +79393,7 @@ __d(/* react-native-vector-icons/glyphmaps/Feather.json */function(global, requi
   "zoom-in": 59886,
   "zoom-out": 59887
 };
-}, 690, null, "react-native-vector-icons/glyphmaps/Feather.json");
+}, 686, null, "react-native-vector-icons/glyphmaps/Feather.json");
 __d(/* react-native-elements/src/config/ViewPropTypes.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -79422,7 +79403,7 @@ var _reactNative = require(12            ); // 12 = react-native
 var ViewPropTypes = _reactNative.ViewPropTypes || _reactNative.View.propTypes;
 
 exports.default = ViewPropTypes;
-}, 691, null, "react-native-elements/src/config/ViewPropTypes.js");
+}, 687, null, "react-native-elements/src/config/ViewPropTypes.js");
 __d(/* react-native-elements/src/icons/Icon.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -79441,11 +79422,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _getIconType = require(672                     ); // 672 = ../helpers/getIconType
+var _getIconType = require(668                     ); // 668 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -79555,7 +79536,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Icon;
-}, 692, null, "react-native-elements/src/icons/Icon.js");
+}, 688, null, "react-native-elements/src/icons/Icon.js");
 __d(/* react-native-elements/src/list/List.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -79574,11 +79555,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -79619,7 +79600,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = List;
-}, 693, null, "react-native-elements/src/list/List.js");
+}, 689, null, "react-native-elements/src/list/List.js");
 __d(/* react-native-elements/src/list/ListItem.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -79638,35 +79619,35 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Avatar = require(695               ); // 695 = ../avatar/Avatar
+var _Avatar = require(691               ); // 691 = ../avatar/Avatar
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
-var _badge = require(696             ); // 696 = ../badge/badge
+var _badge = require(692             ); // 692 = ../badge/badge
 
 var _badge2 = _interopRequireDefault(_badge);
 
-var _Icon = require(692            ); // 692 = ../icons/Icon
+var _Icon = require(688            ); // 688 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -80139,7 +80120,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = ListItem;
-}, 694, null, "react-native-elements/src/list/ListItem.js");
+}, 690, null, "react-native-elements/src/list/ListItem.js");
 __d(/* react-native-elements/src/avatar/Avatar.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -80157,15 +80138,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _Icon = require(692            ); // 692 = ../icons/Icon
+var _Icon = require(688            ); // 688 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -80442,7 +80423,7 @@ Avatar.propTypes = {
 Avatar.defaultProps = defaultProps;
 
 exports.default = Avatar;
-}, 695, null, "react-native-elements/src/avatar/Avatar.js");
+}, 691, null, "react-native-elements/src/avatar/Avatar.js");
 __d(/* react-native-elements/src/badge/badge.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -80461,11 +80442,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -80566,7 +80547,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Badge;
-}, 696, null, "react-native-elements/src/badge/badge.js");
+}, 692, null, "react-native-elements/src/badge/badge.js");
 __d(/* react-native-elements/src/social/SocialIcon.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -80586,19 +80567,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _FontAwesome = require(685                                    ); // 685 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(681                                    ); // 681 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -80780,7 +80761,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = SocialIcon;
-}, 697, null, "react-native-elements/src/social/SocialIcon.js");
+}, 693, null, "react-native-elements/src/social/SocialIcon.js");
 __d(/* react-native-elements/src/checkbox/CheckBox.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -80799,27 +80780,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _FontAwesome = require(685                                    ); // 685 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(681                                    ); // 681 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _getIconType = require(672                     ); // 672 = ../helpers/getIconType
+var _getIconType = require(668                     ); // 668 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -80979,7 +80960,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = CheckBox;
-}, 698, null, "react-native-elements/src/checkbox/CheckBox.js");
+}, 694, null, "react-native-elements/src/checkbox/CheckBox.js");
 __d(/* react-native-elements/src/divider/Divider.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -80991,11 +80972,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -81024,7 +81005,7 @@ styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Divider;
-}, 699, null, "react-native-elements/src/divider/Divider.js");
+}, 695, null, "react-native-elements/src/divider/Divider.js");
 __d(/* react-native-elements/src/slider/Slider.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -81049,7 +81030,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -81543,7 +81524,7 @@ var styles = _reactNative.StyleSheet.create({
     opacity: 0.5
   }
 });
-}, 700, null, "react-native-elements/src/slider/Slider.js");
+}, 696, null, "react-native-elements/src/slider/Slider.js");
 __d(/* react-native-elements/src/buttons/ButtonGroup.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -81562,19 +81543,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -81735,7 +81716,7 @@ ButtonGroup.propTypes = {
 };
 
 exports.default = ButtonGroup;
-}, 701, null, "react-native-elements/src/buttons/ButtonGroup.js");
+}, 697, null, "react-native-elements/src/buttons/ButtonGroup.js");
 __d(/* react-native-elements/src/card/Card.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -81754,31 +81735,31 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Divider = require(699                 ); // 699 = ../divider/Divider
+var _Divider = require(695                 ); // 695 = ../divider/Divider
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _BackgroundImage = require(703                        ); // 703 = ../config/BackgroundImage
+var _BackgroundImage = require(699                        ); // 699 = ../config/BackgroundImage
 
 var _BackgroundImage2 = _interopRequireDefault(_BackgroundImage);
 
@@ -82010,7 +81991,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Card;
-}, 702, null, "react-native-elements/src/card/Card.js");
+}, 698, null, "react-native-elements/src/card/Card.js");
 __d(/* react-native-elements/src/config/BackgroundImage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -82020,7 +82001,7 @@ var _reactNative = require(12            ); // 12 = react-native
 var BackgroundImage = _reactNative.ImageBackground || _reactNative.Image;
 
 exports.default = BackgroundImage;
-}, 703, null, "react-native-elements/src/config/BackgroundImage.js");
+}, 699, null, "react-native-elements/src/config/BackgroundImage.js");
 __d(/* react-native-elements/src/tile/Tile.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -82039,23 +82020,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Icon = require(692            ); // 692 = ../icons/Icon
+var _Icon = require(688            ); // 688 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _FeaturedTile = require(705             ); // 705 = ./FeaturedTile
+var _FeaturedTile = require(701             ); // 701 = ./FeaturedTile
 
 var _FeaturedTile2 = _interopRequireDefault(_FeaturedTile);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _BackgroundImage = require(703                        ); // 703 = ../config/BackgroundImage
+var _BackgroundImage = require(699                        ); // 699 = ../config/BackgroundImage
 
 var _BackgroundImage2 = _interopRequireDefault(_BackgroundImage);
 
@@ -82236,7 +82217,7 @@ Tile.propTypes = {
 };
 
 exports.default = Tile;
-}, 704, null, "react-native-elements/src/tile/Tile.js");
+}, 700, null, "react-native-elements/src/tile/Tile.js");
 __d(/* react-native-elements/src/tile/FeaturedTile.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -82255,15 +82236,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Icon = require(692            ); // 692 = ../icons/Icon
+var _Icon = require(688            ); // 688 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -82421,7 +82402,7 @@ FeaturedTile.propTypes = {
 };
 
 exports.default = FeaturedTile;
-}, 705, null, "react-native-elements/src/tile/FeaturedTile.js");
+}, 701, null, "react-native-elements/src/tile/FeaturedTile.js");
 __d(/* react-native-elements/src/rating/Rating.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -82442,7 +82423,7 @@ var _class,
     _temp,
     _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/node_modules/react-native-elements/src/rating/Rating.js';
 
-var _lodash = require(707           ); // 707 = lodash.times
+var _lodash = require(703           ); // 703 = lodash.times
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -82452,11 +82433,11 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -82487,10 +82468,10 @@ function _wrapComponent(id) {
   };
 }
 
-var STAR_IMAGE = require(708                ); // 708 = ./images/star.png
-var HEART_IMAGE = require(709                 ); // 709 = ./images/heart.png
-var ROCKET_IMAGE = require(710                  ); // 710 = ./images/rocket.png
-var BELL_IMAGE = require(711                ); // 711 = ./images/bell.png
+var STAR_IMAGE = require(704                ); // 704 = ./images/star.png
+var HEART_IMAGE = require(705                 ); // 705 = ./images/heart.png
+var ROCKET_IMAGE = require(706                  ); // 706 = ./images/rocket.png
+var BELL_IMAGE = require(707                ); // 707 = ./images/bell.png
 
 var STAR_WIDTH = 60;
 
@@ -82826,7 +82807,7 @@ var Rating = _wrapComponent('Rating')((_temp = _class = function (_Component) {
   return Rating;
 }(_react2.Component), _class.defaultProps = {
   type: 'star',
-  ratingImage: require(708                ), // 708 = ./images/star.png
+  ratingImage: require(704                ), // 704 = ./images/star.png
   ratingColor: '#f1c40f',
   ratingBackgroundColor: 'white',
   ratingCount: 5,
@@ -82913,7 +82894,7 @@ Rating.propTypes = {
   startingValue: _propTypes2.default.number,
   fractions: fractionsType
 };
-}, 706, null, "react-native-elements/src/rating/Rating.js");
+}, 702, null, "react-native-elements/src/rating/Rating.js");
 __d(/* lodash.times/index.js */function(global, require, module, exports) {
 var INFINITY = 1 / 0,
     MAX_SAFE_INTEGER = 9007199254740991,
@@ -83024,15 +83005,15 @@ function times(n, iteratee) {
 }
 
 module.exports = times;
-}, 707, null, "lodash.times/index.js");
+}, 703, null, "lodash.times/index.js");
 __d(/* react-native-elements/src/rating/images/star.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"004c2bbb035d8d06bb830efc4673c886","name":"star","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
-}, 708, null, "react-native-elements/src/rating/images/star.png");
+}, 704, null, "react-native-elements/src/rating/images/star.png");
 __d(/* react-native-elements/src/rating/images/heart.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"2327736b3ea09c41abfb69be1221f430","name":"heart","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
-}, 709, null, "react-native-elements/src/rating/images/heart.png");
+}, 705, null, "react-native-elements/src/rating/images/heart.png");
 __d(/* react-native-elements/src/rating/images/rocket.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"51671417ef20e0bbc32f0a2bc6edfa95","name":"rocket","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
-}, 710, null, "react-native-elements/src/rating/images/rocket.png");
+}, 706, null, "react-native-elements/src/rating/images/rocket.png");
 __d(/* react-native-elements/src/rating/images/bell.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"a7b9dc9de5f8f1fb1afbef917619a5ac","name":"bell","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
-}, 711, null, "react-native-elements/src/rating/images/bell.png");
+}, 707, null, "react-native-elements/src/rating/images/bell.png");
 __d(/* react-native-elements/src/header/Header.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83051,23 +83032,23 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _lodash = require(713             ); // 713 = lodash.isempty
+var _lodash = require(709             ); // 709 = lodash.isempty
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _DummyNavButton = require(714               ); // 714 = ./DummyNavButton
+var _DummyNavButton = require(710               ); // 710 = ./DummyNavButton
 
 var _DummyNavButton2 = _interopRequireDefault(_DummyNavButton);
 
-var _NavButton = require(715          ); // 715 = ./NavButton
+var _NavButton = require(711          ); // 711 = ./NavButton
 
 var _NavButton2 = _interopRequireDefault(_NavButton);
 
-var _Title = require(716      ); // 716 = ./Title
+var _Title = require(712      ); // 712 = ./Title
 
 var _Title2 = _interopRequireDefault(_Title);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -83193,7 +83174,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Header;
-}, 712, null, "react-native-elements/src/header/Header.js");
+}, 708, null, "react-native-elements/src/header/Header.js");
 __d(/* lodash.isempty/index.js */function(global, require, module, exports) {
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -83406,7 +83387,7 @@ function stubFalse() {
 }
 
 module.exports = isEmpty;
-}, 713, null, "lodash.isempty/index.js");
+}, 709, null, "lodash.isempty/index.js");
 __d(/* react-native-elements/src/header/DummyNavButton.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83436,7 +83417,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = DummyNavButton;
-}, 714, null, "react-native-elements/src/header/DummyNavButton.js");
+}, 710, null, "react-native-elements/src/header/DummyNavButton.js");
 __d(/* react-native-elements/src/header/NavButton.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83453,7 +83434,7 @@ var _propTypes = require(126         ); // 126 = prop-types
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Icon = require(692            ); // 692 = ../icons/Icon
+var _Icon = require(688            ); // 688 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -83477,7 +83458,7 @@ NavButton.propTypes = {
 };
 
 exports.default = NavButton;
-}, 715, null, "react-native-elements/src/header/NavButton.js");
+}, 711, null, "react-native-elements/src/header/NavButton.js");
 __d(/* react-native-elements/src/header/Title.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83494,7 +83475,7 @@ var _propTypes = require(126         ); // 126 = prop-types
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -83522,7 +83503,7 @@ Title.propTypes = {
 };
 
 exports.default = Title;
-}, 716, null, "react-native-elements/src/header/Title.js");
+}, 712, null, "react-native-elements/src/header/Title.js");
 __d(/* react-native-elements/src/pricing/PricingCard.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83541,27 +83522,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Button = require(667                ); // 667 = ../buttons/Button
+var _Button = require(663                ); // 663 = ../buttons/Button
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -83731,7 +83712,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = PricingCard;
-}, 717, null, "react-native-elements/src/pricing/PricingCard.js");
+}, 713, null, "react-native-elements/src/pricing/PricingCard.js");
 __d(/* react-native-elements/src/form/FormInput.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83756,15 +83737,15 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -83954,7 +83935,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormInput;
-}, 718, null, "react-native-elements/src/form/FormInput.js");
+}, 714, null, "react-native-elements/src/form/FormInput.js");
 __d(/* react-native-elements/src/form/FormLabel.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -83973,23 +83954,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _fonts = require(670              ); // 670 = ../config/fonts
+var _fonts = require(666              ); // 666 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -84052,7 +84033,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormLabel;
-}, 719, null, "react-native-elements/src/form/FormLabel.js");
+}, 715, null, "react-native-elements/src/form/FormLabel.js");
 __d(/* react-native-elements/src/form/FormValidationMessage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84071,19 +84052,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(669           ); // 669 = ../text/Text
+var _Text = require(665           ); // 665 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -84141,7 +84122,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormValidationMessage;
-}, 720, null, "react-native-elements/src/form/FormValidationMessage.js");
+}, 716, null, "react-native-elements/src/form/FormValidationMessage.js");
 __d(/* react-native-elements/src/input/Search.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84170,15 +84151,15 @@ var _MaterialIcons = require(650                                      ); // 650 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _colors = require(668               ); // 668 = ../config/colors
+var _colors = require(664               ); // 664 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _normalizeText = require(671                       ); // 671 = ../helpers/normalizeText
+var _normalizeText = require(667                       ); // 667 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(691                      ); // 691 = ../config/ViewPropTypes
+var _ViewPropTypes = require(687                      ); // 687 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -84425,27 +84406,27 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Search;
-}, 721, null, "react-native-elements/src/input/Search.js");
-__d(/* LynxMail/src/actions/auth/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+}, 717, null, "react-native-elements/src/input/Search.js");
+__d(/* LynxMail/src/actions/account/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.isSignedIn = exports.onSignOut = exports.onSignIn = exports.USER_KEY = undefined;
+exports.hasAccount = exports.removeAccount = exports.addAccount = exports.ACCOUNT_KEY = undefined;
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var USER_KEY = exports.USER_KEY = "auth-demo-key";
+var ACCOUNT_KEY = exports.ACCOUNT_KEY = "account-mail";
 
-var onSignIn = exports.onSignIn = function onSignIn() {
-  return _reactNative.AsyncStorage.setItem(USER_KEY, "true");
+var addAccount = exports.addAccount = function addAccount() {
+  return _reactNative.AsyncStorage.setItem(ACCOUNT_KEY, "true");
 };
 
-var onSignOut = exports.onSignOut = function onSignOut() {
-  return _reactNative.AsyncStorage.removeItem(USER_KEY);
+var removeAccount = exports.removeAccount = function removeAccount() {
+  return _reactNative.AsyncStorage.removeItem(ACCOUNT_KEY);
 };
 
-var isSignedIn = exports.isSignedIn = function isSignedIn() {
+var hasAccount = exports.hasAccount = function hasAccount() {
   return new Promise(function (resolve, reject) {
-    _reactNative.AsyncStorage.getItem(USER_KEY).then(function (res) {
+    _reactNative.AsyncStorage.getItem(ACCOUNT_KEY).then(function (res) {
       if (res !== null) {
         resolve(true);
       } else {
@@ -84456,7 +84437,7 @@ var isSignedIn = exports.isSignedIn = function isSignedIn() {
     });
   });
 };
-}, 722, null, "LynxMail/src/actions/auth/index.js");
+}, 718, null, "LynxMail/src/actions/account/index.js");
 __d(/* LynxMail/src/components/views/settings/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84482,11 +84463,118 @@ exports.default = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 662, null, "LynxMail/src/components/views/settings/style.js");
-__d(/* LynxMail/src/components/views/Auth/sign-in.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+}, 719, null, "LynxMail/src/components/views/settings/style.js");
+__d(/* LynxMail/src/components/views/accounts/add.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
-var _jsxFileName = "/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/Auth/sign-in.js";
+
+var _react2 = require(36     ); // 36 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(159                                                          ); // 159 = ./../../../../node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/add.account.js';
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _reactRedux = require(491          ); // 491 = react-redux
+
+var _account = require(718                       ); // 718 = ../../../actions/account
+
+var _style = require(723      ); // 723 = ./style
+
+var _style2 = _interopRequireDefault(_style);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  AddAccountView: {
+    displayName: 'AddAccountView'
+  }
+};
+
+var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/add.account.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function (_Component) {
+  _inherits(AddAccountView, _Component);
+
+  function AddAccountView() {
+    _classCallCheck(this, AddAccountView);
+
+    return _possibleConstructorReturn(this, (AddAccountView.__proto__ || Object.getPrototypeOf(AddAccountView)).apply(this, arguments));
+  }
+
+  _createClass(AddAccountView, [{
+    key: 'render',
+    value: function render() {
+      var navigation = this.props.navigation;
+
+      return _react3.default.createElement(
+        _reactNative.View,
+        { style: _style2.default.container, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 18
+          }
+        },
+        _react3.default.createElement(_reactNative.FlatList, {
+          data: [{ key: 'Devin' }, { key: 'Jackson' }, { key: 'James' }, { key: 'Joel' }, { key: 'John' }, { key: 'Jillian' }, { key: 'Jimmy' }, { key: 'Julie' }],
+          renderItem: function renderItem(_ref) {
+            var item = _ref.item;
+            return _react3.default.createElement(
+              _reactNative.Text,
+              { style: _style2.default.item, __source: {
+                  fileName: _jsxFileName,
+                  lineNumber: 30
+                }
+              },
+              item.key
+            );
+          },
+          __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19
+          }
+        })
+      );
+    }
+  }]);
+
+  return AddAccountView;
+}(_react2.Component), _class.navigationOptions = {
+  title: 'Adicionar Conta',
+  headerTintColor: '#0061b2',
+  marginTop: _reactNative.Platform.OS === "android" ? _reactNative.StatusBar.currentHeight : 0
+}, _temp));
+
+exports.default = (0, _reactRedux.connect)()(AddAccountView);
+}, 720, null, "LynxMail/src/components/views/accounts/add.account.js");
+__d(/* LynxMail/src/components/views/accounts/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
 
 var _react = require(36     ); // 36 = react
 
@@ -84494,187 +84582,20 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _reactNativeElements = require(666                    ); // 666 = react-native-elements
-
-var _auth = require(722                    ); // 722 = ../../../actions/auth
-
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-exports.default = function (_ref) {
-  var navigation = _ref.navigation;
-  return _react2.default.createElement(
-    _reactNative.View,
-    { style: { paddingVertical: 20 }, __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7
-      }
-    },
-    _react2.default.createElement(
-      _reactNativeElements.Card,
-      {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        }
-      },
-      _react2.default.createElement(
-        _reactNativeElements.FormLabel,
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 9
-          }
-        },
-        "Email"
-      ),
-      _react2.default.createElement(_reactNativeElements.FormInput, { placeholder: "Email address...", __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        }
-      }),
-      _react2.default.createElement(
-        _reactNativeElements.FormLabel,
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 11
-          }
-        },
-        "Password"
-      ),
-      _react2.default.createElement(_reactNativeElements.FormInput, { secureTextEntry: true, placeholder: "Password...", __source: {
-          fileName: _jsxFileName,
-          lineNumber: 12
-        }
-      }),
-      _react2.default.createElement(_reactNativeElements.Button, {
-        buttonStyle: { marginTop: 20 },
-        backgroundColor: "#03A9F4",
-        title: "SIGN IN",
-        onPress: function onPress() {
-          (0, _auth.onSignIn)().then(function () {
-            return navigation.navigate("SignedIn");
-          });
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14
-        }
-      })
-    )
-  );
-};
-}, 723, null, "LynxMail/src/components/views/Auth/sign-in.js");
-__d(/* LynxMail/src/components/views/Auth/sign-up.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
+exports.default = _reactNative.StyleSheet.create({
+  container: {
+    flex: 1,
+    paddingTop: 22
+  },
+  item: {
+    padding: 10,
+    fontSize: 18,
+    height: 44
+  }
 });
-var _jsxFileName = "/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/Auth/sign-up.js";
-
-var _react = require(36     ); // 36 = react
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactNative = require(12            ); // 12 = react-native
-
-var _reactNativeElements = require(666                    ); // 666 = react-native-elements
-
-var _auth = require(722                    ); // 722 = ../../../actions/auth
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = function (_ref) {
-  var navigation = _ref.navigation;
-  return _react2.default.createElement(
-    _reactNative.View,
-    { style: { paddingVertical: 20 }, __source: {
-        fileName: _jsxFileName,
-        lineNumber: 7
-      }
-    },
-    _react2.default.createElement(
-      _reactNativeElements.Card,
-      {
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 8
-        }
-      },
-      _react2.default.createElement(
-        _reactNativeElements.FormLabel,
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 9
-          }
-        },
-        "Email"
-      ),
-      _react2.default.createElement(_reactNativeElements.FormInput, { placeholder: "Email address...", __source: {
-          fileName: _jsxFileName,
-          lineNumber: 10
-        }
-      }),
-      _react2.default.createElement(
-        _reactNativeElements.FormLabel,
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 11
-          }
-        },
-        "Password"
-      ),
-      _react2.default.createElement(_reactNativeElements.FormInput, { secureTextEntry: true, placeholder: "Password...", __source: {
-          fileName: _jsxFileName,
-          lineNumber: 12
-        }
-      }),
-      _react2.default.createElement(
-        _reactNativeElements.FormLabel,
-        {
-          __source: {
-            fileName: _jsxFileName,
-            lineNumber: 13
-          }
-        },
-        "Confirm Password"
-      ),
-      _react2.default.createElement(_reactNativeElements.FormInput, { secureTextEntry: true, placeholder: "Confirm Password...", __source: {
-          fileName: _jsxFileName,
-          lineNumber: 14
-        }
-      }),
-      _react2.default.createElement(_reactNativeElements.Button, {
-        buttonStyle: { marginTop: 20 },
-        backgroundColor: "#03A9F4",
-        title: "SIGN UP",
-        onPress: function onPress() {
-          (0, _auth.onSignIn)().then(function () {
-            return navigation.navigate("SignedIn");
-          });
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 16
-        }
-      }),
-      _react2.default.createElement(_reactNativeElements.Button, {
-        buttonStyle: { marginTop: 20 },
-        backgroundColor: "transparent",
-        textStyle: { color: "#bcbec1" },
-        title: "Sign In",
-        onPress: function onPress() {
-          return navigation.navigate("SignIn");
-        },
-        __source: {
-          fileName: _jsxFileName,
-          lineNumber: 24
-        }
-      })
-    )
-  );
-};
-}, 724, null, "LynxMail/src/components/views/Auth/sign-up.js");
+}, 723, null, "LynxMail/src/components/views/accounts/style.js");
 __d(/* LynxMail/src/reducers/auth-reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84697,7 +84618,7 @@ function auth() {
       return state;
   }
 }
-}, 663, null, "LynxMail/src/reducers/auth-reducer.js");
+}, 721, null, "LynxMail/src/reducers/auth-reducer.js");
 __d(/* LynxMail/src/main.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84782,7 +84703,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(AppNavigator);
-}, 664, null, "LynxMail/src/main.js");
+}, 722, null, "LynxMail/src/main.js");
 ;require(54);
-;require(665);
+;require(0);
 //# sourceMappingURL=index.map
