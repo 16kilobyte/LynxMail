@@ -39,7 +39,7 @@ class OutlookAccountView extends Component {
     return (
         <AzureLoginView style={Styles.container}
           azureInstance={this.azureInstance}
-          loadingMessage="Requesting access token"
+          loadingMessage="Carregando suas informações"
           onSuccess={this._onLoginSuccess.bind(this)}
         />
     )
