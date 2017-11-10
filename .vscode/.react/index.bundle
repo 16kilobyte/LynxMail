@@ -84756,8 +84756,11 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
   _createClass(OutlookAccountView, [{
     key: '_onLoginSuccess',
     value: function _onLoginSuccess() {
+      var _this2 = this;
+
       this.azureInstance.getUserInfo().then(function (result) {
         console.log(result);
+        var navigation = _this2.props.navigation;
       }).catch(function (err) {
         console.log(err);
       });
@@ -84771,7 +84774,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
         onSuccess: this._onLoginSuccess.bind(this),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 40
+          lineNumber: 43
         }
       });
     }

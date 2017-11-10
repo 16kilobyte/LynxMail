@@ -30,7 +30,9 @@ class OutlookAccountView extends Component {
   
 	_onLoginSuccess() {
 		this.azureInstance.getUserInfo().then(result => {
-			console.log(result);
+      console.log(result);
+      const { navigation } = this.props;
+      navigation.navigate("Main");
 		}).catch(err => {
 			console.log(err);
 		})
