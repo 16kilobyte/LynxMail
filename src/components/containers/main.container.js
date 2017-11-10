@@ -121,7 +121,6 @@ class MainContainer extends Component {
   render() {
     const { checkedHasAccount, hasAccount } = this.state;
 
-    // If we haven't checked AsyncStorage yet, don't render anything (better ways to do this)
     if (!checkedHasAccount) {
       return null;
     }

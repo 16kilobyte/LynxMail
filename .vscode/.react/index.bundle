@@ -69939,6 +69939,7 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
           checkedHasAccount = _state.checkedHasAccount,
           hasAccount = _state.hasAccount;
 
+
       if (!checkedHasAccount) {
         return null;
       }
@@ -69947,7 +69948,7 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
       return _react3.default.createElement(Main, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 130
+          lineNumber: 129
         }
       });
     }

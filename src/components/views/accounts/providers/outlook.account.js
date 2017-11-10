@@ -6,6 +6,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { AzureInstance, AzureLoginView } from 'react-native-azure-ad-2'
+
 import Styles from './style'
 
 const CREDENTIAILS = {
