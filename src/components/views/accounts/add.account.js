@@ -12,14 +12,6 @@ class AddAccountView extends Component {
     marginTop: Platform.OS === "android" ? StatusBar.currentHeight : 0
   };
 
-  _addOutlookAccountPressButton() {
-
-  }
-
-  _addGoogleAccountPressButton() {
-
-  }
-
   render() {
     const { navigation } = this.props;
     return (

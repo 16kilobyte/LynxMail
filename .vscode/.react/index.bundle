@@ -84440,7 +84440,7 @@ exports.default = Search;
 __d(/* LynxMail/src/actions/account/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
-exports.hasAccount = exports.removeAccount = exports.addAccount = exports.providerAccount = exports.ACCOUNT_KEY = undefined;
+exports.hasAccount = exports.removeAccount = exports.addAccount = exports.ACCOUNT_KEY = undefined;
 
 var _reactNative = require(12            ); // 12 = react-native
 
@@ -84452,16 +84452,21 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 var ACCOUNT_KEY = exports.ACCOUNT_KEY = "account-mail";
 
-var providerAccount = exports.providerAccount = function providerAccount(account) {
-  return {
-    accessToken: account.accessToken,
-    name: account.name,
-    email: account.email
-  };
-};
-
 var addAccount = exports.addAccount = function addAccount(account) {
-  _reactNative.AsyncStorage.setItem(ACCOUNT_KEY, []);
+  return new Promise(function (resolve, reject) {
+    _reactNative.AsyncStorage.getItem(ACCOUNT_KEY).then(function (accounts) {
+      if (accounts != null && accounts.length > 0 && !_lodash2.default.some(accounts, { type: account.type })) {
+        accounts.push(account);
+        _reactNative.AsyncStorage.setItem(ACCOUNT_KEY, JSON.stringify(accounts));
+        resolve(account);
+      } else {
+        _reactNative.AsyncStorage.setItem(ACCOUNT_KEY, JSON.stringify([account]));
+        resolve(account);
+      }
+    }).catch(function (err) {
+      reject(err);
+    });
+  });
 };
 
 var removeAccount = exports.removeAccount = function removeAccount(account) {
@@ -84471,7 +84476,8 @@ var removeAccount = exports.removeAccount = function removeAccount(account) {
 var hasAccount = exports.hasAccount = function hasAccount() {
   return new Promise(function (resolve, reject) {
     _reactNative.AsyncStorage.getItem(ACCOUNT_KEY).then(function (accounts) {
-      if (accounts !== null && accounts.length > 0) {
+      var accountsDB = JSON.parse(accounts);
+      if (accountsDB !== null && accountsDB.length > 0) {
         resolve(true);
       } else {
         resolve(false);
@@ -91209,12 +91215,6 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
   }
 
   _createClass(AddAccountView, [{
-    key: '_addOutlookAccountPressButton',
-    value: function _addOutlookAccountPressButton() {}
-  }, {
-    key: '_addGoogleAccountPressButton',
-    value: function _addGoogleAccountPressButton() {}
-  }, {
     key: 'render',
     value: function render() {
       var navigation = this.props.navigation;
@@ -91223,13 +91223,37 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
         _reactNative.ScrollView,
         { style: _style2.default.container, __source: {
             fileName: _jsxFileName,
-            lineNumber: 26
+            lineNumber: 18
           }
         },
         _react3.default.createElement(
           _reactNative.TouchableOpacity,
           { onPress: function onPress() {
               navigation.navigate("OutlookAccount");
+            }, __source: {
+              fileName: _jsxFileName,
+              lineNumber: 19
+            }
+          },
+          _react3.default.createElement(
+            _reactNative.View,
+            { style: _style2.default.item, __source: {
+                fileName: _jsxFileName,
+                lineNumber: 22
+              }
+            },
+            _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
+              source: require(724                                  ), __source: { // 724 = ../../images/outlooklogo272x138.png
+                fileName: _jsxFileName,
+                lineNumber: 23
+              }
+            })
+          )
+        ),
+        _react3.default.createElement(
+          _reactNative.TouchableOpacity,
+          { onPress: function onPress() {
+              navigation.navigate("GoogleAccount");
             }, __source: {
               fileName: _jsxFileName,
               lineNumber: 27
@@ -91243,33 +91267,9 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
               }
             },
             _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-              source: require(724                                  ), __source: { // 724 = ../../images/outlooklogo272x138.png
-                fileName: _jsxFileName,
-                lineNumber: 31
-              }
-            })
-          )
-        ),
-        _react3.default.createElement(
-          _reactNative.TouchableOpacity,
-          { onPress: function onPress() {
-              navigation.navigate("GoogleAccount");
-            }, __source: {
-              fileName: _jsxFileName,
-              lineNumber: 35
-            }
-          },
-          _react3.default.createElement(
-            _reactNative.View,
-            { style: _style2.default.item, __source: {
-                fileName: _jsxFileName,
-                lineNumber: 38
-              }
-            },
-            _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
               source: require(725                                ), __source: { // 725 = ../../images/googlelogo272x92.png
                 fileName: _jsxFileName,
-                lineNumber: 39
+                lineNumber: 31
               }
             })
           )
@@ -91352,6 +91352,8 @@ var _reactRedux = require(492          ); // 492 = react-redux
 
 var _azureAd = require(748                       ); // 748 = ../../../../lib/azure-ad
 
+var _account = require(719                          ); // 719 = ../../../../actions/account
+
 var _style = require(743      ); // 743 = ./style
 
 var _style2 = _interopRequireDefault(_style);
@@ -91408,12 +91410,21 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
     value: function _onLoginSuccess() {
       var _this2 = this;
 
+      var navigation = this.props.navigation;
+
+
       this.azureInstance.getUserInfo().then(function (result) {
         console.log(result);
+        var account = {
+          type: 'account-outlook',
+          token: _this2.azureInstance.getToken(),
+          name: result.displayName,
+          email: result.userPrincipaName
+        };
 
-        var navigation = _this2.props.navigation;
-
-        navigation.navigate("Main");
+        (0, _account.addAccount)(account).then(function (success) {
+          navigation.navigate("Main");
+        });
       }).catch(function (err) {
         console.log(err);
       });
@@ -91427,7 +91438,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
         onSuccess: this._onLoginSuccess.bind(this),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 44
+          lineNumber: 56
         }
       });
     }
