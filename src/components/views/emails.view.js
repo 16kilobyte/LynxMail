@@ -8,11 +8,11 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import Styles from './style'
+import Styles from '../style/emails.style'
 
-class MailsView extends Component {
+class EmailsView extends Component {
   static navigationOptions = {
-    title: 'Home',
+    title: 'Caixa de Entrada',
     headerTintColor: '#0061b2'
   };
 

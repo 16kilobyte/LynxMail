@@ -8,11 +8,11 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import Styles from './style'
+import Styles from '../style/home.style'
 
-class ContactsView extends Component {
+class HomeView extends Component {
   static navigationOptions = {
-    title: 'Contatos',
+    title: 'Home',
     headerTintColor: '#0061b2'
   };
 
@@ -27,4 +27,4 @@ class ContactsView extends Component {
   }
 }
 
-export default connect()(ContactsView)
+export default connect()(HomeView)

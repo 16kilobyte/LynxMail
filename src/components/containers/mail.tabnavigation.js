@@ -4,12 +4,12 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import MailsView from './../views/mails'
+import eMailsView from './../views/emails'
 
 export default StackNavigator({
-    Mails: { screen: MailsView }
+    eMails: { screen: eMailsView }
   }, {
-    initialRouteName: 'Mails',
+    initialRouteName: 'eMails',
     navigationOptions: {
       gesturesEnabled: false,
       tabBarLabel: 'e-Mails',

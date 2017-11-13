@@ -4,7 +4,7 @@ import { connect } from 'react-redux'
 import { Card, Button, Text } from "react-native-elements";
 import { onSignOut } from "../../../actions/account";
 
-import Styles from './style'
+import Styles from '../style/settings.style'
 
 class SettingsView extends Component {
   static navigationOptions = {

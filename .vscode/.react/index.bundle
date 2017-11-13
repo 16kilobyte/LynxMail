@@ -73663,16 +73663,16 @@ var _MaterialIcons = require(651                                      ); // 651 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _mails = require(653               ); // 653 = ./../views/mails
+var _emails = require(753                ); // 753 = ./../views/emails
 
-var _mails2 = _interopRequireDefault(_mails);
+var _emails2 = _interopRequireDefault(_emails);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _reactNavigation.StackNavigator)({
-  Mails: { screen: _mails2.default }
+  eMails: { screen: _emails2.default }
 }, {
-  initialRouteName: 'Mails',
+  initialRouteName: 'eMails',
   navigationOptions: {
     gesturesEnabled: false,
     tabBarLabel: 'e-Mails',
@@ -74646,7 +74646,7 @@ __d(/* react-native-vector-icons/glyphmaps/MaterialIcons.json */function(global,
   "zoom-out-map": 58731
 };
 }, 652, null, "react-native-vector-icons/glyphmaps/MaterialIcons.json");
-__d(/* LynxMail/src/components/views/mails/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* LynxMail/src/components/views/emails/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -74662,13 +74662,13 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class,
     _temp,
-    _jsxFileName = '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/mails/index.js';
+    _jsxFileName = '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/emails/index.js';
 
 var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(492          ); // 492 = react-redux
 
-var _style = require(654      ); // 654 = ./style
+var _style = require(754      ); // 754 = ./style
 
 var _style2 = _interopRequireDefault(_style);
 
@@ -74687,7 +74687,7 @@ var _components = {
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/mails/index.js',
+  filename: '/Users/elourenco/Workspace/pessoal/LynxMail/src/components/views/emails/index.js',
   components: _components,
   locals: [module],
   imports: [_react3.default]
@@ -74729,13 +74729,13 @@ var MailsView = _wrapComponent('MailsView')((_temp = _class = function (_Compone
 
   return MailsView;
 }(_react2.Component), _class.navigationOptions = {
-  title: 'Home',
+  title: 'Caixa de Entrada',
   headerTintColor: '#0061b2'
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(MailsView);
-}, 653, null, "LynxMail/src/components/views/mails/index.js");
-__d(/* LynxMail/src/components/views/mails/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+}, 753, null, "LynxMail/src/components/views/emails/index.js");
+__d(/* LynxMail/src/components/views/emails/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -74760,7 +74760,7 @@ exports.default = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 654, null, "LynxMail/src/components/views/mails/style.js");
+}, 754, null, "LynxMail/src/components/views/emails/style.js");
 __d(/* LynxMail/src/components/containers/event.tabnavigation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
