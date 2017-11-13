@@ -5,7 +5,7 @@ import {
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
-import { AzureInstance, AzureLoginView } from 'react-native-azure-ad-2'
+import { AzureInstance, AzureLoginView } from '../../../../lib/azure-ad'
 
 import Styles from './style'
 
@@ -31,6 +31,7 @@ class OutlookAccountView extends Component {
 	_onLoginSuccess() {
 		this.azureInstance.getUserInfo().then(result => {
       console.log(result);
+      
       const { navigation } = this.props;
       navigation.navigate("Main");
 		}).catch(err => {

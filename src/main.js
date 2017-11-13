@@ -7,8 +7,7 @@ import AppNavigatorDrawer from './AppNavigatorDrawer'
 class AppNavigator extends React.Component {
   render() {
     return (
-      <AppNavigatorDrawer disableGestures={false}
-      navigation={addNavigationHelpers({
+      <AppNavigatorDrawer navigation={addNavigationHelpers({
         dispatch: this.props.dispatch,
         state: this.props.nav,
       })} />
