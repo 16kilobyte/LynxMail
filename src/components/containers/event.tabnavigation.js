@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import EventsView from './../views/events'
+import EventsView from './../views/events.view'
 
 export default StackNavigator({
     Events: { screen: EventsView }

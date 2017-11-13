@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import SettingsView from './../views/settings'
+import SettingsView from './../views/settings.view'
 
 export default StackNavigator({
     Settings: { screen: SettingsView }

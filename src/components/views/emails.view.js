@@ -27,4 +27,4 @@ class EmailsView extends Component {
   }
 }
 
-export default connect()(MailsView)
+export default connect()(EmailsView)

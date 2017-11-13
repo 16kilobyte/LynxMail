@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import HomeView from './../views/home'
+import HomeView from './../views/home.view'
 
 export default StackNavigator({
     Home: { screen: HomeView }

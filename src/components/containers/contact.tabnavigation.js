@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 
-import ContactsView from './../views/contacts'
+import ContactsView from './../views/contracts.view'
 
 export default StackNavigator({
     Contacts: { screen: ContactsView }

@@ -4,7 +4,7 @@ import { StackNavigator } from 'react-navigation'
 
 import Icon from 'react-native-vector-icons/MaterialIcons'
 
-import eMailsView from './../views/emails'
+import eMailsView from './../views/emails.view'
 
 export default StackNavigator({
     eMails: { screen: eMailsView }

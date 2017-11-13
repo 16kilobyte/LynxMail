@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StatusBar, StyleSheet, View, ScrollView, Image, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
-import { addAccount } from "../../../actions/account";
+import { addAccount } from "../../../actions/account.action";
 
 import Styles from './style'
 

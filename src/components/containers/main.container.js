@@ -14,7 +14,7 @@ import AddAccountView from '../views/accounts/add.account';
 import OutlookAccountView from '../views/accounts/providers/outlook.account';
 import GoogleAccountView from '../views/accounts/providers/google.account';
 
-import { hasAccount } from "../../actions/account";
+import { hasAccount } from "../../actions/account.action";
 
 export const AccountStackNavigation = StackNavigator({
   AddAccount: {

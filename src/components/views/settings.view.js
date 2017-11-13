@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View } from 'react-native'
 import { connect } from 'react-redux'
 import { Card, Button, Text } from "react-native-elements";
-import { onSignOut } from "../../../actions/account";
+import { onSignOut } from "../../actions/account.action";
 
 import Styles from '../style/settings.style'
 

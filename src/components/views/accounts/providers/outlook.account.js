@@ -6,7 +6,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { AzureInstance, AzureLoginView } from '../../../../lib/azure-ad'
-import { addAccount } from '../../../../actions/account';
+import { addAccount } from '../../../../actions/account.action';
 
 import Styles from './style'
 
