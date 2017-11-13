@@ -1,18 +1,29 @@
 import { AsyncStorage } from "react-native";
-import _ from 'lodash'
+import _ from 'lodash';
 
 export const ACCOUNT_KEY = "account-mail";
 
-export const providerAccount = (account) => {
-  return {
-    accessToken: account.accessToken,
-    name: account.name,
-    email:account.email
-  }
-}
-
-export const addAccount = (account) => { 
-  AsyncStorage.setItem(ACCOUNT_KEY, []);
+export const addAccount = (account) => {
+  return new Promise((resolve, reject) => {
+    if(hasAccount) {
+      AsyncStorage.getItem(ACCOUNT_KEY)
+        .then(accounts => {
+          if(_.some(accounts, {type: account.type})) {
+            accounts.push(account);
+            AsyncStorage.setItem(ACCOUNT_KEY, accounts);
+            resolve(account)
+          } else {
+            reject('')
+          }
+        })
+        .catch(err => {
+          reject(err)
+        })
+    } else {
+      AsyncStorage.setItem(ACCOUNT_KEY, [account]);
+      resolve(account);
+    }
+  });
 };
 
 export const removeAccount = (account) => {
