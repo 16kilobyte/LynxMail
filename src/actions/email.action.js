@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { OutlookMail } from '../services/microsoft-graph';
+import * as MSGraph from '../services/microsoft-graph';
 
 export const EMAIL_REQ_ERROR = 'EMAIL_REQ_ERROR';
 export const EMAIL_REQ_DATA = 'EMAIL_REQ_DATA';
@@ -28,7 +28,7 @@ function requestError(json) {
 export function fetchListMessages(cityId) {
   return function (dispatch) {
     dispatch(requestData());
-    OutlookMail.MessageService.listMessages()
+    MSGraph.OutlookMailMessages.listMessages()
       .then(response => {
         dispatch(receiveData(response.data.value))
       })

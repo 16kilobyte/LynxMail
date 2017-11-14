@@ -39,7 +39,7 @@ export const getAccessToken = (type) => {
         const account = _.filter(accountsDB, (acc) => {
           return acc.type === type;
         });
-        resolve(account.token);
+        resolve(account[0].token);
       })
       .catch(err => {
         reject(err);

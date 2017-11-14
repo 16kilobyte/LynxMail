@@ -23,7 +23,7 @@ class EmailsView extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { channels, isLoading, error, fetchListMessages } = this.props.email;
+    const { emails, isLoading, error, fetchListMessages } = this.props.listEmails;
 
     return (
       <ScrollView style={Styles.scrollview}>
@@ -37,7 +37,7 @@ class EmailsView extends Component {
 
 function mapStateToProps(state) {
   return {
-    emails: state.emailReducer
+    listEmails: state.emailReducer
   };
 }
 

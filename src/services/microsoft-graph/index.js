@@ -1,5 +1,5 @@
-import OutlookMail from './outlook-mail';
+import * as OutlookMailMessages from './outlook-mail/messages.service';
 
 export {
-  OutlookMail
+  OutlookMailMessages
 }
