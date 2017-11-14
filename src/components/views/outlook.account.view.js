@@ -5,10 +5,10 @@ import {
   Text
 } from 'react-native'
 import { connect } from 'react-redux'
-import { AzureInstance, AzureLoginView } from '../../../../lib/azure-ad'
-import { addAccount } from '../../../../actions/account.action';
+import { AzureInstance, AzureLoginView } from '../../lib/azure-ad'
+import { addAccount } from '../../actions/account.action';
 
-import Styles from './style'
+import Styles from '../style/account.style'
 
 const CREDENTIAILS = {
   client_id: '584f5e41-234f-480f-87b7-cbefb4e6d35f',

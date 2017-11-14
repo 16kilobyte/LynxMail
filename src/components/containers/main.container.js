@@ -10,9 +10,9 @@ import EventTabBarNavigation from './event.tabnavigation';
 import ContactTabBarNavigation from './contact.tabnavigation';
 import SettingsTabBarNavigation from './settings.tabnavigation';
 
-import AddAccountView from '../views/accounts/add.account';
-import OutlookAccountView from '../views/accounts/providers/outlook.account';
-import GoogleAccountView from '../views/accounts/providers/google.account';
+import AddAccountView from '../views/accounts.view';
+import OutlookAccountView from '../views/outlook.account.view';
+import GoogleAccountView from '../views/google.account.view';
 
 import { hasAccount } from "../../actions/account.action";
 

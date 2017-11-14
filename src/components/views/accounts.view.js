@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
-import { Platform, StatusBar, StyleSheet, View, ScrollView, Image, TouchableOpacity } from "react-native";
+import { Platform, StatusBar, StyleSheet, View, 
+  ScrollView, Image, TouchableOpacity } from "react-native";
 import { connect } from 'react-redux';
-import { addAccount } from "../../../actions/account.action";
 
-import Styles from './style'
+import { addAccount } from "../../actions/account.action";
 
-class AddAccountView extends Component {
+import Styles from '../style/account.style'
+
+class AccountsView extends Component {
   static navigationOptions = {
     title: 'Adicionar Conta',
     headerTintColor: '#0061b2',
@@ -21,7 +23,7 @@ class AddAccountView extends Component {
         }}>
           <View style={Styles.item}>
             <Image resizeMode="contain" style={{ width: 200 }}
-              source={require('../../images/outlooklogo272x138.png')} />
+              source={require('../images/outlooklogo272x138.png')} />
           </View>
         </TouchableOpacity>
         <TouchableOpacity onPress={() => {
@@ -29,7 +31,7 @@ class AddAccountView extends Component {
         }}>
           <View style={Styles.item}>
             <Image resizeMode="contain" style={{ width: 200 }}
-              source={require('../../images/googlelogo272x92.png')} />
+              source={require('../images/googlelogo272x92.png')} />
           </View>
         </TouchableOpacity>
       </ScrollView>
@@ -37,4 +39,4 @@ class AddAccountView extends Component {
   }
 }
 
-export default connect()(AddAccountView)
+export default connect()(AccountsView)

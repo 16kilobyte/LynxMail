@@ -8,7 +8,7 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 
-import Styles from './style'
+import Styles from '../style/account.style'
 
 class GoogleAccountView extends Component {
   static navigationOptions = {

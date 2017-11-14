@@ -69769,17 +69769,17 @@ var _settings = require(660                       ); // 660 = ./settings.tabnavi
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _add = require(721                            ); // 721 = ../views/accounts/add.account
+var _accounts = require(745                     ); // 745 = ../views/accounts.view
 
-var _add2 = _interopRequireDefault(_add);
+var _accounts2 = _interopRequireDefault(_accounts);
 
-var _outlook = require(725                                          ); // 725 = ../views/accounts/providers/outlook.account
+var _outlookAccount = require(747                            ); // 747 = ../views/outlook.account.view
 
-var _outlook2 = _interopRequireDefault(_outlook);
+var _outlookAccount2 = _interopRequireDefault(_outlookAccount);
 
-var _google = require(742                                         ); // 742 = ../views/accounts/providers/google.account
+var _googleAccount = require(748                           ); // 748 = ../views/google.account.view
 
-var _google2 = _interopRequireDefault(_google);
+var _googleAccount2 = _interopRequireDefault(_googleAccount);
 
 var _account = require(718                           ); // 718 = ../../actions/account.action
 
@@ -69812,15 +69812,15 @@ function _wrapComponent(id) {
 
 var AccountStackNavigation = exports.AccountStackNavigation = (0, _reactNavigation.StackNavigator)({
   AddAccount: {
-    screen: _add2.default,
+    screen: _accounts2.default,
     path: 'addAccount'
   },
   OutlookAccount: {
-    screen: _outlook2.default,
+    screen: _outlookAccount2.default,
     path: 'outlookAccount'
   },
   GoogleAccount: {
-    screen: _google2.default,
+    screen: _googleAccount2.default,
     path: 'googleAccount'
   }
 });
@@ -91138,7 +91138,7 @@ exports.default = _reactNative.StyleSheet.create({
   }
 });
 }, 720, null, "LynxMail/src/components/style/settings.style.js");
-__d(/* LynxMail/src/components/views/accounts/add.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* LynxMail/src/components/views/accounts.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -91146,7 +91146,7 @@ var _react2 = require(36     ); // 36 = react
 
 var _react3 = _interopRequireDefault(_react2);
 
-var _index = require(159                                                          ); // 159 = ./../../../../node_modules/react-transform-hmr/lib/index.js
+var _index = require(159                                                       ); // 159 = ./../../../node_modules/react-transform-hmr/lib/index.js
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -91154,17 +91154,17 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class,
     _temp,
-    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/add.account.js';
+    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts.view.js';
 
 var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(491          ); // 491 = react-redux
 
-var _account = require(718                              ); // 718 = ../../../actions/account.action
+var _account = require(718                           ); // 718 = ../../actions/account.action
 
-var _style = require(722      ); // 722 = ./style
+var _account2 = require(746                     ); // 746 = ../style/account.style
 
-var _style2 = _interopRequireDefault(_style);
+var _account3 = _interopRequireDefault(_account2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91175,13 +91175,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 var _components = {
-  AddAccountView: {
-    displayName: 'AddAccountView'
+  AccountsView: {
+    displayName: 'AccountsView'
   }
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/add.account.js',
+  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts.view.js',
   components: _components,
   locals: [module],
   imports: [_react3.default]
@@ -91193,25 +91193,25 @@ function _wrapComponent(id) {
   };
 }
 
-var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function (_Component) {
-  _inherits(AddAccountView, _Component);
+var AccountsView = _wrapComponent('AccountsView')((_temp = _class = function (_Component) {
+  _inherits(AccountsView, _Component);
 
-  function AddAccountView() {
-    _classCallCheck(this, AddAccountView);
+  function AccountsView() {
+    _classCallCheck(this, AccountsView);
 
-    return _possibleConstructorReturn(this, (AddAccountView.__proto__ || Object.getPrototypeOf(AddAccountView)).apply(this, arguments));
+    return _possibleConstructorReturn(this, (AccountsView.__proto__ || Object.getPrototypeOf(AccountsView)).apply(this, arguments));
   }
 
-  _createClass(AddAccountView, [{
+  _createClass(AccountsView, [{
     key: 'render',
     value: function render() {
       var navigation = this.props.navigation;
 
       return _react3.default.createElement(
         _reactNative.ScrollView,
-        { style: _style2.default.container, __source: {
+        { style: _account3.default.container, __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 20
           }
         },
         _react3.default.createElement(
@@ -91220,20 +91220,20 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
               navigation.navigate("OutlookAccount");
             }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 19
+              lineNumber: 21
             }
           },
           _react3.default.createElement(
             _reactNative.View,
-            { style: _style2.default.item, __source: {
+            { style: _account3.default.item, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 22
+                lineNumber: 24
               }
             },
             _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-              source: require(723                                  ), __source: { // 723 = ../../images/outlooklogo272x138.png
+              source: require(723                               ), __source: { // 723 = ../images/outlooklogo272x138.png
                 fileName: _jsxFileName,
-                lineNumber: 23
+                lineNumber: 25
               }
             })
           )
@@ -91244,20 +91244,20 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
               navigation.navigate("GoogleAccount");
             }, __source: {
               fileName: _jsxFileName,
-              lineNumber: 27
+              lineNumber: 29
             }
           },
           _react3.default.createElement(
             _reactNative.View,
-            { style: _style2.default.item, __source: {
+            { style: _account3.default.item, __source: {
                 fileName: _jsxFileName,
-                lineNumber: 30
+                lineNumber: 32
               }
             },
             _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-              source: require(724                                ), __source: { // 724 = ../../images/googlelogo272x92.png
+              source: require(724                             ), __source: { // 724 = ../images/googlelogo272x92.png
                 fileName: _jsxFileName,
-                lineNumber: 31
+                lineNumber: 33
               }
             })
           )
@@ -91266,16 +91266,16 @@ var AddAccountView = _wrapComponent('AddAccountView')((_temp = _class = function
     }
   }]);
 
-  return AddAccountView;
+  return AccountsView;
 }(_react2.Component), _class.navigationOptions = {
   title: 'Adicionar Conta',
   headerTintColor: '#0061b2',
   marginTop: _reactNative.Platform.OS === "android" ? _reactNative.StatusBar.currentHeight : 0
 }, _temp));
 
-exports.default = (0, _reactRedux.connect)()(AddAccountView);
-}, 721, null, "LynxMail/src/components/views/accounts/add.account.js");
-__d(/* LynxMail/src/components/views/accounts/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+exports.default = (0, _reactRedux.connect)()(AccountsView);
+}, 745, null, "LynxMail/src/components/views/accounts.view.js");
+__d(/* LynxMail/src/components/style/account.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -91311,12 +91311,12 @@ exports.default = _reactNative.StyleSheet.create({
     shadowRadius: 1
   }
 });
-}, 722, null, "LynxMail/src/components/views/accounts/style.js");
+}, 746, null, "LynxMail/src/components/style/account.style.js");
 __d(/* LynxMail/src/components/images/outlooklogo272x138.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/components/images","width":272,"height":138,"scales":[1],"hash":"076847e38024c30d996f9832a8aa4253","name":"outlooklogo272x138","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
 }, 723, null, "LynxMail/src/components/images/outlooklogo272x138.png");
 __d(/* LynxMail/src/components/images/googlelogo272x92.png */function(global, require, module, exports) {module.exports=require(323                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/components/images","width":272,"height":92,"scales":[1],"hash":"8f9327db2597fa57d2f42b4a6c5a9855","name":"googlelogo272x92","type":"png"}); // 323 = react-native/Libraries/Image/AssetRegistry
 }, 724, null, "LynxMail/src/components/images/googlelogo272x92.png");
-__d(/* LynxMail/src/components/views/accounts/providers/outlook.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* LynxMail/src/components/views/outlook.account.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -91324,7 +91324,7 @@ var _react2 = require(36     ); // 36 = react
 
 var _react3 = _interopRequireDefault(_react2);
 
-var _index = require(159                                                             ); // 159 = ./../../../../../node_modules/react-transform-hmr/lib/index.js
+var _index = require(159                                                       ); // 159 = ./../../../node_modules/react-transform-hmr/lib/index.js
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -91332,19 +91332,19 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class,
     _temp,
-    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/providers/outlook.account.js';
+    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/outlook.account.view.js';
 
 var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(491          ); // 491 = react-redux
 
-var _azureAd = require(726                       ); // 726 = ../../../../lib/azure-ad
+var _azureAd = require(726                 ); // 726 = ../../lib/azure-ad
 
-var _account = require(718                                 ); // 718 = ../../../../actions/account.action
+var _account = require(718                           ); // 718 = ../../actions/account.action
 
-var _style = require(741      ); // 741 = ./style
+var _account2 = require(746                     ); // 746 = ../style/account.style
 
-var _style2 = _interopRequireDefault(_style);
+var _account3 = _interopRequireDefault(_account2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -91361,7 +91361,7 @@ var _components = {
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/providers/outlook.account.js',
+  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/outlook.account.view.js',
   components: _components,
   locals: [module],
   imports: [_react3.default]
@@ -91420,7 +91420,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
   }, {
     key: 'render',
     value: function render() {
-      return _react3.default.createElement(_azureAd.AzureLoginView, { style: _style2.default.container,
+      return _react3.default.createElement(_azureAd.AzureLoginView, { style: _account3.default.container,
         azureInstance: this.azureInstance,
         loadingMessage: 'Carregando suas informa\xE7\xF5es',
         onSuccess: this._onLoginSuccess.bind(this),
@@ -91439,7 +91439,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(OutlookAccountView);
-}, 725, null, "LynxMail/src/components/views/accounts/providers/outlook.account.js");
+}, 747, null, "LynxMail/src/components/views/outlook.account.view.js");
 __d(/* LynxMail/src/lib/azure-ad/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -94754,25 +94754,7 @@ var styles = _reactNative.StyleSheet.create({
   }
 });
 }, 740, null, "LynxMail/src/lib/azure-ad/AzureLoginView.js");
-__d(/* LynxMail/src/components/views/accounts/providers/style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _react = require(36     ); // 36 = react
-
-var _react2 = _interopRequireDefault(_react);
-
-var _reactNative = require(12            ); // 12 = react-native
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-exports.default = _reactNative.StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
-}, 741, null, "LynxMail/src/components/views/accounts/providers/style.js");
-__d(/* LynxMail/src/components/views/accounts/providers/google.account.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+__d(/* LynxMail/src/components/views/google.account.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 
@@ -94780,7 +94762,7 @@ var _react2 = require(36     ); // 36 = react
 
 var _react3 = _interopRequireDefault(_react2);
 
-var _index = require(159                                                             ); // 159 = ./../../../../../node_modules/react-transform-hmr/lib/index.js
+var _index = require(159                                                       ); // 159 = ./../../../node_modules/react-transform-hmr/lib/index.js
 
 var _index2 = _interopRequireDefault(_index);
 
@@ -94788,15 +94770,15 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _class,
     _temp,
-    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/providers/google.account.js';
+    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/google.account.view.js';
 
 var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(491          ); // 491 = react-redux
 
-var _style = require(741      ); // 741 = ./style
+var _account = require(746                     ); // 746 = ../style/account.style
 
-var _style2 = _interopRequireDefault(_style);
+var _account2 = _interopRequireDefault(_account);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -94813,7 +94795,7 @@ var _components = {
 };
 
 var _node_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
-  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/accounts/providers/google.account.js',
+  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/google.account.view.js',
   components: _components,
   locals: [module],
   imports: [_react3.default]
@@ -94839,12 +94821,12 @@ var GoogleAccountView = _wrapComponent('GoogleAccountView')((_temp = _class = fu
     value: function render() {
       return _react3.default.createElement(
         _reactNative.ScrollView,
-        { style: _style2.default.scrollview, __source: {
+        { style: _account2.default.scrollview, __source: {
             fileName: _jsxFileName,
             lineNumber: 21
           }
         },
-        _react3.default.createElement(_reactNative.View, { style: _style2.default.content, __source: {
+        _react3.default.createElement(_reactNative.View, { style: _account2.default.content, __source: {
             fileName: _jsxFileName,
             lineNumber: 22
           }
@@ -94860,7 +94842,7 @@ var GoogleAccountView = _wrapComponent('GoogleAccountView')((_temp = _class = fu
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(GoogleAccountView);
-}, 742, null, "LynxMail/src/components/views/accounts/providers/google.account.js");
+}, 748, null, "LynxMail/src/components/views/google.account.view.js");
 __d(/* LynxMail/src/reducers/auth-reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
