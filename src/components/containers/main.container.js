@@ -65,13 +65,12 @@ export const MainTabBarNavigation = TabNavigator({
         fontSize: 11
       },
       style: {
-        paddingTop: Platform.OS === "android" ? StatusBar.currentHeight : 0,
-        shadowColor: '#333333',
-        shadowOpacity: 0.3,
+        shadowColor: '#3b5998',
+        shadowOpacity: 0.4,
         shadowOffset: {
-          height: 1,
+          height: 2,
         },
-        shadowRadius: 2,
+        shadowRadius: 3,
       },
     }
 

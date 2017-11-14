@@ -6,14 +6,14 @@ import {
 } from 'react-native'
 import { connect } from 'react-redux'
 import { AzureInstance, AzureLoginView } from '../../lib/azure-ad'
-import { addAccount } from '../../actions/account.action';
+import { addAccount, TypeAccount } from '../../actions/account.action';
 
 import Styles from '../style/account.style'
 
 const CREDENTIAILS = {
   client_id: '584f5e41-234f-480f-87b7-cbefb4e6d35f',
   client_secret: 'iVF5dhQODL5cxLWk1qCJ3mz',
-  scope: 'User.ReadBasic.All Mail.Read offline_access'
+  scope: 'User.ReadBasic.All Mail.Read offline_access Mail.ReadWrite'
 };
 
 const Instance = new AzureInstance(CREDENTIAILS);
@@ -35,7 +35,7 @@ class OutlookAccountView extends Component {
 		this.azureInstance.getUserInfo().then(result => {
       console.log(result);
       const account = {
-        type: 'account-outlook',
+        type: TypeAccount.outlook,
         token: this.azureInstance.getToken(),
         name: result.displayName,
         email: result.userPrincipaName

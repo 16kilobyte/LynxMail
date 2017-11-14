@@ -3,6 +3,11 @@ import _ from 'lodash';
 
 export const ACCOUNT_KEY = "account-mail";
 
+export const TypeAccount = {
+  outlook: 'account-outlook',
+  google: 'account-google'
+}
+
 export const addAccount = (account) => {
   return new Promise((resolve, reject) => {
     AsyncStorage.getItem(ACCOUNT_KEY)
@@ -25,6 +30,22 @@ export const addAccount = (account) => {
 export const removeAccount = (account) => {
   AsyncStorage.removeItem(ACCOUNT_KEY);
 };
+
+export const getAccessToken = (type) => {
+  return new Promise((resolve, reject) => {
+    AsyncStorage.getItem(ACCOUNT_KEY)
+      .then(accounts => {
+        const accountsDB = JSON.parse(accounts);
+        const account = _.filter(accountsDB, (acc) => {
+          return acc.type === type;
+        });
+        resolve(account.token);
+      })
+      .catch(err => {
+        reject(err);
+      })
+  });
+}
 
 export const hasAccount = () => {
   return new Promise((resolve, reject) => {
