@@ -1,5 +1,5 @@
 import * as OutlookMailMessages from './outlook-mail/messages.service';
 
-export {
+export default {
   OutlookMailMessages
 }

@@ -1,7 +1,9 @@
 import Account from './account.model';
 import Token from './token.model';
 
-export const models = [
+const schemas = [
   Account,
   Token
 ];
+
+export default schemas;

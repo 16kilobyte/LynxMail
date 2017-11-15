@@ -1,6 +1,6 @@
 import Realm from 'realm';
 
-export class Token extends Realm.Object { }
+class Token extends Realm.Object {}
 Token.schema = {
   name: 'Token',
   properties: {
@@ -8,3 +8,5 @@ Token.schema = {
     refreshToken: {type: 'string'}
   }
 }
+
+export default Token;

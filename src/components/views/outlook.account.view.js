@@ -36,10 +36,10 @@ class OutlookAccountView extends Component {
 		this.azureInstance.getUserInfo().then(result => {
       console.log(result);
       const account = {
-        type: TypeAccount.outlook,
+        id: 'outlook',
         token: this.azureInstance.getToken(),
         name: result.displayName,
-        email: result.userPrincipaName
+        email: result.userPrincipalName
       };
       
       addAccount(account)

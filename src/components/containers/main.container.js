@@ -114,7 +114,10 @@ class MainContainer extends Component {
   componentWillMount() {
     hasAccount()
       .then(res => this.setState({ hasAccount: res, checkedHasAccount: true }))
-      .catch(err => alert("An error occurred"));
+      .catch(err => {
+        console.log(err);
+        alert("An error occurred")
+      });
   }
 
   render() {
