@@ -25,11 +25,11 @@ export const removeAccount = (account) => {
   AsyncStorage.removeItem(ACCOUNT_KEY);
 };
 
-export const getAccessToken = (type) => {
+export const getAccessToken = (id) => {
   return new Promise((resolve, reject) => {
-    const accounts = realm.object('Account').filtered(`type = ${type}`);
-    if(accounts != null && accounts.length > 0) {
-      resolve(accounts[0].token)
+    const account = realm.object('Account').filtered(`id = ${id}`)[0];
+    if(account != null) {
+      resolve(account.token)
     } else {
       reject();
     }
