@@ -1,4 +1,4 @@
-import { AsyncStorage } from "react-native";
+import { AsyncStorage } from 'react-native';
 import _ from 'lodash';
 
 export const ACCOUNT_KEY = "account-mail";
@@ -10,20 +10,14 @@ export const TypeAccount = {
 
 export const addAccount = (account) => {
   return new Promise((resolve, reject) => {
-    AsyncStorage.getItem(ACCOUNT_KEY)
-      .then(accounts => {
-        if (accounts != null && accounts.length > 0 && !_.some(accounts, { type: account.type })) {
-          accounts.push(account);
-          AsyncStorage.setItem(ACCOUNT_KEY, JSON.stringify(accounts));
-          resolve(account)
-        } else {
-          AsyncStorage.setItem(ACCOUNT_KEY, JSON.stringify([account]));
-          resolve(account);
-        }
+    try {
+      realm.write(() => {
+        realm.create('Account', account, true);
+        resolve();
       })
-      .catch(err => {
-        reject(err)
-      })
+    } catch (e) {
+      reject(e);
+    }
   });
 };
 
@@ -33,31 +27,22 @@ export const removeAccount = (account) => {
 
 export const getAccessToken = (type) => {
   return new Promise((resolve, reject) => {
-    AsyncStorage.getItem(ACCOUNT_KEY)
-      .then(accounts => {
-        const accountsDB = JSON.parse(accounts);
-        const account = _.filter(accountsDB, (acc) => {
-          return acc.type === type;
-        });
-        resolve(account[0].token);
-      })
-      .catch(err => {
-        reject(err);
-      })
+    const accounts = realm.object('Account').filtered(`type = ${type}`);
+    if(accounts != null && accounts.length > 0) {
+      resolve(accounts[0].token)
+    } else {
+      reject();
+    }
   });
 }
 
 export const hasAccount = () => {
   return new Promise((resolve, reject) => {
-    AsyncStorage.getItem(ACCOUNT_KEY)
-      .then(accounts => {
-        const accountsDB = JSON.parse(accounts);
-        if (accountsDB !== null && accountsDB.length > 0) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      })
-      .catch(err => reject(err));
+    let account = realm.objects('Account');
+    if (account.length > 0) {
+      resolve(true);
+    } else {
+      resolve(false);
+    }
   });
 };

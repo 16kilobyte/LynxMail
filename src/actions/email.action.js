@@ -1,26 +1,23 @@
-import _ from 'lodash'
+import _ from 'lodash';
+import * as types from './actionTypes';
 import * as MSGraph from '../services/microsoft-graph';
-
-export const EMAIL_REQ_ERROR = 'EMAIL_REQ_ERROR';
-export const EMAIL_REQ_DATA = 'EMAIL_REQ_DATA';
-export const EMAIL_RECV_DATA = 'EMAIL_RECV_DATA';
 
 function requestData() {
   return {
-    type: EMAIL_REQ_ERROR
+    type: types.EMAIL_REQ_ERROR
   }
 };
 
 function receiveData(json) {
   return {
-    type: EMAIL_RECV_DATA,
+    type: types.EMAIL_RECV_DATA,
     data: json
   }
 };
 
 function requestError(json) {
   return {
-    type: EMAIL_REQ_ERROR,
+    type: types.EMAIL_REQ_ERROR,
     data: json
   }
 };

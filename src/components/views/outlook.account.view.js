@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import Config from 'react-native-config';
 import {
   View,
   Button,
@@ -11,9 +12,9 @@ import { addAccount, TypeAccount } from '../../actions/account.action';
 import Styles from '../style/account.style'
 
 const CREDENTIAILS = {
-  client_id: '584f5e41-234f-480f-87b7-cbefb4e6d35f',
-  client_secret: 'iVF5dhQODL5cxLWk1qCJ3mz',
-  scope: 'User.ReadBasic.All Mail.Read offline_access Mail.ReadWrite'
+  client_id: Config.OUTLOOK_CLIENT_ID,
+  client_secret: Config.OUTLOOK_CLIENT_SECRET,
+  scope: Config.OUTLOOK_SCOPE
 };
 
 const Instance = new AzureInstance(CREDENTIAILS);
