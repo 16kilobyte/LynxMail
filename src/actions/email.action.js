@@ -22,10 +22,10 @@ function requestError(json) {
   }
 };
 
-export function fetchListMessages(cityId) {
+export function fetchListMessages() {
   return function (dispatch) {
     dispatch(requestData());
-    MSGraph.OutlookMailMessages.listMessages()
+    MSGraph.OutlookMail.Messages.listMessages()
       .then(response => {
         dispatch(receiveData(response.data.value))
       })

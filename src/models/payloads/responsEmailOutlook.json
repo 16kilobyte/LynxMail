@@ -1,0 +1,79 @@
+{
+  "@odata.context": "https://graph.microsoft.com/v1.0/$metadata#users('48d31887-5fad-4d73-a9f5-3c356e68a038')/messages",
+  "value": [
+      {
+          "@odata.etag": "W/\"CQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAAYc6av\"",
+          "id": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OABGAAAAAAAiQ8W967B7TKBjgx9rVEURBwAiIsqMbYjsT5e-T7KzowPTAAAAAAEMAAAiIsqMbYjsT5e-T7KzowPTAAAYbsdUAAA=",
+          "createdDateTime": "2017-09-04T16:49:55Z",
+          "lastModifiedDateTime": "2017-09-04T16:49:55Z",
+          "changeKey": "CQAAABYAAAAiIsqMbYjsT5e/T7KzowPTAAAYc6av",
+          "categories": [],
+          "receivedDateTime": "2017-09-03T08:17:22Z",
+          "sentDateTime": "2017-09-03T08:17:22Z",
+          "hasAttachments": false,
+          "internetMessageId": "<a0a227f6bfaa4cac823811974cd304a7@BY2SR01MB607.namsdf01.sdf.exchangelabs.com>",
+          "subject": "Stocks",
+          "bodyPreview": "Did anybody see Northwind's stock price over the last three days?  What do you think that means for our project?\r\n\r\n\r\n\r\n-Miriam",
+          "importance": "normal",
+          "parentFolderId": "AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OAAuAAAAAAAiQ8W967B7TKBjgx9rVEURAQAiIsqMbYjsT5e-T7KzowPTAAAAAAEMAAA=",
+          "conversationId": "AAQkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OAAQABzSsDvY7gZDoR5WZ3Hq_EI=",
+          "isDeliveryReceiptRequested": null,
+          "isReadReceiptRequested": false,
+          "isRead": false,
+          "isDraft": false,
+          "webLink": "https://outlook.office365.com/owa/?ItemID=AAMkAGVmMDEzMTM4LTZmYWUtNDdkNC1hMDZiLTU1OGY5OTZhYmY4OABGAAAAAAAiQ8W967B7TKBjgx9rVEURBwAiIsqMbYjsT5e%2FT7KzowPTAAAAAAEMAAAiIsqMbYjsT5e%2FT7KzowPTAAAYbsdUAAA%3D&exvsurl=1&viewmodel=ReadMessageItem",
+          "inferenceClassification": "focused",
+          "body": {
+              "contentType": "html",
+              "content": "<html>\r\n<head>\r\n<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\">\r\n<meta content=\"text/html; charset=us-ascii\">\r\n<meta name=\"ProgId\" content=\"Word.Document\">\r\n<meta name=\"Generator\" content=\"Microsoft Word 15\">\r\n<meta name=\"Originator\" content=\"Microsoft Word 15\">\r\n<link rel=\"File-List\" href=\"cid:filelist.xml@01CD70CD.442A1E70\"><style>\r\n<!--\r\n@font-face\r\n\t{font-family:\"Cambria Math\"}\r\n@font-face\r\n\t{font-family:Calibri}\r\n@font-face\r\n\t{font-family:Tahoma}\r\np.MsoNormal, li.MsoNormal, div.MsoNormal\r\n\t{margin:0in;\r\n\tmargin-bottom:.0001pt;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Times New Roman\",\"serif\"}\r\np\r\n\t{margin:0in;\r\n\tmargin-bottom:.0001pt;\r\n\tfont-size:12.0pt;\r\n\tfont-family:\"Times New Roman\",\"serif\"}\r\n.MsoChpDefault\r\n\t{font-size:10.0pt}\r\n@page WordSection1\r\n\t{margin:1.0in 1.0in 1.0in 1.0in}\r\ndiv.WordSection1\r\n\t{}\r\n-->\r\n</style>\r\n</head>\r\n<body lang=\"EN-US\" style=\"\">\r\n<div class=\"WordSection1\">\r\n<p><span style=\"font-size:10.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;; color:black\">Did anybody see Northwind's stock price over the last three days?&nbsp; What do you think that means for our project?</span></p>\r\n<p><span style=\"font-size:10.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;; color:black\">&nbsp;</span></p>\r\n<p><span style=\"font-size:10.0pt; font-family:&quot;Tahoma&quot;,&quot;sans-serif&quot;; color:black\">-Miriam</span></p>\r\n</div>\r\n</body>\r\n</html>\r\n"
+          },
+          "sender": {
+              "emailAddress": {
+                  "name": "Miriam Graham",
+                  "address": "MiriamG@M365x214355.onmicrosoft.com"
+              }
+          },
+          "from": {
+              "emailAddress": {
+                  "name": "Miriam Graham",
+                  "address": "MiriamG@M365x214355.onmicrosoft.com"
+              }
+          },
+          "toRecipients": [
+              {
+                  "emailAddress": {
+                      "name": "Megan Bowen",
+                      "address": "MeganB@M365x214355.onmicrosoft.com"
+                  }
+              },
+              {
+                  "emailAddress": {
+                      "name": "Lynne Robbins",
+                      "address": "LynneR@M365x214355.onmicrosoft.com"
+                  }
+              },
+              {
+                  "emailAddress": {
+                      "name": "Alex Wilber",
+                      "address": "AlexW@M365x214355.onmicrosoft.com"
+                  }
+              },
+              {
+                  "emailAddress": {
+                      "name": "Joni Sherman",
+                      "address": "JoniS@M365x214355.onmicrosoft.com"
+                  }
+              },
+              {
+                  "emailAddress": {
+                      "name": "Lidia Holloway",
+                      "address": "LidiaH@M365x214355.onmicrosoft.com"
+                  }
+              }
+          ],
+          "ccRecipients": [],
+          "bccRecipients": [],
+          "replyTo": []
+      }
+  ]
+}

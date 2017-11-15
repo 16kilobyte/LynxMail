@@ -1,4 +1,4 @@
-import { EMAIL_RECV_DATA, EMAIL_REQ_DATA, EMAIL_REQ_ERROR } from '../actions/email.action'; 
+import * as types from '../actions/actionTypes';
 
 const initialState = {
   isLoading: false,
@@ -8,20 +8,20 @@ const initialState = {
 
 export default function emailReducer(state = initialState, action) {
   switch (action.type) {
-    case EMAIL_RECV_DATA:
+    case types.EMAIL_RECV_DATA:
       return {
         ...state,
         isLoading: false,
         error: false,
         emails: action.data
       }
-    case EMAIL_REQ_DATA:
+    case types.EMAIL_REQ_DATA:
       return {
         ...state,
         isLoading: true,
         error: false
       }
-    case EMAIL_REQ_ERROR:
+    case types.EMAIL_REQ_ERROR:
       return {
         ...state,
         isLoading: false,

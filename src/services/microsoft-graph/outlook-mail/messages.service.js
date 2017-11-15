@@ -4,7 +4,7 @@ import { getAccessToken, TypeAccount } from '../../../actions/account.action'
 const ENDPOINT = 'https://graph.microsoft.com/v1.0/me'
 
 export const listMessages = () => {
-  return getAccessToken(TypeAccount.outlook)
+  return getAccessToken('outlook')
     .then(token => {
       return axios({
         url: `${ENDPOINT}/messages`,

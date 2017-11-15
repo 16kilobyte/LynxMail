@@ -5,7 +5,8 @@ Token.schema = {
   name: 'Token',
   properties: {
     accessToken: {type: 'string'},
-    refreshToken: {type: 'string'}
+    refreshToken: {type: 'string'},
+    expireIn: {type: 'int'}
   }
 }
 

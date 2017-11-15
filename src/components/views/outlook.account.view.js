@@ -35,9 +35,14 @@ class OutlookAccountView extends Component {
     
 		this.azureInstance.getUserInfo().then(result => {
       console.log(result);
+      const azToken = this.azureInstance.getToken();
       const account = {
         id: 'outlook',
-        token: this.azureInstance.getToken(),
+        token: {
+          accessToken: azToken.accessToken,
+          refreshToken: azToken.refreshToken,
+          expireIn: azToken.expires_in
+        },
         name: result.displayName,
         email: result.userPrincipalName
       };

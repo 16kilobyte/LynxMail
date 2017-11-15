@@ -1,5 +1,5 @@
-import * as OutlookMailMessages from './outlook-mail/messages.service';
+import * as Messages from './outlook-mail/messages.service';
 
-export default {
-  OutlookMailMessages
+export const OutlookMail = {
+  Messages
 }

@@ -16,7 +16,7 @@ export const addAccount = (account) => {
 
 export const removeAccount = (id) => {
   return new Promise((resolve, reject) => {
-    const account = realm.objectForPrimaryKey('Account', `id = ${id}`);
+    const account = _.head(realm.objects('Account').filtered('id = $0', id));
     if(account != null) {
       try {
         realm.write(() => {
@@ -34,7 +34,7 @@ export const removeAccount = (id) => {
 
 export const getAccessToken = (id) => {
   return new Promise((resolve, reject) => {
-    const account = realm.objectForPrimaryKey('Account', `id = ${id}`);
+    const account = _.head(realm.objects('Account').filtered('id = $0', id));
     if(account != null) {
       resolve(account.token)
     } else {

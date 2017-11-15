@@ -58682,6 +58682,8 @@ global.realm = new _realm2.default({
   schema: _models2.default
 });
 
+console.log(realm.path);
+
 var App = _wrapComponent('App')(function (_Component) {
   _inherits(App, _Component);
 
@@ -58698,13 +58700,13 @@ var App = _wrapComponent('App')(function (_Component) {
         _reactRedux.Provider,
         { store: store, __source: {
             fileName: _jsxFileName,
-            lineNumber: 18
+            lineNumber: 20
           }
         },
         _react3.default.createElement(_app2.default, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 19
+            lineNumber: 21
           }
         })
       );
@@ -62808,9 +62810,21 @@ var _token = require(549            ); // 549 = ./token.model
 
 var _token2 = _interopRequireDefault(_token);
 
+var _email = require(808            ); // 808 = ./email.model
+
+var _email2 = _interopRequireDefault(_email);
+
+var _emailBody = require(807                 ); // 807 = ./email.body.model
+
+var _emailBody2 = _interopRequireDefault(_emailBody);
+
+var _emailAddress = require(806                    ); // 806 = ./email.address.model
+
+var _emailAddress2 = _interopRequireDefault(_emailAddress);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var schemas = [_account2.default, _token2.default];
+var schemas = [_account2.default, _token2.default, _email2.default, _emailAddress2.default, _emailBody2.default];
 
 exports.default = schemas;
 }, 547, null, "LynxMail/src/models/index.js");
@@ -62891,12 +62905,144 @@ Token.schema = {
   name: 'Token',
   properties: {
     accessToken: { type: 'string' },
-    refreshToken: { type: 'string' }
+    refreshToken: { type: 'string' },
+    expireIn: { type: 'int' }
   }
 };
 
 exports.default = Token;
 }, 549, null, "LynxMail/src/models/token.model.js");
+__d(/* LynxMail/src/models/email.model.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _realm = require(526    ); // 526 = realm
+
+var _realm2 = _interopRequireDefault(_realm);
+
+var _token = require(549            ); // 549 = ./token.model
+
+var _token2 = _interopRequireDefault(_token);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Email = function (_Realm$Object) {
+  _inherits(Email, _Realm$Object);
+
+  function Email() {
+    _classCallCheck(this, Email);
+
+    return _possibleConstructorReturn(this, (Email.__proto__ || Object.getPrototypeOf(Email)).apply(this, arguments));
+  }
+
+  return Email;
+}(_realm2.default.Object);
+
+Email.schema = {
+  name: 'Email',
+  primaryKey: 'id',
+  properties: {
+    id: { type: 'string', optional: false, indexed: true },
+    accountId: { type: 'string', optional: false, indexed: true },
+    hasAttachments: { type: 'bool' },
+    subject: { type: 'string', optional: false },
+    bodyPreview: { type: 'string', optional: false },
+    isRead: { type: 'bool' },
+    isDraft: { type: 'bool' },
+    body: { type: 'EmailBody' },
+    sender: { type: 'EmailAddress' },
+    from: { type: 'EmailAddress' },
+    toRecipients: { type: 'list', objectType: 'EmailAddress' },
+    ccRecipients: { type: 'list', objectType: 'EmailAddress' },
+    bccRecipients: { type: 'list', objectType: 'EmailAddress' },
+    replyTo: { type: 'list', objectType: 'EmailAddress' }
+  }
+};
+
+exports.default = Email;
+}, 808, null, "LynxMail/src/models/email.model.js");
+__d(/* LynxMail/src/models/email.body.model.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _realm = require(526    ); // 526 = realm
+
+var _realm2 = _interopRequireDefault(_realm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EmailBody = function (_Realm$Object) {
+  _inherits(EmailBody, _Realm$Object);
+
+  function EmailBody() {
+    _classCallCheck(this, EmailBody);
+
+    return _possibleConstructorReturn(this, (EmailBody.__proto__ || Object.getPrototypeOf(EmailBody)).apply(this, arguments));
+  }
+
+  return EmailBody;
+}(_realm2.default.Object);
+
+EmailBody.schema = {
+  name: 'EmailBody',
+  properties: {
+    contentType: { type: 'string', optional: false },
+    content: { type: 'string', optional: false }
+  }
+};
+
+exports.default = EmailBody;
+}, 807, null, "LynxMail/src/models/email.body.model.js");
+__d(/* LynxMail/src/models/email.address.model.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _realm = require(526    ); // 526 = realm
+
+var _realm2 = _interopRequireDefault(_realm);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var EmailAddress = function (_Realm$Object) {
+  _inherits(EmailAddress, _Realm$Object);
+
+  function EmailAddress() {
+    _classCallCheck(this, EmailAddress);
+
+    return _possibleConstructorReturn(this, (EmailAddress.__proto__ || Object.getPrototypeOf(EmailAddress)).apply(this, arguments));
+  }
+
+  return EmailAddress;
+}(_realm2.default.Object);
+
+EmailAddress.schema = {
+  name: 'EmailAddress',
+  properties: {
+    name: { type: 'string', optional: false },
+    address: { type: 'string', optional: false }
+  }
+};
+
+exports.default = EmailAddress;
+}, 806, null, "LynxMail/src/models/email.address.model.js");
 __d(/* LynxMail/src/stores/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -77589,10 +77735,10 @@ function requestError(json) {
   };
 };
 
-function fetchListMessages(cityId) {
+function fetchListMessages() {
   return function (dispatch) {
     dispatch(requestData());
-    MSGraph.OutlookMailMessages.listMessages().then(function (response) {
+    MSGraph.OutlookMail.Messages.listMessages().then(function (response) {
       dispatch(receiveData(response.data.value));
     }).catch(function (err) {
       dispatch(requestError(err));
@@ -84246,15 +84392,16 @@ var EMAIL_RECV_DATA = exports.EMAIL_RECV_DATA = 'EMAIL_RECV_DATA';
 __d(/* LynxMail/src/services/microsoft-graph/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
+exports.OutlookMail = undefined;
 
 var _messages = require(687                              ); // 687 = ./outlook-mail/messages.service
 
-var OutlookMailMessages = _interopRequireWildcard(_messages);
+var Messages = _interopRequireWildcard(_messages);
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
-exports.default = {
-  OutlookMailMessages: OutlookMailMessages
+var OutlookMail = exports.OutlookMail = {
+  Messages: Messages
 };
 }, 686, null, "LynxMail/src/services/microsoft-graph/index.js");
 __d(/* LynxMail/src/services/microsoft-graph/outlook-mail/messages.service.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
@@ -84273,7 +84420,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var ENDPOINT = 'https://graph.microsoft.com/v1.0/me';
 
 var listMessages = exports.listMessages = function listMessages() {
-  return (0, _account.getAccessToken)(_account.TypeAccount.outlook).then(function (token) {
+  return (0, _account.getAccessToken)('outlook').then(function (token) {
     return (0, _axios2.default)({
       url: ENDPOINT + '/messages',
       timeout: 5000,
@@ -85265,7 +85412,7 @@ var addAccount = exports.addAccount = function addAccount(account) {
 
 var removeAccount = exports.removeAccount = function removeAccount(id) {
   return new Promise(function (resolve, reject) {
-    var account = realm.objectForPrimaryKey('Account', 'id = ' + id);
+    var account = _lodash2.default.head(realm.objects('Account').filtered('id = $0', id));
     if (account != null) {
       try {
         realm.write(function () {
@@ -85283,7 +85430,7 @@ var removeAccount = exports.removeAccount = function removeAccount(id) {
 
 var getAccessToken = exports.getAccessToken = function getAccessToken(id) {
   return new Promise(function (resolve, reject) {
-    var account = realm.objectForPrimaryKey('Account', 'id = ' + id);
+    var account = _lodash2.default.head(realm.objects('Account').filtered('id = $0', id));
     if (account != null) {
       resolve(account.token);
     } else {
@@ -95300,9 +95447,14 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
 
       this.azureInstance.getUserInfo().then(function (result) {
         console.log(result);
+        var azToken = _this2.azureInstance.getToken();
         var account = {
           id: 'outlook',
-          token: _this2.azureInstance.getToken(),
+          token: {
+            accessToken: azToken.accessToken,
+            refreshToken: azToken.refreshToken,
+            expireIn: azToken.expires_in
+          },
           name: result.displayName,
           email: result.userPrincipalName
         };
@@ -95323,7 +95475,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
         onSuccess: this._onLoginSuccess.bind(this),
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 57
+          lineNumber: 62
         }
       });
     }
@@ -98863,7 +99015,11 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = emailReducer;
 
-var _email = require(683                      ); // 683 = ../actions/email.action
+var _actionTypes = require(685                     ); // 685 = ../actions/actionTypes
+
+var types = _interopRequireWildcard(_actionTypes);
+
+function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } else { var newObj = {}; if (obj != null) { for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key]; } } newObj.default = obj; return newObj; } }
 
 var initialState = {
   isLoading: false,
@@ -98876,18 +99032,18 @@ function emailReducer() {
   var action = arguments[1];
 
   switch (action.type) {
-    case _email.EMAIL_RECV_DATA:
+    case types.EMAIL_RECV_DATA:
       return _extends({}, state, {
         isLoading: false,
         error: false,
         emails: action.data
       });
-    case _email.EMAIL_REQ_DATA:
+    case types.EMAIL_REQ_DATA:
       return _extends({}, state, {
         isLoading: true,
         error: false
       });
-    case _email.EMAIL_REQ_ERROR:
+    case types.EMAIL_REQ_ERROR:
       return _extends({}, state, {
         isLoading: false,
         error: true

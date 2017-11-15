@@ -12,6 +12,8 @@ global.realm = new Realm({
   schema: Models
 });
 
+console.log(realm.path);
+
 export default class App extends Component {
   render() {
     return (
