@@ -2,8 +2,8 @@ import * as types from '../actions/actionTypes';
 
 const initialState = {
   isLoading: false,
-  error: false,
-  emails: []
+  emails: [],
+  error: null
 }
 
 export default function emailReducer(state = initialState, action) {

@@ -4,7 +4,8 @@ import {
   ScrollView,
   Button,
   Text,
-  StyleSheet
+  StyleSheet,
+  FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
 
@@ -26,11 +27,14 @@ class EmailsView extends Component {
     const { emails, isLoading, error, fetchListMessages } = this.props.listEmails;
 
     return (
-      <ScrollView style={Styles.scrollview}>
-        <View style={Styles.content}>
-         
-        </View>
-      </ScrollView>
+        <FlatList
+          style={Styles.content}
+          data={emails}
+          renderItem={({ item }) => (
+            <Text>{item.subject}</Text>
+          )}
+          keyExtractor={item => item.id}
+        />
     )
   }
 }
