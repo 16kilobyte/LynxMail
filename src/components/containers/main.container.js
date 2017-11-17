@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Platform, StatusBar } from "react-native";
 import { connect } from 'react-redux';
+import _ from 'lodash';
 
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
@@ -14,7 +15,7 @@ import AddAccountView from '../views/accounts.view';
 import OutlookAccountView from '../views/outlook.account.view';
 import GoogleAccountView from '../views/google.account.view';
 
-import { hasAccount } from "../../actions/account.action";
+import { hasAccount, outlookRefreshtoken } from "../../actions/account.action";
 
 export const AccountStackNavigation = StackNavigator({
   AddAccount: {
@@ -32,11 +33,11 @@ export const AccountStackNavigation = StackNavigator({
 });
 
 export const MainTabBarNavigation = TabNavigator({
-  Home: { 
+  Home: {
     screen: HomeTabBarNavigation,
     path: 'home'
   },
-  Mail: { 
+  Mail: {
     screen: MailTabBarNavigation,
     path: 'mail'
   },
@@ -44,13 +45,13 @@ export const MainTabBarNavigation = TabNavigator({
     screen: EventTabBarNavigation,
     path: 'event'
   },
-  Contact: { 
-    screen: ContactTabBarNavigation ,
-    path: 'contact'    
+  Contact: {
+    screen: ContactTabBarNavigation,
+    path: 'contact'
   },
-  Settings: { 
-    screen: SettingsTabBarNavigation ,
-    path: 'settings'    
+  Settings: {
+    screen: SettingsTabBarNavigation,
+    path: 'settings'
   }
 }, {
     tabBarPosition: 'bottom',
@@ -104,7 +105,6 @@ export const createRootNavigator = (hasAccount = false) => {
 class MainContainer extends Component {
   constructor(props) {
     super(props);
-
     this.state = {
       hasAccount: false,
       checkedHasAccount: false
@@ -113,7 +113,13 @@ class MainContainer extends Component {
 
   componentWillMount() {
     hasAccount()
-      .then(res => this.setState({ hasAccount: res, checkedHasAccount: true }))
+      .then(res => {
+        this.setState({ hasAccount: res, checkedHasAccount: true });
+        if (res) {
+          outlookRefreshtoken();
+        }
+
+      })
       .catch(err => {
         console.log(err);
         alert("An error occurred")

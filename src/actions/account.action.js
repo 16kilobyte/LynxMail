@@ -1,5 +1,43 @@
 import { AsyncStorage } from 'react-native';
+import Promise from 'bluebird';
+import Config from 'react-native-config';
+import { AzureInstance, Auth } from '../lib/azure-ad';
 import _ from 'lodash';
+
+const CREDENTIAILS = {
+  client_id: Config.OUTLOOK_CLIENT_ID,
+  client_secret: Config.OUTLOOK_CLIENT_SECRET,
+  scope: Config.OUTLOOK_SCOPE
+};
+
+const Instance = new AzureInstance(CREDENTIAILS);
+const azureInstance = new AzureInstance(CREDENTIAILS);
+const refreshToken = new Auth(azureInstance);
+
+export const outlookRefreshtoken = () => {
+  const account = _.head(realm.objects('Account').filtered('id = $0', 'outlook'));
+  refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
+    .then(refreshTokenUpdate => {
+      try {
+        const tokenUpdate = {
+          accessToken: refreshTokenUpdate.accessToken,
+          refreshToken: refreshTokenUpdate.refreshToken,
+          expireIn: refreshTokenUpdate.expires_in
+        };
+
+        realm.write(() => {
+          account.token = tokenUpdate;
+        });
+
+      } catch(err) {
+        console.log(err);
+      }
+
+    })
+    .catch(err => {
+      console.log(err);
+    });
+}
 
 export const addAccount = (account) => {
   return new Promise((resolve, reject) => {
@@ -17,11 +55,11 @@ export const addAccount = (account) => {
 export const removeAccount = (id) => {
   return new Promise((resolve, reject) => {
     const account = _.head(realm.objects('Account').filtered('id = $0', id));
-    if(account != null) {
+    if (account != null) {
       try {
         realm.write(() => {
           realm.delete(account);
-          resolve(false);  
+          resolve(false);
         });
       } catch (err) {
         reject(err);
@@ -35,7 +73,7 @@ export const removeAccount = (id) => {
 export const getAccessToken = (id) => {
   return new Promise((resolve, reject) => {
     const account = _.head(realm.objects('Account').filtered('id = $0', id));
-    if(account != null) {
+    if (account != null) {
       resolve(account.token)
     } else {
       reject(null);
