@@ -8,14 +8,15 @@ import {
   FlatList
 } from 'react-native'
 import { connect } from 'react-redux'
-
+import Icon from 'react-native-vector-icons/MaterialIcons'
 import { fetchListMessages } from '../../actions/email.action';
 import Styles from '../style/emails.style'
 
 class EmailsView extends Component {
   static navigationOptions = {
     title: 'Caixa de Entrada',
-    headerTintColor: '#0061b2'
+    headerTintColor: '#0061b2',
+    headerRight: <Icon size={30} name="add-box" onPress={this.loginWithFacebook} />
   };
 
   componentWillMount() {

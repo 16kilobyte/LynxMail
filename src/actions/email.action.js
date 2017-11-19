@@ -1,6 +1,10 @@
+'use strict';
+
 import _ from 'lodash';
 import * as types from './actionTypes';
+import * as outlookBuilder from './parseJson/json.outlook.mail';
 import * as MSGraph from '../services/microsoft-graph';
+
 
 function requestData() {
   return {
@@ -27,7 +31,21 @@ export function fetchListMessages() {
     dispatch(requestData());
     MSGraph.OutlookMail.Messages.listMessages()
       .then(response => {
-        dispatch(receiveData(response.data.value))
+        try {
+          const responseValues = response.data.value;
+          const emails = responseValues.map((email) => {
+            return outlookBuilder.json(email);
+          });
+          
+          realm.write(() => {
+            realm.create('Email', emails, true);
+          })
+
+          dispatch(receiveData(emails))
+        } catch (err) {
+          dispatch(requestError(err));
+        }
+
       })
       .catch(err => {
         dispatch(requestError(err));

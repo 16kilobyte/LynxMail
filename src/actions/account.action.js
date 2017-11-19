@@ -3,6 +3,7 @@ import Promise from 'bluebird';
 import Config from 'react-native-config';
 import { AzureInstance, Auth } from '../lib/azure-ad';
 import _ from 'lodash';
+import moment from 'moment';
 
 const CREDENTIAILS = {
   client_id: Config.OUTLOOK_CLIENT_ID,
@@ -16,19 +17,15 @@ const refreshToken = new Auth(azureInstance);
 
 export const outlookRefreshtoken = () => {
   const account = _.head(realm.objects('Account').filtered('id = $0', 'outlook'));
-  refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
+  if(moment().isAfter(account.token.expireIn)) {
+    refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
     .then(refreshTokenUpdate => {
       try {
-        const tokenUpdate = {
-          accessToken: refreshTokenUpdate.accessToken,
-          refreshToken: refreshTokenUpdate.refreshToken,
-          expireIn: refreshTokenUpdate.expires_in
-        };
-
         realm.write(() => {
-          account.token = tokenUpdate;
+          account.token.accessToken = refreshTokenUpdate.accessToken;
+          account.token.refreshToken = refreshTokenUpdate.refreshToken;
+          account.token.expireIn = refreshTokenUpdate.expires_in;
         });
-
       } catch(err) {
         console.log(err);
       }
@@ -36,7 +33,9 @@ export const outlookRefreshtoken = () => {
     })
     .catch(err => {
       console.log(err);
+      removeAccount(account.id);
     });
+  }
 }
 
 export const addAccount = (account) => {
