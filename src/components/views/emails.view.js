@@ -6,7 +6,8 @@ import {
   Text,
   StyleSheet,
   FlatList,
-  ActivityIndicator
+  ActivityIndicator,
+  TouchableOpacity
 } from 'react-native'
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux'
@@ -18,12 +19,18 @@ import { fetchListMessages } from '../../actions/email.action';
 import Styles from '../style/emails.style'
 
 class EmailsView extends Component {
-  static navigationOptions = {
+  static navigationOptions = ({navigation}) => ({
     title: 'Caixa de Entrada',
     headerTintColor: '#0061b2',
-    headerRight: <IconRight size={30} color="#0061b2" name="add" style={{ marginRight: 8 }} />,
+    headerRight: (
+      <TouchableOpacity onPress={() => {
+        navigation.navigate("eMailCompose");
+      }}>
+        <IconRight size={30} color="#0061b2" name="add" style={{ marginRight: 8 }} />
+      </TouchableOpacity>
+    ),
     headerLeft: <IconLeft size={30} color="#0061b2" name="folder" style={{ marginLeft: 8 }} />
-  };
+  });
 
   constructor() {
     super();
@@ -36,11 +43,11 @@ class EmailsView extends Component {
   renderSeparator = () => {
     return (<View style={Styles.itemSeparator} />);
   };
-  
+
   renderHeader = () => {
     return <SearchBar placeholder="Busca em seus e-mails" lightTheme />;
   };
-  
+
   // ListFooterComponent={this.renderFooter}
   // renderFooter = () => {
   //   // if (!this.props.listEmails.isLoading) return null;

@@ -59,6 +59,7 @@ export const MainTabBarNavigation = TabNavigator({
     animationEnabled: false,
     initialRouteName: 'Home',
     lazy: true,
+    headerMode: 'float',
     tabBarOptions: {
       showLabel: true,
       activeTintColor: '#3b5998',

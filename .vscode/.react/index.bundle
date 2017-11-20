@@ -58645,7 +58645,7 @@ var _stores = require(553       ); // 553 = ./stores
 
 var _stores2 = _interopRequireDefault(_stores);
 
-var _app = require(811              ); // 811 = ./app.lynx-mail
+var _app = require(815              ); // 815 = ./app.lynx-mail
 
 var _app2 = _interopRequireDefault(_app);
 
@@ -63682,7 +63682,7 @@ var _navigation = require(564                   ); // 564 = ./navigation.reducer
 
 var _navigation2 = _interopRequireDefault(_navigation);
 
-var _email = require(810              ); // 810 = ./email.reducer
+var _email = require(814              ); // 814 = ./email.reducer
 
 var _email2 = _interopRequireDefault(_email);
 
@@ -72705,31 +72705,31 @@ var _mail = require(683                   ); // 683 = ./mail.tabnavigation
 
 var _mail2 = _interopRequireDefault(_mail);
 
-var _event = require(739                    ); // 739 = ./event.tabnavigation
+var _event = require(799                    ); // 799 = ./event.tabnavigation
 
 var _event2 = _interopRequireDefault(_event);
 
-var _contact = require(742                      ); // 742 = ./contact.tabnavigation
+var _contact = require(802                      ); // 802 = ./contact.tabnavigation
 
 var _contact2 = _interopRequireDefault(_contact);
 
-var _settings = require(745                       ); // 745 = ./settings.tabnavigation
+var _settings = require(805                       ); // 805 = ./settings.tabnavigation
 
 var _settings2 = _interopRequireDefault(_settings);
 
-var _accounts = require(804                     ); // 804 = ../views/accounts.view
+var _accounts = require(808                     ); // 808 = ../views/accounts.view
 
 var _accounts2 = _interopRequireDefault(_accounts);
 
-var _outlookAccount = require(808                            ); // 808 = ../views/outlook.account.view
+var _outlookAccount = require(812                            ); // 812 = ../views/outlook.account.view
 
 var _outlookAccount2 = _interopRequireDefault(_outlookAccount);
 
-var _googleAccount = require(809                           ); // 809 = ../views/google.account.view
+var _googleAccount = require(813                           ); // 813 = ../views/google.account.view
 
 var _googleAccount2 = _interopRequireDefault(_googleAccount);
 
-var _account = require(718                           ); // 718 = ../../actions/account.action
+var _account = require(779                           ); // 779 = ../../actions/account.action
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -72800,6 +72800,7 @@ var MainTabBarNavigation = exports.MainTabBarNavigation = (0, _reactNavigation.T
   animationEnabled: false,
   initialRouteName: 'Home',
   lazy: true,
+  headerMode: 'float',
   tabBarOptions: {
     showLabel: true,
     activeTintColor: '#3b5998',
@@ -72887,7 +72888,7 @@ var MainContainer = _wrapComponent('MainContainer')(function (_Component) {
       return _react3.default.createElement(Main, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 137
+          lineNumber: 138
         }
       });
     }
@@ -83238,14 +83239,24 @@ var _MaterialIcons = require(684                                      ); // 684 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _emails = require(686                     ); // 686 = ./../views/emails.view
+var _emails = require(686                   ); // 686 = ../views/emails.view
 
 var _emails2 = _interopRequireDefault(_emails);
+
+var _emailCompose = require(816                          ); // 816 = ../views/email.compose.view
+
+var _emailCompose2 = _interopRequireDefault(_emailCompose);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 exports.default = (0, _reactNavigation.StackNavigator)({
-  eMails: { screen: _emails2.default }
+  eMails: { screen: _emails2.default },
+  eMailCompose: {
+    screen: _emailCompose2.default,
+    navigationOptions: {
+      headerTitle: 'Nova Mensagem'
+    }
+  }
 }, {
   initialRouteName: 'eMails',
   navigationOptions: {
@@ -83255,7 +83266,7 @@ exports.default = (0, _reactNavigation.StackNavigator)({
       var tintColor = _ref.tintColor;
       return _react2.default.createElement(_MaterialIcons2.default, { name: 'email', size: 24, color: tintColor, __source: {
           fileName: _jsxFileName,
-          lineNumber: 17
+          lineNumber: 24
         }
       });
     }
@@ -84241,7 +84252,7 @@ var _class,
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _reactNativeElements = require(747                    ); // 747 = react-native-elements
+var _reactNativeElements = require(687                    ); // 687 = react-native-elements
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
@@ -84257,11 +84268,11 @@ var _MaterialCommunityIcons = require(633                                       
 
 var _MaterialCommunityIcons2 = _interopRequireDefault(_MaterialCommunityIcons);
 
-var _placeholderView = require(812                            ); // 812 = ./components/placeholder-view
+var _placeholderView = require(743                            ); // 743 = ./components/placeholder-view
 
-var _email = require(687                         ); // 687 = ../../actions/email.action
+var _email = require(747                         ); // 747 = ../../actions/email.action
 
-var _emails = require(738                    ); // 738 = ../style/emails.style
+var _emails = require(798                    ); // 798 = ../style/emails.style
 
 var _emails2 = _interopRequireDefault(_emails);
 
@@ -84303,15 +84314,15 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
     _this.renderSeparator = function () {
       return _react3.default.createElement(_reactNative.View, { style: _emails2.default.itemSeparator, __source: {
           fileName: _jsxFileName,
-          lineNumber: 37
+          lineNumber: 44
         }
       });
     };
 
     _this.renderHeader = function () {
-      return _react3.default.createElement(_reactNativeElements.SearchBar, { placeholder: 'Busca em seus emails', lightTheme: true, __source: {
+      return _react3.default.createElement(_reactNativeElements.SearchBar, { placeholder: 'Busca em seus e-mails', lightTheme: true, __source: {
           fileName: _jsxFileName,
-          lineNumber: 41
+          lineNumber: 48
         }
       });
     };
@@ -84340,7 +84351,7 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
           _reactNative.View,
           { style: _emails2.default.container, __source: {
               fileName: _jsxFileName,
-              lineNumber: 61
+              lineNumber: 68
             }
           },
           _react3.default.createElement(_reactNative.FlatList, {
@@ -84352,14 +84363,14 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
                 _reactNative.View,
                 { style: _emails2.default.itemContainer, __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 66
+                    lineNumber: 73
                   }
                 },
                 _react3.default.createElement(
                   _reactNative.Text,
                   { style: _emails2.default.itemTextFrom, numberOfLines: 1, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 67
+                      lineNumber: 74
                     }
                   },
                   item.from.name
@@ -84368,7 +84379,7 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
                   _reactNative.Text,
                   { style: _emails2.default.itemTextSubject, numberOfLines: 1, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 68
+                      lineNumber: 75
                     }
                   },
                   item.subject
@@ -84377,7 +84388,7 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
                   _reactNative.Text,
                   { style: _emails2.default.itemTextBodyPreview, numberOfLines: 3, __source: {
                       fileName: _jsxFileName,
-                      lineNumber: 69
+                      lineNumber: 76
                     }
                   },
                   item.bodyPreview
@@ -84391,7 +84402,7 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
             },
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 62
+              lineNumber: 69
             }
           })
         );
@@ -84401,7 +84412,7 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
         return _react3.default.createElement(_placeholderView.ErrorView, {
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 81
+            lineNumber: 88
           }
         });
       }
@@ -84409,26 +84420,39 @@ var EmailsView = _wrapComponent('EmailsView')((_temp = _class = function (_Compo
       return _react3.default.createElement(_placeholderView.EmptyView, {
         __source: {
           fileName: _jsxFileName,
-          lineNumber: 84
+          lineNumber: 91
         }
       });
     }
   }]);
 
   return EmailsView;
-}(_react2.Component), _class.navigationOptions = {
-  title: 'Caixa de Entrada',
-  headerTintColor: '#0061b2',
-  headerRight: _react3.default.createElement(_MaterialIcons2.default, { size: 30, color: '#0061b2', name: 'add', style: { marginRight: 8 }, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 24
-    }
-  }),
-  headerLeft: _react3.default.createElement(_MaterialCommunityIcons2.default, { size: 30, color: '#0061b2', name: 'folder', style: { marginLeft: 8 }, __source: {
-      fileName: _jsxFileName,
-      lineNumber: 25
-    }
-  })
+}(_react2.Component), _class.navigationOptions = function (_ref2) {
+  var navigation = _ref2.navigation;
+  return {
+    title: 'Caixa de Entrada',
+    headerTintColor: '#0061b2',
+    headerRight: _react3.default.createElement(
+      _reactNative.TouchableOpacity,
+      { onPress: function onPress() {
+          navigation.navigate("eMailCompose");
+        }, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 26
+        }
+      },
+      _react3.default.createElement(_MaterialIcons2.default, { size: 30, color: '#0061b2', name: 'add', style: { marginRight: 8 }, __source: {
+          fileName: _jsxFileName,
+          lineNumber: 29
+        }
+      })
+    ),
+    headerLeft: _react3.default.createElement(_MaterialCommunityIcons2.default, { size: 30, color: '#0061b2', name: 'folder', style: { marginLeft: 8 }, __source: {
+        fileName: _jsxFileName,
+        lineNumber: 32
+      }
+    })
+  };
 }, _temp));
 
 function mapStateToProps(state) {
@@ -84452,99 +84476,99 @@ __d(/* react-native-elements/src/index.js */function(global, require, module, ex
 });
 exports.Header = exports.Rating = exports.Avatar = exports.Slider = exports.Tile = exports.normalize = exports.registerCustomIconType = exports.getIconType = exports.colors = exports.Icon = exports.SearchBar = exports.CheckBox = exports.Divider = exports.Text = exports.SocialIcon = exports.PricingCard = exports.ListItem = exports.List = exports.FormValidationMessage = exports.FormLabel = exports.FormInput = exports.Card = exports.ButtonGroup = exports.Button = exports.Badge = undefined;
 
-var _Button = require(748               ); // 748 = ./buttons/Button
+var _Button = require(688               ); // 688 = ./buttons/Button
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _Icon = require(773           ); // 773 = ./icons/Icon
+var _Icon = require(713           ); // 713 = ./icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _List = require(774          ); // 774 = ./list/List
+var _List = require(714          ); // 714 = ./list/List
 
 var _List2 = _interopRequireDefault(_List);
 
-var _ListItem = require(775              ); // 775 = ./list/ListItem
+var _ListItem = require(715              ); // 715 = ./list/ListItem
 
 var _ListItem2 = _interopRequireDefault(_ListItem);
 
-var _SocialIcon = require(778                  ); // 778 = ./social/SocialIcon
+var _SocialIcon = require(718                  ); // 718 = ./social/SocialIcon
 
 var _SocialIcon2 = _interopRequireDefault(_SocialIcon);
 
-var _badge = require(777            ); // 777 = ./badge/badge
+var _badge = require(717            ); // 717 = ./badge/badge
 
 var _badge2 = _interopRequireDefault(_badge);
 
-var _CheckBox = require(779                  ); // 779 = ./checkbox/CheckBox
+var _CheckBox = require(719                  ); // 719 = ./checkbox/CheckBox
 
 var _CheckBox2 = _interopRequireDefault(_CheckBox);
 
-var _Divider = require(780                ); // 780 = ./divider/Divider
+var _Divider = require(720                ); // 720 = ./divider/Divider
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _Slider = require(781              ); // 781 = ./slider/Slider
+var _Slider = require(721              ); // 721 = ./slider/Slider
 
 var _Slider2 = _interopRequireDefault(_Slider);
 
-var _ButtonGroup = require(782                    ); // 782 = ./buttons/ButtonGroup
+var _ButtonGroup = require(722                    ); // 722 = ./buttons/ButtonGroup
 
 var _ButtonGroup2 = _interopRequireDefault(_ButtonGroup);
 
-var _Card = require(783          ); // 783 = ./card/Card
+var _Card = require(723          ); // 723 = ./card/Card
 
 var _Card2 = _interopRequireDefault(_Card);
 
-var _Tile = require(785          ); // 785 = ./tile/Tile
+var _Tile = require(725          ); // 725 = ./tile/Tile
 
 var _Tile2 = _interopRequireDefault(_Tile);
 
-var _Avatar = require(776              ); // 776 = ./avatar/Avatar
+var _Avatar = require(716              ); // 716 = ./avatar/Avatar
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
-var _Rating = require(787              ); // 787 = ./rating/Rating
+var _Rating = require(727              ); // 727 = ./rating/Rating
 
 var _Rating2 = _interopRequireDefault(_Rating);
 
-var _Header = require(793              ); // 793 = ./header/Header
+var _Header = require(733              ); // 733 = ./header/Header
 
 var _Header2 = _interopRequireDefault(_Header);
 
-var _PricingCard = require(798                    ); // 798 = ./pricing/PricingCard
+var _PricingCard = require(738                    ); // 738 = ./pricing/PricingCard
 
 var _PricingCard2 = _interopRequireDefault(_PricingCard);
 
-var _FormInput = require(799               ); // 799 = ./form/FormInput
+var _FormInput = require(739               ); // 739 = ./form/FormInput
 
 var _FormInput2 = _interopRequireDefault(_FormInput);
 
-var _FormLabel = require(800               ); // 800 = ./form/FormLabel
+var _FormLabel = require(740               ); // 740 = ./form/FormLabel
 
 var _FormLabel2 = _interopRequireDefault(_FormLabel);
 
-var _FormValidationMessage = require(801                           ); // 801 = ./form/FormValidationMessage
+var _FormValidationMessage = require(741                           ); // 741 = ./form/FormValidationMessage
 
 var _FormValidationMessage2 = _interopRequireDefault(_FormValidationMessage);
 
-var _Search = require(802             ); // 802 = ./input/Search
+var _Search = require(742             ); // 742 = ./input/Search
 
 var _Search2 = _interopRequireDefault(_Search);
 
-var _Text = require(750          ); // 750 = ./text/Text
+var _Text = require(690          ); // 690 = ./text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _colors = require(749              ); // 749 = ./config/colors
+var _colors = require(689              ); // 689 = ./config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _getIconType = require(753                    ); // 753 = ./helpers/getIconType
+var _getIconType = require(693                    ); // 693 = ./helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _normalizeText = require(752                      ); // 752 = ./helpers/normalizeText
+var _normalizeText = require(692                      ); // 692 = ./helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
@@ -84575,7 +84599,7 @@ exports.Slider = _Slider2.default;
 exports.Avatar = _Avatar2.default;
 exports.Rating = _Rating2.default;
 exports.Header = _Header2.default;
-}, 747, null, "react-native-elements/src/index.js");
+}, 687, null, "react-native-elements/src/index.js");
 __d(/* react-native-elements/src/buttons/Button.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84594,11 +84618,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -84606,15 +84630,15 @@ var _MaterialIcons = require(684                                      ); // 684 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _getIconType = require(753                     ); // 753 = ../helpers/getIconType
+var _getIconType = require(693                     ); // 693 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -84907,7 +84931,7 @@ var stylesObject = {
 var styles = _reactNative.StyleSheet.create(stylesObject);
 
 exports.default = Button;
-}, 748, null, "react-native-elements/src/buttons/Button.js");
+}, 688, null, "react-native-elements/src/buttons/Button.js");
 __d(/* react-native-elements/src/config/colors.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84931,7 +84955,7 @@ exports.default = {
   white: '#ffffff',
   error: '#ff190c'
 };
-}, 749, null, "react-native-elements/src/config/colors.js");
+}, 689, null, "react-native-elements/src/config/colors.js");
 __d(/* react-native-elements/src/text/Text.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -84949,11 +84973,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
@@ -85005,7 +85029,7 @@ TextElement.propTypes = {
 };
 
 exports.default = TextElement;
-}, 750, null, "react-native-elements/src/text/Text.js");
+}, 690, null, "react-native-elements/src/text/Text.js");
 __d(/* react-native-elements/src/config/fonts.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -85041,7 +85065,7 @@ exports.default = {
     }
   }
 };
-}, 751, null, "react-native-elements/src/config/fonts.js");
+}, 691, null, "react-native-elements/src/config/fonts.js");
 __d(/* react-native-elements/src/helpers/normalizeText.js */function(global, require, module, exports) {
 
 var React = require(12            );var PixelRatio = React.PixelRatio, // 12 = react-native
@@ -85094,17 +85118,17 @@ var normalize = function normalize(size) {
 };
 
 module.exports = normalize;
-}, 752, null, "react-native-elements/src/helpers/normalizeText.js");
+}, 692, null, "react-native-elements/src/helpers/normalizeText.js");
 __d(/* react-native-elements/src/helpers/getIconType.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.registerCustomIconType = undefined;
 
-var _Zocial = require(754                               ); // 754 = react-native-vector-icons/Zocial
+var _Zocial = require(694                               ); // 694 = react-native-vector-icons/Zocial
 
 var _Zocial2 = _interopRequireDefault(_Zocial);
 
-var _Octicons = require(756                                 ); // 756 = react-native-vector-icons/Octicons
+var _Octicons = require(696                                 ); // 696 = react-native-vector-icons/Octicons
 
 var _Octicons2 = _interopRequireDefault(_Octicons);
 
@@ -85116,31 +85140,31 @@ var _MaterialCommunityIcons = require(633                                       
 
 var _MaterialCommunityIcons2 = _interopRequireDefault(_MaterialCommunityIcons);
 
-var _Ionicons = require(758                                 ); // 758 = react-native-vector-icons/Ionicons
+var _Ionicons = require(698                                 ); // 698 = react-native-vector-icons/Ionicons
 
 var _Ionicons2 = _interopRequireDefault(_Ionicons);
 
-var _Foundation = require(760                                   ); // 760 = react-native-vector-icons/Foundation
+var _Foundation = require(700                                   ); // 700 = react-native-vector-icons/Foundation
 
 var _Foundation2 = _interopRequireDefault(_Foundation);
 
-var _EvilIcons = require(762                                  ); // 762 = react-native-vector-icons/EvilIcons
+var _EvilIcons = require(702                                  ); // 702 = react-native-vector-icons/EvilIcons
 
 var _EvilIcons2 = _interopRequireDefault(_EvilIcons);
 
-var _Entypo = require(764                               ); // 764 = react-native-vector-icons/Entypo
+var _Entypo = require(704                               ); // 704 = react-native-vector-icons/Entypo
 
 var _Entypo2 = _interopRequireDefault(_Entypo);
 
-var _FontAwesome = require(766                                    ); // 766 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(706                                    ); // 706 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _SimpleLineIcons = require(768                                        ); // 768 = react-native-vector-icons/SimpleLineIcons
+var _SimpleLineIcons = require(708                                        ); // 708 = react-native-vector-icons/SimpleLineIcons
 
 var _SimpleLineIcons2 = _interopRequireDefault(_SimpleLineIcons);
 
-var _Feather = require(770                                ); // 770 = react-native-vector-icons/Feather
+var _Feather = require(710                                ); // 710 = react-native-vector-icons/Feather
 
 var _Feather2 = _interopRequireDefault(_Feather);
 
@@ -85183,7 +85207,7 @@ exports.default = function (type) {
       return _MaterialIcons2.default;
   }
 };
-}, 753, null, "react-native-elements/src/helpers/getIconType.js");
+}, 693, null, "react-native-elements/src/helpers/getIconType.js");
 __d(/* react-native-vector-icons/Zocial.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -85193,7 +85217,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Zocial = require(755                      ); // 755 = ./glyphmaps/Zocial.json
+var _Zocial = require(695                      ); // 695 = ./glyphmaps/Zocial.json
 
 var _Zocial2 = _interopRequireDefault(_Zocial);
 
@@ -85207,7 +85231,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 754, null, "react-native-vector-icons/Zocial.js");
+}, 694, null, "react-native-vector-icons/Zocial.js");
 __d(/* react-native-vector-icons/glyphmaps/Zocial.json */function(global, require, module, exports) {module.exports = module.exports = {
   "acrobat": 61696,
   "amazon": 61697,
@@ -85310,7 +85334,7 @@ __d(/* react-native-vector-icons/glyphmaps/Zocial.json */function(global, requir
   "yelp": 61794,
   "youtube": 61795
 };
-}, 755, null, "react-native-vector-icons/glyphmaps/Zocial.json");
+}, 695, null, "react-native-vector-icons/glyphmaps/Zocial.json");
 __d(/* react-native-vector-icons/Octicons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -85320,7 +85344,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Octicons = require(757                        ); // 757 = ./glyphmaps/Octicons.json
+var _Octicons = require(697                        ); // 697 = ./glyphmaps/Octicons.json
 
 var _Octicons2 = _interopRequireDefault(_Octicons);
 
@@ -85334,7 +85358,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 756, null, "react-native-vector-icons/Octicons.js");
+}, 696, null, "react-native-vector-icons/Octicons.js");
 __d(/* react-native-vector-icons/glyphmaps/Octicons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "alert": 61696,
   "arrow-down": 61697,
@@ -85514,7 +85538,7 @@ __d(/* react-native-vector-icons/glyphmaps/Octicons.json */function(global, requ
   "x": 61871,
   "zap": 61872
 };
-}, 757, null, "react-native-vector-icons/glyphmaps/Octicons.json");
+}, 697, null, "react-native-vector-icons/glyphmaps/Octicons.json");
 __d(/* react-native-vector-icons/Ionicons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -85524,7 +85548,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Ionicons = require(759                        ); // 759 = ./glyphmaps/Ionicons.json
+var _Ionicons = require(699                        ); // 699 = ./glyphmaps/Ionicons.json
 
 var _Ionicons2 = _interopRequireDefault(_Ionicons);
 
@@ -85538,7 +85562,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 758, null, "react-native-vector-icons/Ionicons.js");
+}, 698, null, "react-native-vector-icons/Ionicons.js");
 __d(/* react-native-vector-icons/glyphmaps/Ionicons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "ios-add": 61698,
   "ios-add-circle": 61697,
@@ -86475,7 +86499,7 @@ __d(/* react-native-vector-icons/glyphmaps/Ionicons.json */function(global, requ
   "md-wine": 62377,
   "md-woman": 62378
 };
-}, 759, null, "react-native-vector-icons/glyphmaps/Ionicons.json");
+}, 699, null, "react-native-vector-icons/glyphmaps/Ionicons.json");
 __d(/* react-native-vector-icons/Foundation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -86485,7 +86509,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Foundation = require(761                          ); // 761 = ./glyphmaps/Foundation.json
+var _Foundation = require(701                          ); // 701 = ./glyphmaps/Foundation.json
 
 var _Foundation2 = _interopRequireDefault(_Foundation);
 
@@ -86499,7 +86523,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 760, null, "react-native-vector-icons/Foundation.js");
+}, 700, null, "react-native-vector-icons/Foundation.js");
 __d(/* react-native-vector-icons/glyphmaps/Foundation.json */function(global, require, module, exports) {module.exports = module.exports = {
   "address-book": 61696,
   "alert": 61697,
@@ -86785,7 +86809,7 @@ __d(/* react-native-vector-icons/glyphmaps/Foundation.json */function(global, re
   "zoom-in": 61977,
   "zoom-out": 61978
 };
-}, 761, null, "react-native-vector-icons/glyphmaps/Foundation.json");
+}, 701, null, "react-native-vector-icons/glyphmaps/Foundation.json");
 __d(/* react-native-vector-icons/EvilIcons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -86795,7 +86819,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _EvilIcons = require(763                         ); // 763 = ./glyphmaps/EvilIcons.json
+var _EvilIcons = require(703                         ); // 703 = ./glyphmaps/EvilIcons.json
 
 var _EvilIcons2 = _interopRequireDefault(_EvilIcons);
 
@@ -86809,7 +86833,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 762, null, "react-native-vector-icons/EvilIcons.js");
+}, 702, null, "react-native-vector-icons/EvilIcons.js");
 __d(/* react-native-vector-icons/glyphmaps/EvilIcons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "archive": 61696,
   "arrow-down": 61697,
@@ -86882,7 +86906,7 @@ __d(/* react-native-vector-icons/glyphmaps/EvilIcons.json */function(global, req
   "unlock": 61764,
   "user": 61765
 };
-}, 763, null, "react-native-vector-icons/glyphmaps/EvilIcons.json");
+}, 703, null, "react-native-vector-icons/glyphmaps/EvilIcons.json");
 __d(/* react-native-vector-icons/Entypo.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -86892,7 +86916,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Entypo = require(765                      ); // 765 = ./glyphmaps/Entypo.json
+var _Entypo = require(705                      ); // 705 = ./glyphmaps/Entypo.json
 
 var _Entypo2 = _interopRequireDefault(_Entypo);
 
@@ -86906,7 +86930,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 764, null, "react-native-vector-icons/Entypo.js");
+}, 704, null, "react-native-vector-icons/Entypo.js");
 __d(/* react-native-vector-icons/glyphmaps/Entypo.json */function(global, require, module, exports) {module.exports = module.exports = {
   "500px": 61696,
   "500px-with-circle": 61697,
@@ -87320,7 +87344,7 @@ __d(/* react-native-vector-icons/glyphmaps/Entypo.json */function(global, requir
   "youtube": 62105,
   "youtube-with-circle": 62106
 };
-}, 765, null, "react-native-vector-icons/glyphmaps/Entypo.json");
+}, 705, null, "react-native-vector-icons/glyphmaps/Entypo.json");
 __d(/* react-native-vector-icons/FontAwesome.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -87330,7 +87354,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _FontAwesome = require(767                           ); // 767 = ./glyphmaps/FontAwesome.json
+var _FontAwesome = require(707                           ); // 707 = ./glyphmaps/FontAwesome.json
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
@@ -87344,7 +87368,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 766, null, "react-native-vector-icons/FontAwesome.js");
+}, 706, null, "react-native-vector-icons/FontAwesome.js");
 __d(/* react-native-vector-icons/glyphmaps/FontAwesome.json */function(global, require, module, exports) {module.exports = module.exports = {
   "glass": 61440,
   "music": 61441,
@@ -88133,7 +88157,7 @@ __d(/* react-native-vector-icons/glyphmaps/FontAwesome.json */function(global, r
   "wpexplorer": 62174,
   "meetup": 62176
 };
-}, 767, null, "react-native-vector-icons/glyphmaps/FontAwesome.json");
+}, 707, null, "react-native-vector-icons/glyphmaps/FontAwesome.json");
 __d(/* react-native-vector-icons/SimpleLineIcons.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88143,7 +88167,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _SimpleLineIcons = require(769                               ); // 769 = ./glyphmaps/SimpleLineIcons.json
+var _SimpleLineIcons = require(709                               ); // 709 = ./glyphmaps/SimpleLineIcons.json
 
 var _SimpleLineIcons2 = _interopRequireDefault(_SimpleLineIcons);
 
@@ -88157,7 +88181,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 768, null, "react-native-vector-icons/SimpleLineIcons.js");
+}, 708, null, "react-native-vector-icons/SimpleLineIcons.js");
 __d(/* react-native-vector-icons/glyphmaps/SimpleLineIcons.json */function(global, require, module, exports) {module.exports = module.exports = {
   "user": 57349,
   "people": 57345,
@@ -88349,7 +88373,7 @@ __d(/* react-native-vector-icons/glyphmaps/SimpleLineIcons.json */function(globa
   "social-vkontakte": 58904,
   "social-steam": 58912
 };
-}, 769, null, "react-native-vector-icons/glyphmaps/SimpleLineIcons.json");
+}, 709, null, "react-native-vector-icons/glyphmaps/SimpleLineIcons.json");
 __d(/* react-native-vector-icons/Feather.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88359,7 +88383,7 @@ var _createIconSet = require(634                    ); // 634 = ./lib/create-ico
 
 var _createIconSet2 = _interopRequireDefault(_createIconSet);
 
-var _Feather = require(771                       ); // 771 = ./glyphmaps/Feather.json
+var _Feather = require(711                       ); // 711 = ./glyphmaps/Feather.json
 
 var _Feather2 = _interopRequireDefault(_Feather);
 
@@ -88373,7 +88397,7 @@ var TabBarItem = exports.TabBarItem = iconSet.TabBarItem;
 var TabBarItemIOS = exports.TabBarItemIOS = iconSet.TabBarItemIOS;
 var ToolbarAndroid = exports.ToolbarAndroid = iconSet.ToolbarAndroid;
 var getImageSource = exports.getImageSource = iconSet.getImageSource;
-}, 770, null, "react-native-vector-icons/Feather.js");
+}, 710, null, "react-native-vector-icons/Feather.js");
 __d(/* react-native-vector-icons/glyphmaps/Feather.json */function(global, require, module, exports) {module.exports = module.exports = {
   "activity": 59648,
   "airplay": 59649,
@@ -88616,7 +88640,7 @@ __d(/* react-native-vector-icons/glyphmaps/Feather.json */function(global, requi
   "zoom-in": 59886,
   "zoom-out": 59887
 };
-}, 771, null, "react-native-vector-icons/glyphmaps/Feather.json");
+}, 711, null, "react-native-vector-icons/glyphmaps/Feather.json");
 __d(/* react-native-elements/src/config/ViewPropTypes.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88626,7 +88650,7 @@ var _reactNative = require(12            ); // 12 = react-native
 var ViewPropTypes = _reactNative.ViewPropTypes || _reactNative.View.propTypes;
 
 exports.default = ViewPropTypes;
-}, 772, null, "react-native-elements/src/config/ViewPropTypes.js");
+}, 712, null, "react-native-elements/src/config/ViewPropTypes.js");
 __d(/* react-native-elements/src/icons/Icon.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88645,11 +88669,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _getIconType = require(753                     ); // 753 = ../helpers/getIconType
+var _getIconType = require(693                     ); // 693 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -88759,7 +88783,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Icon;
-}, 773, null, "react-native-elements/src/icons/Icon.js");
+}, 713, null, "react-native-elements/src/icons/Icon.js");
 __d(/* react-native-elements/src/list/List.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88778,11 +88802,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -88823,7 +88847,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = List;
-}, 774, null, "react-native-elements/src/list/List.js");
+}, 714, null, "react-native-elements/src/list/List.js");
 __d(/* react-native-elements/src/list/ListItem.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -88842,35 +88866,35 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Avatar = require(776               ); // 776 = ../avatar/Avatar
+var _Avatar = require(716               ); // 716 = ../avatar/Avatar
 
 var _Avatar2 = _interopRequireDefault(_Avatar);
 
-var _badge = require(777             ); // 777 = ../badge/badge
+var _badge = require(717             ); // 717 = ../badge/badge
 
 var _badge2 = _interopRequireDefault(_badge);
 
-var _Icon = require(773            ); // 773 = ../icons/Icon
+var _Icon = require(713            ); // 713 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -89343,7 +89367,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = ListItem;
-}, 775, null, "react-native-elements/src/list/ListItem.js");
+}, 715, null, "react-native-elements/src/list/ListItem.js");
 __d(/* react-native-elements/src/avatar/Avatar.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -89361,15 +89385,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _Icon = require(773            ); // 773 = ../icons/Icon
+var _Icon = require(713            ); // 713 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -89646,7 +89670,7 @@ Avatar.propTypes = {
 Avatar.defaultProps = defaultProps;
 
 exports.default = Avatar;
-}, 776, null, "react-native-elements/src/avatar/Avatar.js");
+}, 716, null, "react-native-elements/src/avatar/Avatar.js");
 __d(/* react-native-elements/src/badge/badge.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -89665,11 +89689,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -89770,7 +89794,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Badge;
-}, 777, null, "react-native-elements/src/badge/badge.js");
+}, 717, null, "react-native-elements/src/badge/badge.js");
 __d(/* react-native-elements/src/social/SocialIcon.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -89790,19 +89814,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _FontAwesome = require(766                                    ); // 766 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(706                                    ); // 706 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -89984,7 +90008,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = SocialIcon;
-}, 778, null, "react-native-elements/src/social/SocialIcon.js");
+}, 718, null, "react-native-elements/src/social/SocialIcon.js");
 __d(/* react-native-elements/src/checkbox/CheckBox.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -90003,27 +90027,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _FontAwesome = require(766                                    ); // 766 = react-native-vector-icons/FontAwesome
+var _FontAwesome = require(706                                    ); // 706 = react-native-vector-icons/FontAwesome
 
 var _FontAwesome2 = _interopRequireDefault(_FontAwesome);
 
-var _getIconType = require(753                     ); // 753 = ../helpers/getIconType
+var _getIconType = require(693                     ); // 693 = ../helpers/getIconType
 
 var _getIconType2 = _interopRequireDefault(_getIconType);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -90183,7 +90207,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = CheckBox;
-}, 779, null, "react-native-elements/src/checkbox/CheckBox.js");
+}, 719, null, "react-native-elements/src/checkbox/CheckBox.js");
 __d(/* react-native-elements/src/divider/Divider.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -90195,11 +90219,11 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -90228,7 +90252,7 @@ styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Divider;
-}, 780, null, "react-native-elements/src/divider/Divider.js");
+}, 720, null, "react-native-elements/src/divider/Divider.js");
 __d(/* react-native-elements/src/slider/Slider.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -90253,7 +90277,7 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -90747,7 +90771,7 @@ var styles = _reactNative.StyleSheet.create({
     opacity: 0.5
   }
 });
-}, 781, null, "react-native-elements/src/slider/Slider.js");
+}, 721, null, "react-native-elements/src/slider/Slider.js");
 __d(/* react-native-elements/src/buttons/ButtonGroup.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -90766,19 +90790,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -90939,7 +90963,7 @@ ButtonGroup.propTypes = {
 };
 
 exports.default = ButtonGroup;
-}, 782, null, "react-native-elements/src/buttons/ButtonGroup.js");
+}, 722, null, "react-native-elements/src/buttons/ButtonGroup.js");
 __d(/* react-native-elements/src/card/Card.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -90958,31 +90982,31 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Divider = require(780                 ); // 780 = ../divider/Divider
+var _Divider = require(720                 ); // 720 = ../divider/Divider
 
 var _Divider2 = _interopRequireDefault(_Divider);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _BackgroundImage = require(784                        ); // 784 = ../config/BackgroundImage
+var _BackgroundImage = require(724                        ); // 724 = ../config/BackgroundImage
 
 var _BackgroundImage2 = _interopRequireDefault(_BackgroundImage);
 
@@ -91214,7 +91238,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Card;
-}, 783, null, "react-native-elements/src/card/Card.js");
+}, 723, null, "react-native-elements/src/card/Card.js");
 __d(/* react-native-elements/src/config/BackgroundImage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -91224,7 +91248,7 @@ var _reactNative = require(12            ); // 12 = react-native
 var BackgroundImage = _reactNative.ImageBackground || _reactNative.Image;
 
 exports.default = BackgroundImage;
-}, 784, null, "react-native-elements/src/config/BackgroundImage.js");
+}, 724, null, "react-native-elements/src/config/BackgroundImage.js");
 __d(/* react-native-elements/src/tile/Tile.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -91243,23 +91267,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Icon = require(773            ); // 773 = ../icons/Icon
+var _Icon = require(713            ); // 713 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _FeaturedTile = require(786             ); // 786 = ./FeaturedTile
+var _FeaturedTile = require(726             ); // 726 = ./FeaturedTile
 
 var _FeaturedTile2 = _interopRequireDefault(_FeaturedTile);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
-var _BackgroundImage = require(784                        ); // 784 = ../config/BackgroundImage
+var _BackgroundImage = require(724                        ); // 724 = ../config/BackgroundImage
 
 var _BackgroundImage2 = _interopRequireDefault(_BackgroundImage);
 
@@ -91440,7 +91464,7 @@ Tile.propTypes = {
 };
 
 exports.default = Tile;
-}, 785, null, "react-native-elements/src/tile/Tile.js");
+}, 725, null, "react-native-elements/src/tile/Tile.js");
 __d(/* react-native-elements/src/tile/FeaturedTile.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -91459,15 +91483,15 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _Icon = require(773            ); // 773 = ../icons/Icon
+var _Icon = require(713            ); // 713 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -91625,7 +91649,7 @@ FeaturedTile.propTypes = {
 };
 
 exports.default = FeaturedTile;
-}, 786, null, "react-native-elements/src/tile/FeaturedTile.js");
+}, 726, null, "react-native-elements/src/tile/FeaturedTile.js");
 __d(/* react-native-elements/src/rating/Rating.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -91646,7 +91670,7 @@ var _class,
     _temp,
     _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/node_modules/react-native-elements/src/rating/Rating.js';
 
-var _lodash = require(788           ); // 788 = lodash.times
+var _lodash = require(728           ); // 728 = lodash.times
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
@@ -91656,11 +91680,11 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -91691,10 +91715,10 @@ function _wrapComponent(id) {
   };
 }
 
-var STAR_IMAGE = require(789                ); // 789 = ./images/star.png
-var HEART_IMAGE = require(790                 ); // 790 = ./images/heart.png
-var ROCKET_IMAGE = require(791                  ); // 791 = ./images/rocket.png
-var BELL_IMAGE = require(792                ); // 792 = ./images/bell.png
+var STAR_IMAGE = require(729                ); // 729 = ./images/star.png
+var HEART_IMAGE = require(730                 ); // 730 = ./images/heart.png
+var ROCKET_IMAGE = require(731                  ); // 731 = ./images/rocket.png
+var BELL_IMAGE = require(732                ); // 732 = ./images/bell.png
 
 var STAR_WIDTH = 60;
 
@@ -92030,7 +92054,7 @@ var Rating = _wrapComponent('Rating')((_temp = _class = function (_Component) {
   return Rating;
 }(_react2.Component), _class.defaultProps = {
   type: 'star',
-  ratingImage: require(789                ), // 789 = ./images/star.png
+  ratingImage: require(729                ), // 729 = ./images/star.png
   ratingColor: '#f1c40f',
   ratingBackgroundColor: 'white',
   ratingCount: 5,
@@ -92117,7 +92141,7 @@ Rating.propTypes = {
   startingValue: _propTypes2.default.number,
   fractions: fractionsType
 };
-}, 787, null, "react-native-elements/src/rating/Rating.js");
+}, 727, null, "react-native-elements/src/rating/Rating.js");
 __d(/* lodash.times/index.js */function(global, require, module, exports) {
 var INFINITY = 1 / 0,
     MAX_SAFE_INTEGER = 9007199254740991,
@@ -92228,15 +92252,15 @@ function times(n, iteratee) {
 }
 
 module.exports = times;
-}, 788, null, "lodash.times/index.js");
+}, 728, null, "lodash.times/index.js");
 __d(/* react-native-elements/src/rating/images/star.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"004c2bbb035d8d06bb830efc4673c886","name":"star","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 789, null, "react-native-elements/src/rating/images/star.png");
+}, 729, null, "react-native-elements/src/rating/images/star.png");
 __d(/* react-native-elements/src/rating/images/heart.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"2327736b3ea09c41abfb69be1221f430","name":"heart","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 790, null, "react-native-elements/src/rating/images/heart.png");
+}, 730, null, "react-native-elements/src/rating/images/heart.png");
 __d(/* react-native-elements/src/rating/images/rocket.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"51671417ef20e0bbc32f0a2bc6edfa95","name":"rocket","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 791, null, "react-native-elements/src/rating/images/rocket.png");
+}, 731, null, "react-native-elements/src/rating/images/rocket.png");
 __d(/* react-native-elements/src/rating/images/bell.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/node_modules/react-native-elements/src/rating/images","width":50,"height":50,"scales":[1],"hash":"a7b9dc9de5f8f1fb1afbef917619a5ac","name":"bell","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 792, null, "react-native-elements/src/rating/images/bell.png");
+}, 732, null, "react-native-elements/src/rating/images/bell.png");
 __d(/* react-native-elements/src/header/Header.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92255,23 +92279,23 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _lodash = require(794             ); // 794 = lodash.isempty
+var _lodash = require(734             ); // 734 = lodash.isempty
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _DummyNavButton = require(795               ); // 795 = ./DummyNavButton
+var _DummyNavButton = require(735               ); // 735 = ./DummyNavButton
 
 var _DummyNavButton2 = _interopRequireDefault(_DummyNavButton);
 
-var _NavButton = require(796          ); // 796 = ./NavButton
+var _NavButton = require(736          ); // 736 = ./NavButton
 
 var _NavButton2 = _interopRequireDefault(_NavButton);
 
-var _Title = require(797      ); // 797 = ./Title
+var _Title = require(737      ); // 737 = ./Title
 
 var _Title2 = _interopRequireDefault(_Title);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -92397,7 +92421,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Header;
-}, 793, null, "react-native-elements/src/header/Header.js");
+}, 733, null, "react-native-elements/src/header/Header.js");
 __d(/* lodash.isempty/index.js */function(global, require, module, exports) {
 var MAX_SAFE_INTEGER = 9007199254740991;
 
@@ -92610,7 +92634,7 @@ function stubFalse() {
 }
 
 module.exports = isEmpty;
-}, 794, null, "lodash.isempty/index.js");
+}, 734, null, "lodash.isempty/index.js");
 __d(/* react-native-elements/src/header/DummyNavButton.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92640,7 +92664,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = DummyNavButton;
-}, 795, null, "react-native-elements/src/header/DummyNavButton.js");
+}, 735, null, "react-native-elements/src/header/DummyNavButton.js");
 __d(/* react-native-elements/src/header/NavButton.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92657,7 +92681,7 @@ var _propTypes = require(130         ); // 130 = prop-types
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Icon = require(773            ); // 773 = ../icons/Icon
+var _Icon = require(713            ); // 713 = ../icons/Icon
 
 var _Icon2 = _interopRequireDefault(_Icon);
 
@@ -92681,7 +92705,7 @@ NavButton.propTypes = {
 };
 
 exports.default = NavButton;
-}, 796, null, "react-native-elements/src/header/NavButton.js");
+}, 736, null, "react-native-elements/src/header/NavButton.js");
 __d(/* react-native-elements/src/header/Title.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92698,7 +92722,7 @@ var _propTypes = require(130         ); // 130 = prop-types
 
 var _propTypes2 = _interopRequireDefault(_propTypes);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
@@ -92726,7 +92750,7 @@ Title.propTypes = {
 };
 
 exports.default = Title;
-}, 797, null, "react-native-elements/src/header/Title.js");
+}, 737, null, "react-native-elements/src/header/Title.js");
 __d(/* react-native-elements/src/pricing/PricingCard.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92745,27 +92769,27 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Button = require(748                ); // 748 = ../buttons/Button
+var _Button = require(688                ); // 688 = ../buttons/Button
 
 var _Button2 = _interopRequireDefault(_Button);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -92935,7 +92959,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = PricingCard;
-}, 798, null, "react-native-elements/src/pricing/PricingCard.js");
+}, 738, null, "react-native-elements/src/pricing/PricingCard.js");
 __d(/* react-native-elements/src/form/FormInput.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -92960,15 +92984,15 @@ var _propTypes2 = _interopRequireDefault(_propTypes);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -93158,7 +93182,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormInput;
-}, 799, null, "react-native-elements/src/form/FormInput.js");
+}, 739, null, "react-native-elements/src/form/FormInput.js");
 __d(/* react-native-elements/src/form/FormLabel.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93177,23 +93201,23 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _fonts = require(751              ); // 751 = ../config/fonts
+var _fonts = require(691              ); // 691 = ../config/fonts
 
 var _fonts2 = _interopRequireDefault(_fonts);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -93256,7 +93280,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormLabel;
-}, 800, null, "react-native-elements/src/form/FormLabel.js");
+}, 740, null, "react-native-elements/src/form/FormLabel.js");
 __d(/* react-native-elements/src/form/FormValidationMessage.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93275,19 +93299,19 @@ var _react2 = _interopRequireDefault(_react);
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _Text = require(750           ); // 750 = ../text/Text
+var _Text = require(690           ); // 690 = ../text/Text
 
 var _Text2 = _interopRequireDefault(_Text);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -93345,7 +93369,7 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = FormValidationMessage;
-}, 801, null, "react-native-elements/src/form/FormValidationMessage.js");
+}, 741, null, "react-native-elements/src/form/FormValidationMessage.js");
 __d(/* react-native-elements/src/input/Search.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93374,15 +93398,15 @@ var _MaterialIcons = require(684                                      ); // 684 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _colors = require(749               ); // 749 = ../config/colors
+var _colors = require(689               ); // 689 = ../config/colors
 
 var _colors2 = _interopRequireDefault(_colors);
 
-var _normalizeText = require(752                       ); // 752 = ../helpers/normalizeText
+var _normalizeText = require(692                       ); // 692 = ../helpers/normalizeText
 
 var _normalizeText2 = _interopRequireDefault(_normalizeText);
 
-var _ViewPropTypes = require(772                      ); // 772 = ../config/ViewPropTypes
+var _ViewPropTypes = require(712                      ); // 712 = ../config/ViewPropTypes
 
 var _ViewPropTypes2 = _interopRequireDefault(_ViewPropTypes);
 
@@ -93629,21 +93653,21 @@ var styles = _reactNative.StyleSheet.create({
 });
 
 exports.default = Search;
-}, 802, null, "react-native-elements/src/input/Search.js");
+}, 742, null, "react-native-elements/src/input/Search.js");
 __d(/* LynxMail/src/components/views/components/placeholder-view/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.LoadView = exports.ErrorView = exports.EmptyView = undefined;
 
-var _empty = require(813           ); // 813 = ./empty.view
+var _empty = require(744           ); // 744 = ./empty.view
 
 var _empty2 = _interopRequireDefault(_empty);
 
-var _error = require(814           ); // 814 = ./error.view
+var _error = require(745           ); // 745 = ./error.view
 
 var _error2 = _interopRequireDefault(_error);
 
-var _load = require(815          ); // 815 = ./load.view
+var _load = require(746          ); // 746 = ./load.view
 
 var _load2 = _interopRequireDefault(_load);
 
@@ -93652,7 +93676,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.EmptyView = _empty2.default;
 exports.ErrorView = _error2.default;
 exports.LoadView = _load2.default;
-}, 812, null, "LynxMail/src/components/views/components/placeholder-view/index.js");
+}, 743, null, "LynxMail/src/components/views/components/placeholder-view/index.js");
 __d(/* LynxMail/src/components/views/components/placeholder-view/empty.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93729,7 +93753,7 @@ var EmptyView = _wrapComponent('EmptyView')(function (_Component) {
 }(_react2.Component));
 
 exports.default = (0, _reactRedux.connect)()(EmptyView);
-}, 813, null, "LynxMail/src/components/views/components/placeholder-view/empty.view.js");
+}, 744, null, "LynxMail/src/components/views/components/placeholder-view/empty.view.js");
 __d(/* LynxMail/src/components/views/components/placeholder-view/error.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93817,7 +93841,7 @@ var ErrorView = _wrapComponent('ErrorView')(function (_Component) {
 }(_react2.Component));
 
 exports.default = (0, _reactRedux.connect)()(ErrorView);
-}, 814, null, "LynxMail/src/components/views/components/placeholder-view/error.view.js");
+}, 745, null, "LynxMail/src/components/views/components/placeholder-view/error.view.js");
 __d(/* LynxMail/src/components/views/components/placeholder-view/load.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -93897,7 +93921,7 @@ var LoadView = _wrapComponent('LoadView')(function (_Component) {
 }(_react2.Component));
 
 exports.default = (0, _reactRedux.connect)()(LoadView);
-}, 815, null, "LynxMail/src/components/views/components/placeholder-view/load.view.js");
+}, 746, null, "LynxMail/src/components/views/components/placeholder-view/load.view.js");
 __d(/* LynxMail/src/actions/email.action.js */function(global, require, module, exports) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -93909,15 +93933,15 @@ var _lodash = require(631     ); // 631 = lodash
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _action = require(816             ); // 816 = ./action.types
+var _action = require(748             ); // 748 = ./action.types
 
 var types = _interopRequireWildcard(_action);
 
-var _jsonOutlook = require(817                             ); // 817 = ./parse-json/json.outlook.mail
+var _jsonOutlook = require(749                             ); // 749 = ./parse-json/json.outlook.mail
 
 var outlookBuilder = _interopRequireWildcard(_jsonOutlook);
 
-var _microsoftGraph = require(690                          ); // 690 = ../services/microsoft-graph
+var _microsoftGraph = require(751                          ); // 751 = ../services/microsoft-graph
 
 var MSGraph = _interopRequireWildcard(_microsoftGraph);
 
@@ -93970,20 +93994,20 @@ function fetchListMessages() {
     });
   };
 };
-}, 687, null, "LynxMail/src/actions/email.action.js");
+}, 747, null, "LynxMail/src/actions/email.action.js");
 __d(/* LynxMail/src/actions/action.types.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 var EMAIL_REQ_ERROR = exports.EMAIL_REQ_ERROR = 'EMAIL_REQ_ERROR';
 var EMAIL_REQ_DATA = exports.EMAIL_REQ_DATA = 'EMAIL_REQ_DATA';
 var EMAIL_RECV_DATA = exports.EMAIL_RECV_DATA = 'EMAIL_RECV_DATA';
-}, 816, null, "LynxMail/src/actions/action.types.js");
+}, 748, null, "LynxMail/src/actions/action.types.js");
 __d(/* LynxMail/src/actions/parse-json/json.outlook.mail.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.json = undefined;
 
-var _moment = require(737     ); // 737 = moment
+var _moment = require(750     ); // 750 = moment
 
 var _moment2 = _interopRequireDefault(_moment);
 
@@ -94027,7 +94051,7 @@ var json = exports.json = function json(data) {
     sentDateTime: (0, _moment2.default)(data.sentDateTime).toDate()
   };
 };
-}, 817, null, "LynxMail/src/actions/parse-json/json.outlook.mail.js");
+}, 749, null, "LynxMail/src/actions/parse-json/json.outlook.mail.js");
 __d(/* moment/moment.js */function(global, require, module, exports) {
 
 ;(function (global, factory) {
@@ -98015,13 +98039,13 @@ __d(/* moment/moment.js */function(global, require, module, exports) {
 
     return hooks;
 });
-}, 737, null, "moment/moment.js");
+}, 750, null, "moment/moment.js");
 __d(/* LynxMail/src/services/microsoft-graph/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.OutlookMail = undefined;
 
-var _messages = require(691                              ); // 691 = ./outlook-mail/messages.service
+var _messages = require(752                              ); // 752 = ./outlook-mail/messages.service
 
 var Messages = _interopRequireWildcard(_messages);
 
@@ -98030,17 +98054,17 @@ function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj;
 var OutlookMail = exports.OutlookMail = {
   Messages: Messages
 };
-}, 690, null, "LynxMail/src/services/microsoft-graph/index.js");
+}, 751, null, "LynxMail/src/services/microsoft-graph/index.js");
 __d(/* LynxMail/src/services/microsoft-graph/outlook-mail/messages.service.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.listMessages = undefined;
 
-var _axios = require(692    ); // 692 = axios
+var _axios = require(753    ); // 753 = axios
 
 var _axios2 = _interopRequireDefault(_axios);
 
-var _account = require(718                              ); // 718 = ../../../actions/account.action
+var _account = require(779                              ); // 779 = ../../../actions/account.action
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -98059,15 +98083,15 @@ var listMessages = exports.listMessages = function listMessages() {
     });
   });
 };
-}, 691, null, "LynxMail/src/services/microsoft-graph/outlook-mail/messages.service.js");
-__d(/* axios/index.js */function(global, require, module, exports) {module.exports = require(693          ); // 693 = ./lib/axios
-}, 692, null, "axios/index.js");
+}, 752, null, "LynxMail/src/services/microsoft-graph/outlook-mail/messages.service.js");
+__d(/* axios/index.js */function(global, require, module, exports) {module.exports = require(754          ); // 754 = ./lib/axios
+}, 753, null, "axios/index.js");
 __d(/* axios/lib/axios.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694      ); // 694 = ./utils
-var bind = require(695             ); // 695 = ./helpers/bind
-var Axios = require(697           ); // 697 = ./core/Axios
-var defaults = require(698         ); // 698 = ./defaults
+var utils = require(755      ); // 755 = ./utils
+var bind = require(756             ); // 756 = ./helpers/bind
+var Axios = require(758           ); // 758 = ./core/Axios
+var defaults = require(759         ); // 759 = ./defaults
 
 function createInstance(defaultConfig) {
   var context = new Axios(defaultConfig);
@@ -98088,23 +98112,23 @@ axios.create = function create(instanceConfig) {
   return createInstance(utils.merge(defaults, instanceConfig));
 };
 
-axios.Cancel = require(715              ); // 715 = ./cancel/Cancel
-axios.CancelToken = require(716                   ); // 716 = ./cancel/CancelToken
-axios.isCancel = require(712                ); // 712 = ./cancel/isCancel
+axios.Cancel = require(776              ); // 776 = ./cancel/Cancel
+axios.CancelToken = require(777                   ); // 777 = ./cancel/CancelToken
+axios.isCancel = require(773                ); // 773 = ./cancel/isCancel
 
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = require(717               ); // 717 = ./helpers/spread
+axios.spread = require(778               ); // 778 = ./helpers/spread
 
 module.exports = axios;
 
 module.exports.default = axios;
-}, 693, null, "axios/lib/axios.js");
+}, 754, null, "axios/lib/axios.js");
 __d(/* axios/lib/utils.js */function(global, require, module, exports) {'use strict';
 
-var bind = require(695             ); // 695 = ./helpers/bind
-var isBuffer = require(696        ); // 696 = is-buffer
+var bind = require(756             ); // 756 = ./helpers/bind
+var isBuffer = require(757        ); // 757 = is-buffer
 
 var toString = Object.prototype.toString;
 
@@ -98252,7 +98276,7 @@ module.exports = {
   extend: extend,
   trim: trim
 };
-}, 694, null, "axios/lib/utils.js");
+}, 755, null, "axios/lib/utils.js");
 __d(/* axios/lib/helpers/bind.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function bind(fn, thisArg) {
@@ -98264,7 +98288,7 @@ module.exports = function bind(fn, thisArg) {
     return fn.apply(thisArg, args);
   };
 };
-}, 695, null, "axios/lib/helpers/bind.js");
+}, 756, null, "axios/lib/helpers/bind.js");
 __d(/* is-buffer/index.js */function(global, require, module, exports) {/*!
  * Determine if an object is a Buffer
  *
@@ -98283,13 +98307,13 @@ function isBuffer(obj) {
 function isSlowBuffer(obj) {
   return typeof obj.readFloatLE === 'function' && typeof obj.slice === 'function' && isBuffer(obj.slice(0, 0));
 }
-}, 696, null, "is-buffer/index.js");
+}, 757, null, "is-buffer/index.js");
 __d(/* axios/lib/core/Axios.js */function(global, require, module, exports) {'use strict';
 
-var defaults = require(698            ); // 698 = ./../defaults
-var utils = require(694         ); // 694 = ./../utils
-var InterceptorManager = require(709                   ); // 709 = ./InterceptorManager
-var dispatchRequest = require(710                ); // 710 = ./dispatchRequest
+var defaults = require(759            ); // 759 = ./../defaults
+var utils = require(755         ); // 755 = ./../utils
+var InterceptorManager = require(770                   ); // 770 = ./InterceptorManager
+var dispatchRequest = require(771                ); // 771 = ./dispatchRequest
 
 function Axios(instanceConfig) {
   this.defaults = instanceConfig;
@@ -98347,11 +98371,11 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = Axios;
-}, 697, null, "axios/lib/core/Axios.js");
+}, 758, null, "axios/lib/core/Axios.js");
 __d(/* axios/lib/defaults.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694      ); // 694 = ./utils
-var normalizeHeaderName = require(699                            ); // 699 = ./helpers/normalizeHeaderName
+var utils = require(755      ); // 755 = ./utils
+var normalizeHeaderName = require(760                            ); // 760 = ./helpers/normalizeHeaderName
 
 var DEFAULT_CONTENT_TYPE = {
   'Content-Type': 'application/x-www-form-urlencoded'
@@ -98366,9 +98390,9 @@ function setContentTypeIfUnset(headers, value) {
 function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
-    adapter = require(700             ); // 700 = ./adapters/xhr
+    adapter = require(761             ); // 761 = ./adapters/xhr
   } else if (typeof process !== 'undefined') {
-    adapter = require(700              ); // 700 = ./adapters/http
+    adapter = require(761              ); // 761 = ./adapters/http
   }
   return adapter;
 }
@@ -98431,10 +98455,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 });
 
 module.exports = defaults;
-}, 698, null, "axios/lib/defaults.js");
+}, 759, null, "axios/lib/defaults.js");
 __d(/* axios/lib/helpers/normalizeHeaderName.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694       ); // 694 = ../utils
+var utils = require(755       ); // 755 = ../utils
 
 module.exports = function normalizeHeaderName(headers, normalizedName) {
   utils.forEach(headers, function processHeader(value, name) {
@@ -98444,16 +98468,16 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
     }
   });
 };
-}, 699, null, "axios/lib/helpers/normalizeHeaderName.js");
+}, 760, null, "axios/lib/helpers/normalizeHeaderName.js");
 __d(/* axios/lib/adapters/xhr.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
-var settle = require(701               ); // 701 = ./../core/settle
-var buildURL = require(704                    ); // 704 = ./../helpers/buildURL
-var parseHeaders = require(705                        ); // 705 = ./../helpers/parseHeaders
-var isURLSameOrigin = require(706                           ); // 706 = ./../helpers/isURLSameOrigin
-var createError = require(702                  ); // 702 = ../core/createError
-var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || require(707                ); // 707 = ./../helpers/btoa
+var utils = require(755         ); // 755 = ./../utils
+var settle = require(762               ); // 762 = ./../core/settle
+var buildURL = require(765                    ); // 765 = ./../helpers/buildURL
+var parseHeaders = require(766                        ); // 766 = ./../helpers/parseHeaders
+var isURLSameOrigin = require(767                           ); // 767 = ./../helpers/isURLSameOrigin
+var createError = require(763                  ); // 763 = ../core/createError
+var btoa = typeof window !== 'undefined' && window.btoa && window.btoa.bind(window) || require(768                ); // 768 = ./../helpers/btoa
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -98525,7 +98549,7 @@ module.exports = function xhrAdapter(config) {
     };
 
     if (utils.isStandardBrowserEnv()) {
-      var cookies = require(708                   ); // 708 = ./../helpers/cookies
+      var cookies = require(769                   ); // 769 = ./../helpers/cookies
 
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ? cookies.read(config.xsrfCookieName) : undefined;
 
@@ -98586,10 +98610,10 @@ module.exports = function xhrAdapter(config) {
     request.send(requestData);
   });
 };
-}, 700, null, "axios/lib/adapters/xhr.js");
+}, 761, null, "axios/lib/adapters/xhr.js");
 __d(/* axios/lib/core/settle.js */function(global, require, module, exports) {'use strict';
 
-var createError = require(702            ); // 702 = ./createError
+var createError = require(763            ); // 763 = ./createError
 
 module.exports = function settle(resolve, reject, response) {
   var validateStatus = response.config.validateStatus;
@@ -98600,16 +98624,16 @@ module.exports = function settle(resolve, reject, response) {
     reject(createError('Request failed with status code ' + response.status, response.config, null, response.request, response));
   }
 };
-}, 701, null, "axios/lib/core/settle.js");
+}, 762, null, "axios/lib/core/settle.js");
 __d(/* axios/lib/core/createError.js */function(global, require, module, exports) {'use strict';
 
-var enhanceError = require(703             ); // 703 = ./enhanceError
+var enhanceError = require(764             ); // 764 = ./enhanceError
 
 module.exports = function createError(message, config, code, request, response) {
   var error = new Error(message);
   return enhanceError(error, config, code, request, response);
 };
-}, 702, null, "axios/lib/core/createError.js");
+}, 763, null, "axios/lib/core/createError.js");
 __d(/* axios/lib/core/enhanceError.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function enhanceError(error, config, code, request, response) {
@@ -98621,10 +98645,10 @@ module.exports = function enhanceError(error, config, code, request, response) {
   error.response = response;
   return error;
 };
-}, 703, null, "axios/lib/core/enhanceError.js");
+}, 764, null, "axios/lib/core/enhanceError.js");
 __d(/* axios/lib/helpers/buildURL.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 function encode(val) {
   return encodeURIComponent(val).replace(/%40/gi, '@').replace(/%3A/gi, ':').replace(/%24/g, '$').replace(/%2C/gi, ',').replace(/%20/g, '+').replace(/%5B/gi, '[').replace(/%5D/gi, ']');
@@ -98675,10 +98699,10 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
   return url;
 };
-}, 704, null, "axios/lib/helpers/buildURL.js");
+}, 765, null, "axios/lib/helpers/buildURL.js");
 __d(/* axios/lib/helpers/parseHeaders.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 var ignoreDuplicateOf = ['age', 'authorization', 'content-length', 'content-type', 'etag', 'expires', 'from', 'host', 'if-modified-since', 'if-unmodified-since', 'last-modified', 'location', 'max-forwards', 'proxy-authorization', 'referer', 'retry-after', 'user-agent'];
 
@@ -98711,10 +98735,10 @@ module.exports = function parseHeaders(headers) {
 
   return parsed;
 };
-}, 705, null, "axios/lib/helpers/parseHeaders.js");
+}, 766, null, "axios/lib/helpers/parseHeaders.js");
 __d(/* axios/lib/helpers/isURLSameOrigin.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
   var msie = /(msie|trident)/i.test(navigator.userAgent);
@@ -98754,7 +98778,7 @@ module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
     return true;
   };
 }();
-}, 706, null, "axios/lib/helpers/isURLSameOrigin.js");
+}, 767, null, "axios/lib/helpers/isURLSameOrigin.js");
 __d(/* axios/lib/helpers/btoa.js */function(global, require, module, exports) {'use strict';
 
 var chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
@@ -98780,10 +98804,10 @@ function btoa(input) {
 }
 
 module.exports = btoa;
-}, 707, null, "axios/lib/helpers/btoa.js");
+}, 768, null, "axios/lib/helpers/btoa.js");
 __d(/* axios/lib/helpers/cookies.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
   return {
@@ -98828,10 +98852,10 @@ module.exports = utils.isStandardBrowserEnv() ? function standardBrowserEnv() {
     remove: function remove() {}
   };
 }();
-}, 708, null, "axios/lib/helpers/cookies.js");
+}, 769, null, "axios/lib/helpers/cookies.js");
 __d(/* axios/lib/core/InterceptorManager.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 function InterceptorManager() {
   this.handlers = [];
@@ -98860,15 +98884,15 @@ InterceptorManager.prototype.forEach = function forEach(fn) {
 };
 
 module.exports = InterceptorManager;
-}, 709, null, "axios/lib/core/InterceptorManager.js");
+}, 770, null, "axios/lib/core/InterceptorManager.js");
 __d(/* axios/lib/core/dispatchRequest.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
-var transformData = require(711              ); // 711 = ./transformData
-var isCancel = require(712                 ); // 712 = ../cancel/isCancel
-var defaults = require(698          ); // 698 = ../defaults
-var isAbsoluteURL = require(713                         ); // 713 = ./../helpers/isAbsoluteURL
-var combineURLs = require(714                       ); // 714 = ./../helpers/combineURLs
+var utils = require(755         ); // 755 = ./../utils
+var transformData = require(772              ); // 772 = ./transformData
+var isCancel = require(773                 ); // 773 = ../cancel/isCancel
+var defaults = require(759          ); // 759 = ../defaults
+var isAbsoluteURL = require(774                         ); // 774 = ./../helpers/isAbsoluteURL
+var combineURLs = require(775                       ); // 775 = ./../helpers/combineURLs
 
 function throwIfCancellationRequested(config) {
   if (config.cancelToken) {
@@ -98913,10 +98937,10 @@ module.exports = function dispatchRequest(config) {
     return Promise.reject(reason);
   });
 };
-}, 710, null, "axios/lib/core/dispatchRequest.js");
+}, 771, null, "axios/lib/core/dispatchRequest.js");
 __d(/* axios/lib/core/transformData.js */function(global, require, module, exports) {'use strict';
 
-var utils = require(694         ); // 694 = ./../utils
+var utils = require(755         ); // 755 = ./../utils
 
 module.exports = function transformData(data, headers, fns) {
   utils.forEach(fns, function transform(fn) {
@@ -98925,26 +98949,26 @@ module.exports = function transformData(data, headers, fns) {
 
   return data;
 };
-}, 711, null, "axios/lib/core/transformData.js");
+}, 772, null, "axios/lib/core/transformData.js");
 __d(/* axios/lib/cancel/isCancel.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function isCancel(value) {
   return !!(value && value.__CANCEL__);
 };
-}, 712, null, "axios/lib/cancel/isCancel.js");
+}, 773, null, "axios/lib/cancel/isCancel.js");
 __d(/* axios/lib/helpers/isAbsoluteURL.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function isAbsoluteURL(url) {
   return (/^([a-z][a-z\d\+\-\.]*:)?\/\//i.test(url)
   );
 };
-}, 713, null, "axios/lib/helpers/isAbsoluteURL.js");
+}, 774, null, "axios/lib/helpers/isAbsoluteURL.js");
 __d(/* axios/lib/helpers/combineURLs.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function combineURLs(baseURL, relativeURL) {
   return relativeURL ? baseURL.replace(/\/+$/, '') + '/' + relativeURL.replace(/^\/+/, '') : baseURL;
 };
-}, 714, null, "axios/lib/helpers/combineURLs.js");
+}, 775, null, "axios/lib/helpers/combineURLs.js");
 __d(/* axios/lib/cancel/Cancel.js */function(global, require, module, exports) {'use strict';
 
 function Cancel(message) {
@@ -98958,10 +98982,10 @@ Cancel.prototype.toString = function toString() {
 Cancel.prototype.__CANCEL__ = true;
 
 module.exports = Cancel;
-}, 715, null, "axios/lib/cancel/Cancel.js");
+}, 776, null, "axios/lib/cancel/Cancel.js");
 __d(/* axios/lib/cancel/CancelToken.js */function(global, require, module, exports) {'use strict';
 
-var Cancel = require(715       ); // 715 = ./Cancel
+var Cancel = require(776       ); // 776 = ./Cancel
 
 function CancelToken(executor) {
   if (typeof executor !== 'function') {
@@ -99002,7 +99026,7 @@ CancelToken.source = function source() {
 };
 
 module.exports = CancelToken;
-}, 716, null, "axios/lib/cancel/CancelToken.js");
+}, 777, null, "axios/lib/cancel/CancelToken.js");
 __d(/* axios/lib/helpers/spread.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function spread(callback) {
@@ -99010,7 +99034,7 @@ module.exports = function spread(callback) {
     return callback.apply(null, arr);
   };
 };
-}, 717, null, "axios/lib/helpers/spread.js");
+}, 778, null, "axios/lib/helpers/spread.js");
 __d(/* LynxMail/src/actions/account.action.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -99018,21 +99042,21 @@ exports.hasAccount = exports.getAccessToken = exports.removeAccount = exports.ad
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _bluebird = require(719       ); // 719 = bluebird
+var _bluebird = require(780       ); // 780 = bluebird
 
 var _bluebird2 = _interopRequireDefault(_bluebird);
 
-var _reactNativeConfig = require(720                  ); // 720 = react-native-config
+var _reactNativeConfig = require(781                  ); // 781 = react-native-config
 
 var _reactNativeConfig2 = _interopRequireDefault(_reactNativeConfig);
 
-var _azureAd = require(721              ); // 721 = ../lib/azure-ad
+var _azureAd = require(782              ); // 782 = ../lib/azure-ad
 
 var _lodash = require(631     ); // 631 = lodash
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-var _moment = require(737     ); // 737 = moment
+var _moment = require(750     ); // 750 = moment
 
 var _moment2 = _interopRequireDefault(_moment);
 
@@ -99120,7 +99144,7 @@ var hasAccount = exports.hasAccount = function hasAccount() {
     }
   });
 };
-}, 718, null, "LynxMail/src/actions/account.action.js");
+}, 779, null, "LynxMail/src/actions/account.action.js");
 __d(/* bluebird/js/browser/bluebird.js */function(global, require, module, exports) {/* @preserve
  * The MIT License (MIT)
  * 
@@ -104437,7 +104461,7 @@ __d(/* bluebird/js/browser/bluebird.js */function(global, require, module, expor
 } else if (typeof self !== 'undefined' && self !== null) {
     self.P = self.Promise;
 }
-}, 719, null, "bluebird/js/browser/bluebird.js");
+}, 780, null, "bluebird/js/browser/bluebird.js");
 __d(/* react-native-config/index.js */function(global, require, module, exports) {'use strict';
 
 Object.defineProperty(exports, "__esModule", {
@@ -104447,21 +104471,21 @@ Object.defineProperty(exports, "__esModule", {
 var _reactNative = require(12            ); // 12 = react-native
 
 exports.default = _reactNative.NativeModules.ReactNativeConfig || {};
-}, 720, null, "react-native-config/index.js");
+}, 781, null, "react-native-config/index.js");
 __d(/* LynxMail/src/lib/azure-ad/index.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
 exports.AzureLoginView = exports.Auth = exports.AzureInstance = undefined;
 
-var _AzureInstance = require(722              ); // 722 = ./AzureInstance
+var _AzureInstance = require(783              ); // 783 = ./AzureInstance
 
 var _AzureInstance2 = _interopRequireDefault(_AzureInstance);
 
-var _Auth = require(723     ); // 723 = ./Auth
+var _Auth = require(784     ); // 784 = ./Auth
 
 var _Auth2 = _interopRequireDefault(_Auth);
 
-var _AzureLoginView = require(736               ); // 736 = ./AzureLoginView
+var _AzureLoginView = require(797               ); // 797 = ./AzureLoginView
 
 var _AzureLoginView2 = _interopRequireDefault(_AzureLoginView);
 
@@ -104470,7 +104494,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 exports.AzureInstance = _AzureInstance2.default;
 exports.Auth = _Auth2.default;
 exports.AzureLoginView = _AzureLoginView2.default;
-}, 721, null, "LynxMail/src/lib/azure-ad/index.js");
+}, 782, null, "LynxMail/src/lib/azure-ad/index.js");
 __d(/* LynxMail/src/lib/azure-ad/AzureInstance.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -104546,7 +104570,7 @@ var AzureInstance = function () {
 }();
 
 exports.default = AzureInstance;
-}, 722, null, "LynxMail/src/lib/azure-ad/AzureInstance.js");
+}, 783, null, "LynxMail/src/lib/azure-ad/AzureInstance.js");
 __d(/* LynxMail/src/lib/azure-ad/Auth.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
     value: true
 });
@@ -104559,15 +104583,15 @@ var _uuid = require(98    ); // 98 = uuid
 
 var _uuid2 = _interopRequireDefault(_uuid);
 
-var _queryString = require(724           ); // 724 = query-string
+var _queryString = require(785           ); // 785 = query-string
 
 var _queryString2 = _interopRequireDefault(_queryString);
 
-var _url = require(727  ); // 727 = url
+var _url = require(788  ); // 788 = url
 
 var _url2 = _interopRequireDefault(_url);
 
-var _buffer = require(733     ); // 733 = buffer
+var _buffer = require(794     ); // 794 = buffer
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -104688,12 +104712,12 @@ var Auth = function () {
 }();
 
 exports.default = Auth;
-}, 723, null, "LynxMail/src/lib/azure-ad/Auth.js");
+}, 784, null, "LynxMail/src/lib/azure-ad/Auth.js");
 __d(/* query-string/index.js */function(global, require, module, exports) {'use strict';
 
-var strictUriEncode = require(725                ); // 725 = strict-uri-encode
+var strictUriEncode = require(786                ); // 786 = strict-uri-encode
 var objectAssign = require(132            ); // 132 = object-assign
-var decodeComponent = require(726                   ); // 726 = decode-uri-component
+var decodeComponent = require(787                   ); // 787 = decode-uri-component
 
 function encoderForArrayFormat(opts) {
 	switch (opts.arrayFormat) {
@@ -104875,7 +104899,7 @@ exports.stringify = function (obj, opts) {
 		return x.length > 0;
 	}).join('&') : '';
 };
-}, 724, null, "query-string/index.js");
+}, 785, null, "query-string/index.js");
 __d(/* strict-uri-encode/index.js */function(global, require, module, exports) {'use strict';
 
 module.exports = function (str) {
@@ -104883,7 +104907,7 @@ module.exports = function (str) {
 		return '%' + c.charCodeAt(0).toString(16).toUpperCase();
 	});
 };
-}, 725, null, "strict-uri-encode/index.js");
+}, 786, null, "strict-uri-encode/index.js");
 __d(/* decode-uri-component/index.js */function(global, require, module, exports) {'use strict';
 
 var token = '%[a-f0-9]{2}';
@@ -104969,13 +104993,13 @@ module.exports = function (encodedURI) {
 		return customDecodeURIComponent(encodedURI);
 	}
 };
-}, 726, null, "decode-uri-component/index.js");
+}, 787, null, "decode-uri-component/index.js");
 __d(/* url/url.js */function(global, require, module, exports) {
 
 'use strict';
 
-var punycode = require(728       ); // 728 = punycode
-var util = require(729     ); // 729 = ./util
+var punycode = require(789       ); // 789 = punycode
+var util = require(790     ); // 790 = ./util
 
 exports.parse = urlParse;
 exports.resolve = urlResolve;
@@ -105030,7 +105054,7 @@ var protocolPattern = /^([a-z0-9.+-]+:)/i,
   'gopher:': true,
   'file:': true
 },
-    querystring = require(730          ); // 730 = querystring
+    querystring = require(791          ); // 791 = querystring
 
 function urlParse(url, parseQueryString, slashesDenoteHost) {
   if (url && util.isObject(url) && url instanceof Url) return url;
@@ -105521,7 +105545,7 @@ Url.prototype.parseHost = function () {
   }
   if (host) this.hostname = host;
 };
-}, 727, null, "url/url.js");
+}, 788, null, "url/url.js");
 __d(/* punycode/punycode.js */function(global, require, module, exports) {
 ;(function (root) {
 	var freeExports = typeof exports == 'object' && exports && !exports.nodeType && exports;
@@ -105845,7 +105869,7 @@ __d(/* punycode/punycode.js */function(global, require, module, exports) {
 		root.punycode = punycode;
 	}
 })(this);
-}, 728, null, "punycode/punycode.js");
+}, 789, null, "punycode/punycode.js");
 __d(/* url/util.js */function(global, require, module, exports) {'use strict';
 
 module.exports = {
@@ -105862,12 +105886,12 @@ module.exports = {
     return arg == null;
   }
 };
-}, 729, null, "url/util.js");
+}, 790, null, "url/util.js");
 __d(/* querystring/index.js */function(global, require, module, exports) {'use strict';
 
-exports.decode = exports.parse = require(731       ); // 731 = ./decode
-exports.encode = exports.stringify = require(732       ); // 732 = ./encode
-}, 730, null, "querystring/index.js");
+exports.decode = exports.parse = require(792       ); // 792 = ./decode
+exports.encode = exports.stringify = require(793       ); // 793 = ./encode
+}, 791, null, "querystring/index.js");
 __d(/* querystring/decode.js */function(global, require, module, exports) {
 
 'use strict';
@@ -105929,7 +105953,7 @@ module.exports = function (qs, sep, eq, options) {
 
   return obj;
 };
-}, 731, null, "querystring/decode.js");
+}, 792, null, "querystring/decode.js");
 __d(/* querystring/encode.js */function(global, require, module, exports) {
 
 'use strict';
@@ -105973,7 +105997,7 @@ module.exports = function (obj, sep, eq, name) {
   if (!name) return '';
   return encodeURIComponent(stringifyPrimitive(name)) + eq + encodeURIComponent(stringifyPrimitive(obj));
 };
-}, 732, null, "querystring/encode.js");
+}, 793, null, "querystring/encode.js");
 __d(/* buffer/index.js */function(global, require, module, exports) {/*!
  * The buffer module from node.js, for the browser.
  *
@@ -105982,8 +106006,8 @@ __d(/* buffer/index.js */function(global, require, module, exports) {/*!
  */
 'use strict';
 
-var base64 = require(734        ); // 734 = base64-js
-var ieee754 = require(735      ); // 735 = ieee754
+var base64 = require(795        ); // 795 = base64-js
+var ieee754 = require(796      ); // 796 = ieee754
 
 exports.Buffer = Buffer;
 exports.SlowBuffer = SlowBuffer;
@@ -107503,7 +107527,7 @@ function isArrayBufferView(obj) {
 function numberIsNaN(obj) {
   return obj !== obj;
 }
-}, 733, null, "buffer/index.js");
+}, 794, null, "buffer/index.js");
 __d(/* base64-js/index.js */function(global, require, module, exports) {'use strict';
 
 exports.byteLength = byteLength;
@@ -107608,7 +107632,7 @@ function fromByteArray(uint8) {
 
   return parts.join('');
 }
-}, 734, null, "base64-js/index.js");
+}, 795, null, "base64-js/index.js");
 __d(/* ieee754/index.js */function(global, require, module, exports) {exports.read = function (buffer, offset, isLE, mLen, nBytes) {
   var e, m;
   var eLen = nBytes * 8 - mLen - 1;
@@ -107693,7 +107717,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
   buffer[offset + i - d] |= s * 128;
 };
-}, 735, null, "ieee754/index.js");
+}, 796, null, "ieee754/index.js");
 __d(/* LynxMail/src/lib/azure-ad/AzureLoginView.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -107712,11 +107736,11 @@ var _createClass = function () { function defineProperties(target, props) { for 
 
 var _reactNative = require(12            ); // 12 = react-native
 
-var _AzureInstance = require(722              ); // 722 = ./AzureInstance
+var _AzureInstance = require(783              ); // 783 = ./AzureInstance
 
 var _AzureInstance2 = _interopRequireDefault(_AzureInstance);
 
-var _Auth = require(723     ); // 723 = ./Auth
+var _Auth = require(784     ); // 784 = ./Auth
 
 var _Auth2 = _interopRequireDefault(_Auth);
 
@@ -107866,7 +107890,7 @@ var styles = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 736, null, "LynxMail/src/lib/azure-ad/AzureLoginView.js");
+}, 797, null, "LynxMail/src/lib/azure-ad/AzureLoginView.js");
 __d(/* LynxMail/src/components/style/emails.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -107911,6 +107935,7 @@ exports.default = _reactNative.StyleSheet.create({
     width: "100%",
     fontSize: 14,
     fontWeight: 'bold',
+    marginTop: 5,
     paddingLeft: 15,
     paddingRight: 15
   },
@@ -107930,7 +107955,93 @@ exports.default = _reactNative.StyleSheet.create({
     paddingRight: 15
   }
 });
-}, 738, null, "LynxMail/src/components/style/emails.style.js");
+}, 798, null, "LynxMail/src/components/style/emails.style.js");
+__d(/* LynxMail/src/components/views/email.compose.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _react2 = require(36     ); // 36 = react
+
+var _react3 = _interopRequireDefault(_react2);
+
+var _index = require(165                                                                                 ); // 165 = ./../../../node_modules/react-native/node_modules/react-transform-hmr/lib/index.js
+
+var _index2 = _interopRequireDefault(_index);
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _class,
+    _temp,
+    _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/email.compose.view.js';
+
+var _reactNative = require(12            ); // 12 = react-native
+
+var _reactRedux = require(497          ); // 497 = react-redux
+
+var _home = require(682                  ); // 682 = ../style/home.style
+
+var _home2 = _interopRequireDefault(_home);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var _components = {
+  EmailComposeView: {
+    displayName: 'EmailComposeView'
+  }
+};
+
+var _node_modulesReactNativeNode_modulesReactTransformHmrLibIndexJs2 = (0, _index2.default)({
+  filename: '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/email.compose.view.js',
+  components: _components,
+  locals: [module],
+  imports: [_react3.default]
+});
+
+function _wrapComponent(id) {
+  return function (Component) {
+    return _node_modulesReactNativeNode_modulesReactTransformHmrLibIndexJs2(Component, id);
+  };
+}
+
+var EmailComposeView = _wrapComponent('EmailComposeView')((_temp = _class = function (_Component) {
+  _inherits(EmailComposeView, _Component);
+
+  function EmailComposeView() {
+    _classCallCheck(this, EmailComposeView);
+
+    return _possibleConstructorReturn(this, (EmailComposeView.__proto__ || Object.getPrototypeOf(EmailComposeView)).apply(this, arguments));
+  }
+
+  _createClass(EmailComposeView, [{
+    key: 'render',
+    value: function render() {
+      return _react3.default.createElement(
+        _reactNative.ScrollView,
+        { style: _home2.default.scrollview, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 19
+          }
+        },
+        _react3.default.createElement(_reactNative.View, { style: _home2.default.content, __source: {
+            fileName: _jsxFileName,
+            lineNumber: 20
+          }
+        })
+      );
+    }
+  }]);
+
+  return EmailComposeView;
+}(_react2.Component), _class.navigationOptions = {}, _temp));
+
+exports.default = (0, _reactRedux.connect)()(EmailComposeView);
+}, 816, null, "LynxMail/src/components/views/email.compose.view.js");
 __d(/* LynxMail/src/components/containers/event.tabnavigation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -107948,7 +108059,7 @@ var _MaterialIcons = require(684                                      ); // 684 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _events = require(740                     ); // 740 = ./../views/events.view
+var _events = require(800                     ); // 800 = ./../views/events.view
 
 var _events2 = _interopRequireDefault(_events);
 
@@ -107971,7 +108082,7 @@ exports.default = (0, _reactNavigation.StackNavigator)({
     }
   }
 });
-}, 739, null, "LynxMail/src/components/containers/event.tabnavigation.js");
+}, 799, null, "LynxMail/src/components/containers/event.tabnavigation.js");
 __d(/* LynxMail/src/components/views/events.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -107994,7 +108105,7 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _events = require(741                    ); // 741 = ../style/events.style
+var _events = require(801                    ); // 801 = ../style/events.style
 
 var _events2 = _interopRequireDefault(_events);
 
@@ -108060,7 +108171,7 @@ var EventsView = _wrapComponent('EventsView')((_temp = _class = function (_Compo
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(EventsView);
-}, 740, null, "LynxMail/src/components/views/events.view.js");
+}, 800, null, "LynxMail/src/components/views/events.view.js");
 __d(/* LynxMail/src/components/style/events.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108086,7 +108197,7 @@ exports.default = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 741, null, "LynxMail/src/components/style/events.style.js");
+}, 801, null, "LynxMail/src/components/style/events.style.js");
 __d(/* LynxMail/src/components/containers/contact.tabnavigation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108104,7 +108215,7 @@ var _MaterialCommunityIcons = require(633                                       
 
 var _MaterialCommunityIcons2 = _interopRequireDefault(_MaterialCommunityIcons);
 
-var _contracts = require(743                        ); // 743 = ./../views/contracts.view
+var _contracts = require(803                        ); // 803 = ./../views/contracts.view
 
 var _contracts2 = _interopRequireDefault(_contracts);
 
@@ -108127,7 +108238,7 @@ exports.default = (0, _reactNavigation.StackNavigator)({
     }
   }
 });
-}, 742, null, "LynxMail/src/components/containers/contact.tabnavigation.js");
+}, 802, null, "LynxMail/src/components/containers/contact.tabnavigation.js");
 __d(/* LynxMail/src/components/views/contracts.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108150,7 +108261,7 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _contracts = require(744                       ); // 744 = ../style/contracts.style
+var _contracts = require(804                       ); // 804 = ../style/contracts.style
 
 var _contracts2 = _interopRequireDefault(_contracts);
 
@@ -108216,7 +108327,7 @@ var ContactsView = _wrapComponent('ContactsView')((_temp = _class = function (_C
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(ContactsView);
-}, 743, null, "LynxMail/src/components/views/contracts.view.js");
+}, 803, null, "LynxMail/src/components/views/contracts.view.js");
 __d(/* LynxMail/src/components/style/contracts.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108242,7 +108353,7 @@ exports.default = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 744, null, "LynxMail/src/components/style/contracts.style.js");
+}, 804, null, "LynxMail/src/components/style/contracts.style.js");
 __d(/* LynxMail/src/components/containers/settings.tabnavigation.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108260,7 +108371,7 @@ var _MaterialIcons = require(684                                      ); // 684 
 
 var _MaterialIcons2 = _interopRequireDefault(_MaterialIcons);
 
-var _settings = require(746                       ); // 746 = ./../views/settings.view
+var _settings = require(806                       ); // 806 = ./../views/settings.view
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -108283,7 +108394,7 @@ exports.default = (0, _reactNavigation.StackNavigator)({
     }
   }
 });
-}, 745, null, "LynxMail/src/components/containers/settings.tabnavigation.js");
+}, 805, null, "LynxMail/src/components/containers/settings.tabnavigation.js");
 __d(/* LynxMail/src/components/views/settings.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108306,11 +108417,11 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _reactNativeElements = require(747                    ); // 747 = react-native-elements
+var _reactNativeElements = require(687                    ); // 687 = react-native-elements
 
-var _account = require(718                           ); // 718 = ../../actions/account.action
+var _account = require(779                           ); // 779 = ../../actions/account.action
 
-var _settings = require(803                      ); // 803 = ../style/settings.style
+var _settings = require(807                      ); // 807 = ../style/settings.style
 
 var _settings2 = _interopRequireDefault(_settings);
 
@@ -108423,7 +108534,7 @@ var SettingsView = _wrapComponent('SettingsView')((_temp = _class = function (_C
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(SettingsView);
-}, 746, null, "LynxMail/src/components/views/settings.view.js");
+}, 806, null, "LynxMail/src/components/views/settings.view.js");
 __d(/* LynxMail/src/components/style/settings.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108449,7 +108560,7 @@ exports.default = _reactNative.StyleSheet.create({
     justifyContent: 'center'
   }
 });
-}, 803, null, "LynxMail/src/components/style/settings.style.js");
+}, 807, null, "LynxMail/src/components/style/settings.style.js");
 __d(/* LynxMail/src/components/views/accounts.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108472,9 +108583,9 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _account = require(718                           ); // 718 = ../../actions/account.action
+var _account = require(779                           ); // 779 = ../../actions/account.action
 
-var _account2 = require(805                     ); // 805 = ../style/account.style
+var _account2 = require(809                     ); // 809 = ../style/account.style
 
 var _account3 = _interopRequireDefault(_account2);
 
@@ -108543,7 +108654,7 @@ var AccountsView = _wrapComponent('AccountsView')((_temp = _class = function (_C
               }
             },
             _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-              source: require(806                               ), __source: { // 806 = ../images/outlooklogo272x138.png
+              source: require(810                               ), __source: { // 810 = ../images/outlooklogo272x138.png
                 fileName: _jsxFileName,
                 lineNumber: 25
               }
@@ -108567,7 +108678,7 @@ var AccountsView = _wrapComponent('AccountsView')((_temp = _class = function (_C
               }
             },
             _react3.default.createElement(_reactNative.Image, { resizeMode: 'contain', style: { width: 200 },
-              source: require(807                             ), __source: { // 807 = ../images/googlelogo272x92.png
+              source: require(811                             ), __source: { // 811 = ../images/googlelogo272x92.png
                 fileName: _jsxFileName,
                 lineNumber: 33
               }
@@ -108586,7 +108697,7 @@ var AccountsView = _wrapComponent('AccountsView')((_temp = _class = function (_C
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(AccountsView);
-}, 804, null, "LynxMail/src/components/views/accounts.view.js");
+}, 808, null, "LynxMail/src/components/views/accounts.view.js");
 __d(/* LynxMail/src/components/style/account.style.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108623,11 +108734,11 @@ exports.default = _reactNative.StyleSheet.create({
     shadowRadius: 1
   }
 });
-}, 805, null, "LynxMail/src/components/style/account.style.js");
+}, 809, null, "LynxMail/src/components/style/account.style.js");
 __d(/* LynxMail/src/components/images/outlooklogo272x138.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/components/images","width":272,"height":138,"scales":[1],"hash":"076847e38024c30d996f9832a8aa4253","name":"outlooklogo272x138","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 806, null, "LynxMail/src/components/images/outlooklogo272x138.png");
+}, 810, null, "LynxMail/src/components/images/outlooklogo272x138.png");
 __d(/* LynxMail/src/components/images/googlelogo272x92.png */function(global, require, module, exports) {module.exports=require(329                                         ).registerAsset({"__packager_asset":true,"httpServerLocation":"/assets/src/components/images","width":272,"height":92,"scales":[1],"hash":"8f9327db2597fa57d2f42b4a6c5a9855","name":"googlelogo272x92","type":"png"}); // 329 = react-native/Libraries/Image/AssetRegistry
-}, 807, null, "LynxMail/src/components/images/googlelogo272x92.png");
+}, 811, null, "LynxMail/src/components/images/googlelogo272x92.png");
 __d(/* LynxMail/src/components/views/outlook.account.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108646,7 +108757,7 @@ var _class,
     _temp,
     _jsxFileName = '/Users/elourenco/Workspace/Pessoal/LynxMail/src/components/views/outlook.account.view.js';
 
-var _reactNativeConfig = require(720                  ); // 720 = react-native-config
+var _reactNativeConfig = require(781                  ); // 781 = react-native-config
 
 var _reactNativeConfig2 = _interopRequireDefault(_reactNativeConfig);
 
@@ -108654,11 +108765,11 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _azureAd = require(721                 ); // 721 = ../../lib/azure-ad
+var _azureAd = require(782                 ); // 782 = ../../lib/azure-ad
 
-var _account = require(718                           ); // 718 = ../../actions/account.action
+var _account = require(779                           ); // 779 = ../../actions/account.action
 
-var _account2 = require(805                     ); // 805 = ../style/account.style
+var _account2 = require(809                     ); // 809 = ../style/account.style
 
 var _account3 = _interopRequireDefault(_account2);
 
@@ -108760,7 +108871,7 @@ var OutlookAccountView = _wrapComponent('OutlookAccountView')((_temp = _class = 
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(OutlookAccountView);
-}, 808, null, "LynxMail/src/components/views/outlook.account.view.js");
+}, 812, null, "LynxMail/src/components/views/outlook.account.view.js");
 __d(/* LynxMail/src/components/views/google.account.view.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108783,7 +108894,7 @@ var _reactNative = require(12            ); // 12 = react-native
 
 var _reactRedux = require(497          ); // 497 = react-redux
 
-var _account = require(805                     ); // 805 = ../style/account.style
+var _account = require(809                     ); // 809 = ../style/account.style
 
 var _account2 = _interopRequireDefault(_account);
 
@@ -108849,7 +108960,7 @@ var GoogleAccountView = _wrapComponent('GoogleAccountView')((_temp = _class = fu
 }, _temp));
 
 exports.default = (0, _reactRedux.connect)()(GoogleAccountView);
-}, 809, null, "LynxMail/src/components/views/google.account.view.js");
+}, 813, null, "LynxMail/src/components/views/google.account.view.js");
 __d(/* LynxMail/src/reducers/email.reducer.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108858,7 +108969,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 exports.default = emailReducer;
 
-var _action = require(816                      ); // 816 = ../actions/action.types
+var _action = require(748                      ); // 748 = ../actions/action.types
 
 var types = _interopRequireWildcard(_action);
 
@@ -108895,7 +109006,7 @@ function emailReducer() {
       return state;
   }
 }
-}, 810, null, "LynxMail/src/reducers/email.reducer.js");
+}, 814, null, "LynxMail/src/reducers/email.reducer.js");
 __d(/* LynxMail/src/app.lynx-mail.js */function(global, require, module, exports) {Object.defineProperty(exports, "__esModule", {
   value: true
 });
@@ -108980,7 +109091,7 @@ var mapStateToProps = function mapStateToProps(state) {
 };
 
 exports.default = (0, _reactRedux.connect)(mapStateToProps)(AppNavigator);
-}, 811, null, "LynxMail/src/app.lynx-mail.js");
+}, 815, null, "LynxMail/src/app.lynx-mail.js");
 ;require(58);
 ;require(0);
 //# sourceMappingURL=index.map
