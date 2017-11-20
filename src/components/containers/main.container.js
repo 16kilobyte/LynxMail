@@ -17,6 +17,8 @@ import GoogleAccountView from '../views/google.account.view';
 
 import { hasAccount, outlookRefreshtoken } from "../../actions/account.action";
 
+import color from '../style/color.theme';
+
 export const AccountStackNavigation = StackNavigator({
   AddAccount: {
     screen: AddAccountView,
@@ -34,24 +36,19 @@ export const AccountStackNavigation = StackNavigator({
 
 export const MainTabBarNavigation = TabNavigator({
   Home: {
-    screen: HomeTabBarNavigation,
-    path: 'home'
+    screen: HomeTabBarNavigation
   },
   Mail: {
-    screen: MailTabBarNavigation,
-    path: 'mail'
+    screen: MailTabBarNavigation
   },
   Event: {
-    screen: EventTabBarNavigation,
-    path: 'event'
+    screen: EventTabBarNavigation
   },
   Contact: {
-    screen: ContactTabBarNavigation,
-    path: 'contact'
+    screen: ContactTabBarNavigation
   },
   Settings: {
-    screen: SettingsTabBarNavigation,
-    path: 'settings'
+    screen: SettingsTabBarNavigation
   }
 }, {
     tabBarPosition: 'bottom',
@@ -59,16 +56,18 @@ export const MainTabBarNavigation = TabNavigator({
     animationEnabled: false,
     initialRouteName: 'Home',
     lazy: true,
-    headerMode: 'float',
     tabBarOptions: {
+      showIcon: true,
       showLabel: true,
-      activeTintColor: '#3b5998',
+      activeTintColor: color.ice,
+      inactiveTintColor: color.second,
       labelStyle: {
         fontSize: 11
       },
       style: {
-        shadowColor: '#3b5998',
-        shadowOpacity: 0.4,
+        backgroundColor: color.primary,
+        shadowColor: color.primary,
+        shadowOpacity: 0.6,
         shadowOffset: {
           height: 2,
         },

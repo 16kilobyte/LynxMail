@@ -16,20 +16,20 @@ import IconRight from 'react-native-vector-icons/MaterialIcons'
 import IconLeft from 'react-native-vector-icons/MaterialCommunityIcons'
 import { EmptyView, ErrorView, LoadView } from './components/placeholder-view';
 import { fetchListMessages } from '../../actions/email.action';
+
+import color from '../style/color.theme';
 import Styles from '../style/emails.style'
 
 class EmailsView extends Component {
   static navigationOptions = ({navigation}) => ({
-    title: 'Caixa de Entrada',
-    headerTintColor: '#0061b2',
     headerRight: (
       <TouchableOpacity onPress={() => {
         navigation.navigate("eMailCompose");
       }}>
-        <IconRight size={30} color="#0061b2" name="add" style={{ marginRight: 8 }} />
+        <IconRight size={30} color={color.primary} name="add" style={{ marginRight: 8 }} />
       </TouchableOpacity>
     ),
-    headerLeft: <IconLeft size={30} color="#0061b2" name="folder" style={{ marginLeft: 8 }} />
+    headerLeft: <IconLeft size={30} color={color.primary} name="folder" style={{ marginLeft: 8 }} />
   });
 
   constructor() {

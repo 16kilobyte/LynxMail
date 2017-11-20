@@ -14,7 +14,7 @@ export default StackNavigator({
       gesturesEnabled: false,
       tabBarLabel: 'Ajustes',
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="settings" size={24} color={tintColor} />
+        <Icon name="settings" size={28} color={tintColor} />
       )
     }
   })
