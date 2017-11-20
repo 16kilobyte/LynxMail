@@ -88,7 +88,7 @@ class EmailsView extends Component {
       return <ErrorView />
     }
 
-    return <EmptyView />
+    return <LoadView />
   }
 }
 
