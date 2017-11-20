@@ -4,8 +4,8 @@ class EmailAddress extends Realm.Object {}
 EmailAddress.schema = {
   name: 'EmailAddress',
   properties: {
-    name: {type: 'string', optional: false},
-    address: {type: 'string', optional: false}
+    name: {type: 'string'},
+    address: {type: 'string'}
   }
 }
 

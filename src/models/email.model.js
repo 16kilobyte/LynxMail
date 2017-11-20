@@ -20,7 +20,9 @@ Email.schema = {
     toRecipients: {type: 'list', objectType: 'EmailAddress'},
     ccRecipients: {type: 'list', objectType: 'EmailAddress'},
     bccRecipients: {type: 'list', objectType: 'EmailAddress'},
-    replyTo: {type: 'list', objectType: 'EmailAddress'}
+    replyTo: {type: 'list', objectType: 'EmailAddress'},
+    receivedDateTime: {type: 'date'},
+    sentDateTime: {type: 'date'}
   }
 }
 

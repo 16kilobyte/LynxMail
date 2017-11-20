@@ -5,10 +5,15 @@ import {
   Button,
   Text,
   StyleSheet,
-  FlatList
+  FlatList,
+  ActivityIndicator
 } from 'react-native'
+import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux'
-import Icon from 'react-native-vector-icons/MaterialIcons'
+import _ from 'lodash';
+import IconRight from 'react-native-vector-icons/MaterialIcons'
+import IconLeft from 'react-native-vector-icons/MaterialCommunityIcons'
+import { EmptyView, ErrorView, LoadView } from './components/placeholder-view';
 import { fetchListMessages } from '../../actions/email.action';
 import Styles from '../style/emails.style'
 
@@ -16,27 +21,67 @@ class EmailsView extends Component {
   static navigationOptions = {
     title: 'Caixa de Entrada',
     headerTintColor: '#0061b2',
-    headerRight: <Icon size={30} name="add-box" onPress={this.loginWithFacebook} />
+    headerRight: <IconRight size={30} color="#0061b2" name="add" style={{ marginRight: 8 }} />,
+    headerLeft: <IconLeft size={30} color="#0061b2" name="folder" style={{ marginLeft: 8 }} />
   };
+
+  constructor() {
+    super();
+  }
 
   componentWillMount() {
     this.props.fetchListMessages();
   }
 
+  renderSeparator = () => {
+    return (<View style={Styles.itemSeparator} />);
+  };
+  
+  renderHeader = () => {
+    return <SearchBar placeholder="Busca em seus e-mails" lightTheme />;
+  };
+  
+  // ListFooterComponent={this.renderFooter}
+  // renderFooter = () => {
+  //   // if (!this.props.listEmails.isLoading) return null;
+
+  //   return (
+  //     <View style={Styles.listFooter}>
+  //       <ActivityIndicator animating size="large" />
+  //     </View>
+  //   );
+  // };
+
   render() {
     const { navigate } = this.props.navigation;
     const { emails, isLoading, error, fetchListMessages } = this.props.listEmails;
 
-    return (
-        <FlatList
-          style={Styles.content}
-          data={emails}
-          renderItem={({ item }) => (
-            <Text>{item.subject}</Text>
-          )}
-          keyExtractor={item => item.id}
-        />
-    )
+    if (!isLoading && !error && emails) {
+      return (
+        <View style={Styles.container}>
+          <FlatList
+            style={Styles.listEmails}
+            data={emails}
+            renderItem={({ item }) => (
+              <View style={Styles.itemContainer}>
+                <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>
+                <Text style={Styles.itemTextSubject} numberOfLines={1} >{item.subject}</Text>
+                <Text style={Styles.itemTextBodyPreview} numberOfLines={3}>{item.bodyPreview}</Text>
+              </View>
+            )}
+            ItemSeparatorComponent={this.renderSeparator}
+            ListHeaderComponent={this.renderHeader}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      )
+    }
+
+    if (error) {
+      return <ErrorView />
+    }
+
+    return <EmptyView />
   }
 }
 

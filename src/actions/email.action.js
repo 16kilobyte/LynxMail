@@ -1,14 +1,14 @@
 'use strict';
 
 import _ from 'lodash';
-import * as types from './actionTypes';
-import * as outlookBuilder from './parseJson/json.outlook.mail';
+import * as types from './action.types';
+import * as outlookBuilder from './parse-json/json.outlook.mail';
 import * as MSGraph from '../services/microsoft-graph';
 
 
 function requestData() {
   return {
-    type: types.EMAIL_REQ_ERROR
+    type: types.EMAIL_REQ_DATA
   }
 };
 
@@ -38,9 +38,11 @@ export function fetchListMessages() {
           });
           
           realm.write(() => {
-            realm.create('Email', emails, true);
+            emails.forEach(email => {
+              realm.create('Email', email, true);
+            });
           })
-
+          
           dispatch(receiveData(emails))
         } catch (err) {
           dispatch(requestError(err));
