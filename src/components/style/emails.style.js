@@ -1,12 +1,15 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
+import color from './color.theme';
 
 export default StyleSheet.create({
   container: {
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
   },
   listEmails:{
-    flex: 1
+    flex: 1,
+    flexDirection: 'column',
   },
   loader: {
     flex: 1,
@@ -21,35 +24,56 @@ export default StyleSheet.create({
   itemSeparator: {
     height: 1,
     width: "100%",
-    backgroundColor: "#CED0CE",
+    backgroundColor: color.ice,
   },
   itemContainer:{
     flex: 1,
+    flexDirection: 'row',
     height: 100,
-    backgroundColor: '#ffffff'
+    backgroundColor: color.white,
+
+  },
+  itemViewIsRead:{
+    width: '1%',
+    height: '100%',
+    backgroundColor: color.second
+  },
+  itemViewPreview:{
+    width: '98%',
+    height: '100%',
+    flexDirection: 'column',
+    paddingLeft:8,
+    paddingRight:8
+  },
+  itemViewTitle:{
+    flex: 1,
+    flexDirection: 'row',
+    marginTop:3,
+
   },
   itemTextFrom: {
-    height: "20%",
-    width: "100%",
-    fontSize: 14,
+    textAlign: 'left',
+    height: "100%",
+    width: "50%",
+    fontSize: 13,
     fontWeight: 'bold',
-    marginTop:5,
-    paddingLeft:15,
-    paddingRight:15,
+  },
+  itemTextReceiveDate:{
+    textAlign: 'right',
+    height: "100%",
+    width: "50%",
+    fontSize: 13,
+    fontWeight: '100',
   },
   itemTextSubject: {
     height: "20%",
     width: "100%",
     fontSize: 13,
-    paddingLeft:15,
-    paddingRight:15,
   },
   itemTextBodyPreview: {
     height: "50%",
     width: "100%",
     fontSize: 13,
     fontWeight: '100',
-    paddingLeft:15,
-    paddingRight:15,
   }
 })

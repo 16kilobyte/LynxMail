@@ -12,6 +12,7 @@ import {
 import { SearchBar } from 'react-native-elements';
 import { connect } from 'react-redux'
 import _ from 'lodash';
+import moment from 'moment';
 import IconRight from 'react-native-vector-icons/MaterialIcons'
 import IconLeft from 'react-native-vector-icons/MaterialCommunityIcons'
 import { EmptyView, ErrorView, LoadView } from './components/placeholder-view';
@@ -21,20 +22,23 @@ import color from '../style/color.theme';
 import Styles from '../style/emails.style'
 
 class EmailsView extends Component {
-  static navigationOptions = ({navigation}) => ({
+  static navigationOptions = ({ navigation }) => ({
     headerRight: (
-      <TouchableOpacity onPress={() => {
-        navigation.navigate("eMailCompose");
-      }}>
-        <IconRight size={30} color={color.primary} name="add" style={{ marginRight: 8 }} />
-      </TouchableOpacity>
+      <View style={{ flexDirection: 'row' }}>
+        <TouchableOpacity onPress={() => {
+          console.log('search....')
+        }}>
+          <IconRight size={30} color={color.second} name="search" style={{ marginRight: 8 }} />
+        </TouchableOpacity>
+        <TouchableOpacity onPress={() => {
+          navigation.navigate("eMailCompose");
+        }}>
+          <IconRight size={30} color={color.second} name="add" style={{ marginRight: 8 }} />
+        </TouchableOpacity>
+      </View>
     ),
-    headerLeft: <IconLeft size={30} color={color.primary} name="folder" style={{ marginLeft: 8 }} />
+    headerLeft: <IconLeft size={30} color={color.second} name="folder" style={{ marginLeft: 8 }} />
   });
-
-  constructor() {
-    super();
-  }
 
   componentWillMount() {
     this.props.fetchListMessages();
@@ -42,10 +46,6 @@ class EmailsView extends Component {
 
   renderSeparator = () => {
     return (<View style={Styles.itemSeparator} />);
-  };
-
-  renderHeader = () => {
-    return <SearchBar placeholder="Busca em seus e-mails" lightTheme />;
   };
 
   // ListFooterComponent={this.renderFooter}
@@ -61,23 +61,31 @@ class EmailsView extends Component {
 
   render() {
     const { navigate } = this.props.navigation;
-    const { emails, isLoading, error, fetchListMessages } = this.props.listEmails;
+    const { itens, isLoading, error, fetchListMessages } = this.props.emails;
 
-    if (!isLoading && !error && emails) {
+    if (!isLoading && !error && itens) {
       return (
         <View style={Styles.container}>
           <FlatList
             style={Styles.listEmails}
-            data={emails}
-            renderItem={({ item }) => (
-              <View style={Styles.itemContainer}>
-                <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>
-                <Text style={Styles.itemTextSubject} numberOfLines={1} >{item.subject}</Text>
-                <Text style={Styles.itemTextBodyPreview} numberOfLines={3}>{item.bodyPreview}</Text>
-              </View>
-            )}
+            data={itens}
+            renderItem={({ item }) => {
+              return (
+                <View style={Styles.itemContainer}>
+                  <View style={Styles.itemViewIsRead}/>
+                  <View style={Styles.itemViewPreview}>
+                    <View style={Styles.itemViewTitle}>
+                      <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>
+                      <Text style={Styles.itemTextReceiveDate} numberOfLines={1}>{moment(item.receivedDateTime).format('DD/MM/YYYY HH:mm')}</Text>
+                    </View>
+                    <Text style={Styles.itemTextSubject} numberOfLines={1} >{item.subject}</Text>
+                    <Text style={Styles.itemTextBodyPreview} numberOfLines={3}>{item.bodyPreview}</Text>
+                  </View>
+                </View>
+              )
+            }
+            }
             ItemSeparatorComponent={this.renderSeparator}
-            ListHeaderComponent={this.renderHeader}
             keyExtractor={item => item.id}
           />
         </View>
@@ -94,7 +102,7 @@ class EmailsView extends Component {
 
 function mapStateToProps(state) {
   return {
-    listEmails: state.emailReducer
+    emails: state.emailReducer
   };
 }
 

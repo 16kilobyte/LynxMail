@@ -3,7 +3,7 @@ import * as types from '../actions/action.types';
 const initialState = {
   error: false,
   isLoading: false,
-  emails: []
+  itens: []
 }
 
 export default function emailReducer(state = initialState, action) {
@@ -13,7 +13,7 @@ export default function emailReducer(state = initialState, action) {
         ...state,
         isLoading: false,
         error: false,
-        emails: action.data
+        itens: action.data
       }
     case types.EMAIL_REQ_DATA:
       return {
