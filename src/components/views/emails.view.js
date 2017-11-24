@@ -26,7 +26,7 @@ class EmailsView extends Component {
     headerRight: (
       <View style={{ flexDirection: 'row' }}>
         <TouchableOpacity onPress={() => {
-          console.log('search....')
+          console.log('search....');
         }}>
           <IconRight size={30} color={color.second} name="search" style={{ marginRight: 8 }} />
         </TouchableOpacity>
@@ -37,7 +37,13 @@ class EmailsView extends Component {
         </TouchableOpacity>
       </View>
     ),
-    headerLeft: <IconLeft size={30} color={color.second} name="folder" style={{ marginLeft: 8 }} />
+    headerLeft: (
+      <TouchableOpacity onPress={() => {
+        navigation.navigate("DrawerOpen");
+      }}>
+        <IconLeft size={30} color={color.second} name="folder" style={{ marginLeft: 8 }} />
+      </TouchableOpacity>
+    )
   });
 
   componentWillMount() {
@@ -72,7 +78,7 @@ class EmailsView extends Component {
             renderItem={({ item }) => {
               return (
                 <View style={Styles.itemContainer}>
-                  <View style={Styles.itemViewIsRead}/>
+                  <View style={Styles.itemViewIsRead} />
                   <View style={Styles.itemViewPreview}>
                     <View style={Styles.itemViewTitle}>
                       <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>

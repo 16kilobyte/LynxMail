@@ -1,12 +1,13 @@
-import React, { Component } from 'react'
-import { AppRegistry } from 'react-native'
-import { Provider } from 'react-redux'
+import React, { Component } from 'react';
+import { AppRegistry } from 'react-native';
+import { Provider } from 'react-redux';
 
 import Realm from 'realm';
 import Models from './models';
-import configureStore from './stores'
-import App from './app'
-const store = configureStore()
+import configureStore from './stores';
+import App from './app';
+
+const store = configureStore();
 
 global.realm = new Realm({
   schema: Models
@@ -14,7 +15,7 @@ global.realm = new Realm({
 
 console.log(realm.path);
 
-export default class App extends Component {
+export default class LynxMail extends Component {
   render() {
     return (
       <Provider store={store}>

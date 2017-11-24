@@ -1,5 +1,5 @@
 import { addNavigationHelpers } from 'react-navigation';
-import AppNavigator from '../AppNavigatorDrawer';
+import AppNavigator from '../navigator';
 
 const initialState = AppNavigator.router.getStateForAction(AppNavigator.router.getActionForPathAndParams('Main'));
 
