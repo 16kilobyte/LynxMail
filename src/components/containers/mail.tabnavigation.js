@@ -25,8 +25,8 @@ export default StackNavigator({
     initialRouteName: 'eMails',
     mode: 'modal',
     navigationOptions: {
+      headerStyle:{ backgroundColor: 'white'},
       headerTintColor: color.primary,
-      gesturesEnabled: false,
       tabBarLabel: 'e-Mails',
       tabBarIcon: ({ tintColor }) => (
         <Icon name="email" size={28} color={tintColor} />

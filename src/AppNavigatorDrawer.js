@@ -1,5 +1,5 @@
 import React from 'react'
-import { DrawerNavigator } from 'react-navigation'
+import { StackNavigator } from 'react-navigation'
 
 import MainContainer from './components/containers/main.container'
 
@@ -8,7 +8,8 @@ const routeConfigs = {
 }
 
 const navigatorConfig = {
-  initialRouteName: 'Main'
+  initialRouteName: 'Main',
+  headerMode: 'none'
 }
 
-export default DrawerNavigator(routeConfigs, navigatorConfig)
+export default StackNavigator(routeConfigs, navigatorConfig)

@@ -64,6 +64,8 @@ export const MainTabBarNavigation = TabNavigator({
       labelStyle: {
         fontSize: 11
       },
+      pressOpacity: 2,
+      animationEnabled: true,
       style: {
         backgroundColor: color.primary,
         shadowColor: color.primary,
