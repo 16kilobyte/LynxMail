@@ -5,7 +5,7 @@ import { Provider } from 'react-redux'
 import Realm from 'realm';
 import Models from './models';
 import configureStore from './stores'
-import AppLynxMail from './app.lynx-mail'
+import App from './app'
 const store = configureStore()
 
 global.realm = new Realm({
@@ -18,7 +18,7 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <AppLynxMail />
+        <App />
       </Provider>
     )
   }
