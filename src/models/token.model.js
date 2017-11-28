@@ -1,13 +1,15 @@
 import Realm from 'realm';
+import Model from './model';
 
-class Token extends Realm.Object {}
-Token.schema = {
-  name: 'Token',
-  properties: {
-    accessToken: {type: 'string'},
-    refreshToken: {type: 'string'},
-    expireIn: {type: 'int'}
-  }
+class Token extends Model {
+  static schema = {
+    name: 'Token',
+    properties: {
+      accessToken: {type: 'string'},
+      refreshToken: {type: 'string'},
+      expireIn: {type: 'int'}
+    }
+  };
 }
 
 export default Token;

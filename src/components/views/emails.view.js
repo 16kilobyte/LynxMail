@@ -46,6 +46,11 @@ class EmailsView extends Component {
     )
   });
 
+  constructor(props, context) {
+    super(props, context);
+    
+  }
+
   componentWillMount() {
     this.props.fetchListMessages();
   }
@@ -53,17 +58,6 @@ class EmailsView extends Component {
   renderSeparator = () => {
     return (<View style={Styles.itemSeparator} />);
   };
-
-  // ListFooterComponent={this.renderFooter}
-  // renderFooter = () => {
-  //   // if (!this.props.listEmails.isLoading) return null;
-
-  //   return (
-  //     <View style={Styles.listFooter}>
-  //       <ActivityIndicator animating size="large" />
-  //     </View>
-  //   );
-  // };
 
   render() {
     const { navigate } = this.props.navigation;
