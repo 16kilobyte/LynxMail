@@ -29,7 +29,7 @@ export default StackNavigator({
       headerTintColor: color.primary,
       tabBarLabel: 'e-Mails',
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="email" size={28} color={tintColor} />
+        <Icon name="email" size={24} color={tintColor} />
       )
     }
   })
