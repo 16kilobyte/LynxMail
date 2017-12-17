@@ -61,6 +61,7 @@ class EmailsView extends Component {
   }
 
   changeListener(emails, changes) {
+    console.log('changeListener')
     console.log(emails);
   }
 
@@ -69,7 +70,7 @@ class EmailsView extends Component {
   };
 
   render() {
-    const { itens, isLoading, error, apiListMessages } = this.props.emails;
+    const { itens, isLoading, error } = this.props.emails;
     return (
       <View style={Styles.container}>
         <FlatList
@@ -110,7 +111,7 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
   return {
-    apiListMessages() {
+    fetchListMessages() {
       dispatch(fetchListMessages())
     },
   };

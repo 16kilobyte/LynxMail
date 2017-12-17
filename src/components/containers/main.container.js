@@ -33,7 +33,6 @@ export const AccountStackNavigation = StackNavigator({
     path: 'googleAccount'
   }
 });
-
 export const MainTabBarNavigation = TabNavigator({
   Home: {
     screen: HomeTabBarNavigation
@@ -76,9 +75,7 @@ export const MainTabBarNavigation = TabNavigator({
         shadowRadius: 3,
       },
     }
-
-  }
-)
+  });
 
 export const createRootNavigator = (hasAccount = false) => {
   return StackNavigator(

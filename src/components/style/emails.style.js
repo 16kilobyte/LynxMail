@@ -24,7 +24,7 @@ export default StyleSheet.create({
   itemSeparator: {
     height: 1,
     width: "100%",
-    backgroundColor: color.ice,
+    backgroundColor: color.third,
   },
   itemContainer:{
     flex: 1,
@@ -73,7 +73,7 @@ export default StyleSheet.create({
   itemTextBodyPreview: {
     height: "50%",
     width: "100%",
-    fontSize: 13,
+    fontSize: 12,
     fontWeight: '100',
   }
 })
