@@ -8,6 +8,13 @@ const initialState = {
 
 export default function emailReducer(state = initialState, action) {
   switch (action.type) {
+    case types.EMAIL_CACHE_DATA:
+      return {
+        ...state,
+        isLoading: false,
+        error: false,
+        itens: action.data
+      }
     case types.EMAIL_RECV_DATA:
       return {
         ...state,

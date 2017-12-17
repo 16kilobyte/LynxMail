@@ -16,7 +16,7 @@ import moment from 'moment';
 import IconRight from 'react-native-vector-icons/MaterialIcons'
 import IconLeft from 'react-native-vector-icons/MaterialCommunityIcons'
 import { EmptyView, ErrorView, LoadView } from './components/placeholder-view';
-import { fetchListMessages } from '../../actions/email.action';
+import { fetchListMessages, cacheListMessages } from '../../actions/email.action';
 import EmailModel from '../../models/email.model';
 import color from '../style/color.theme';
 import Styles from '../style/emails.style'
@@ -53,9 +53,13 @@ class EmailsView extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchListMessages();
+    this.props.cacheListMessages();
   }
 
+  componentDidMount() {
+    this.props.fetchListMessages();
+  }
+  
   componentWillUnmount(){
     this.emailResult.removeAllListeners();
   }
@@ -70,7 +74,11 @@ class EmailsView extends Component {
   };
 
   render() {
+<<<<<<< HEAD
     const { itens, isLoading, error } = this.props.emails;
+=======
+    const { itens, isLoading, error, fetchListMessages } = this.props.emails;
+>>>>>>> 4f75e03c9822933ffc3ba132f01e94114c598b09
     return (
       <View style={Styles.container}>
         <FlatList
@@ -113,6 +121,9 @@ function mapDispatchToProps(dispatch) {
   return {
     fetchListMessages() {
       dispatch(fetchListMessages())
+    },
+    cacheListMessages() {
+      dispatch(cacheListMessages())
     },
   };
 }

@@ -14,7 +14,7 @@ export default StackNavigator({
       gesturesEnabled: false,
       tabBarLabel: 'Eventos',
       tabBarIcon: ({ tintColor }) => (
-        <Icon name="event" size={28} color={tintColor} />
+        <Icon name="event" size={24} color={tintColor} />
       )
     }
   })

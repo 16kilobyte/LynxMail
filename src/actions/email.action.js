@@ -2,9 +2,16 @@
 
 import _ from 'lodash';
 import * as types from './action.types';
+import EmailModel from '../models/email.model';
 import * as outlookBuilder from './parse-json/json.outlook.mail';
 import * as MSGraph from '../services/microsoft-graph';
 
+function cacheData(itens) {
+  return {
+    type: types.EMAIL_CACHE_DATA,
+    data: itens
+  }
+}
 
 function requestData() {
   return {
@@ -25,6 +32,13 @@ function requestError(json) {
     data: json
   }
 };
+
+export function cacheListMessages() {
+  return function (dispatch) {
+    const itens = EmailModel.get();
+    dispatch(cacheData(Array.from(itens)))
+  }
+}
 
 export function fetchListMessages() {
   return function (dispatch) {
