@@ -50,14 +50,13 @@ export function fetchListMessages() {
           const emails = responseValues.map((email) => {
             return outlookBuilder.json(email);
           });
-          
+
           realm.write(() => {
             emails.forEach(email => {
               realm.create('Email', email, true);
             });
-          })
-          
-          dispatch(receiveData(emails))
+          });
+
         } catch (err) {
           dispatch(requestError(err));
         }

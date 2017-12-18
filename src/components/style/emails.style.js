@@ -24,7 +24,7 @@ export default StyleSheet.create({
   itemSeparator: {
     height: 1,
     width: "100%",
-    backgroundColor: color.third,
+    backgroundColor: color.second,
   },
   itemContainer:{
     flex: 1,

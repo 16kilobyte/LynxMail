@@ -57,7 +57,7 @@ class EmailsView extends Component {
   }
 
   componentDidMount() {
-    this.props.fetchListMessages();
+    // this.props.fetchListMessages();
   }
   
   componentWillUnmount(){
@@ -66,7 +66,7 @@ class EmailsView extends Component {
 
   changeListener(emails, changes) {
     console.log('changeListener')
-    console.log(emails);
+    this.props.cacheListMessages();
   }
 
   renderSeparator = () => {
@@ -74,11 +74,7 @@ class EmailsView extends Component {
   };
 
   render() {
-<<<<<<< HEAD
     const { itens, isLoading, error } = this.props.emails;
-=======
-    const { itens, isLoading, error, fetchListMessages } = this.props.emails;
->>>>>>> 4f75e03c9822933ffc3ba132f01e94114c598b09
     return (
       <View style={Styles.container}>
         <FlatList
