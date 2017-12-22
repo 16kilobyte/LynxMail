@@ -12,9 +12,10 @@ export default StackNavigator({
     initialRouteName: 'Home',
     navigationOptions: {  
       gesturesEnabled: false,
+      showLabel: false,
       tabBarLabel: 'Home',
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name="home" size={26} color={tintColor} />
+        <Icon name="home" size={27} color={tintColor} />
       ),
     }
   })

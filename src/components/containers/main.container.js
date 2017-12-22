@@ -37,11 +37,11 @@ export const MainTabBarNavigation = TabNavigator({
   Home: {
     screen: HomeTabBarNavigation
   },
-  Mail: {
-    screen: MailTabBarNavigation
-  },
   Event: {
     screen: EventTabBarNavigation
+  },
+  Mail: {
+    screen: MailTabBarNavigation
   },
   Contact: {
     screen: ContactTabBarNavigation
@@ -53,11 +53,11 @@ export const MainTabBarNavigation = TabNavigator({
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: false,
-    initialRouteName: 'Home',
+    initialRouteName: 'Mail',
     lazy: true,
     tabBarOptions: {
       showIcon: true,
-      showLabel: true,
+      showLabel: false,
       activeTintColor: color.ice,
       inactiveTintColor: color.second,
       labelStyle: {
