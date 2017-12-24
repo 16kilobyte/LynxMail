@@ -15,11 +15,12 @@ import _ from 'lodash';
 import moment from 'moment';
 import IconRight from 'react-native-vector-icons/MaterialIcons'
 import IconLeft from 'react-native-vector-icons/MaterialCommunityIcons'
-import { EmptyView, ErrorView, LoadView } from './components/placeholder-view';
-import { fetchListMessages, cacheListMessages } from '../../actions/email.action';
-import EmailModel from '../../models/email.model';
 import color from '../style/color.theme';
 import Styles from '../style/emails.style'
+
+import { EmptyComponent, ErrorComponent, LoadComponent } from './components/placeholder';
+import { fetchListMessages, cacheListMessages } from '../../actions/email.action';
+import EmailModel from '../../models/email.model';
 
 class EmailsView extends Component {
   static navigationOptions = ({ navigation }) => ({
@@ -48,61 +49,52 @@ class EmailsView extends Component {
 
   constructor(props, context) {
     super(props, context);
-    this.emailResult = EmailModel.get();
-    this.emailResult.addListener(this.changeListener.bind(this))
+
   }
 
   componentWillMount() {
-    this.props.cacheListMessages();
-  }
-
-  componentDidMount() {
     // this.props.fetchListMessages();
-  }
-  
-  componentWillUnmount(){
-    this.emailResult.removeAllListeners();
-  }
-
-  changeListener(emails, changes) {
-    console.log('changeListener')
     this.props.cacheListMessages();
   }
 
-  renderSeparator = () => {
-    return (<View style={Styles.itemSeparator} />);
+  renderSeparator() {
+    return <View style={Styles.itemSeparator} />
   };
 
   render() {
     const { itens, isLoading, error } = this.props.emails;
-    return (
-      <View style={Styles.container}>
-        <FlatList
-          style={Styles.listEmails}
-          data={itens}
-          renderItem={({ item }) => {
-            return (
-              <View style={Styles.itemContainer}>
-                <View style={Styles.itemViewIsRead} />
-                <View style={Styles.itemViewPreview}>
-                  <View style={Styles.itemViewTitle}>
-                    <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>
-                    <Text style={Styles.itemTextReceiveDate} numberOfLines={1}>{moment(item.receivedDateTime).format('DD/MM/YYYY HH:mm')}</Text>
+    if (isLoading) {
+      return <LoadComponent />
+    } else if (itens.length === 0) {
+      return <EmptyComponent />
+    } else if (error) {
+      return <ErrorComponent />
+    } else {
+      return (
+        <View style={Styles.container}>
+          <FlatList
+            style={Styles.listEmails}
+            data={itens}
+            renderItem={({ item }) => {
+              return (
+                <View style={Styles.itemContainer}>
+                  <View style={Styles.itemViewIsRead} />
+                  <View style={Styles.itemViewPreview}>
+                    <View style={Styles.itemViewTitle}>
+                      <Text style={Styles.itemTextFrom} numberOfLines={1}>{item.from.name}</Text>
+                      <Text style={Styles.itemTextReceiveDate} numberOfLines={1}>{moment(item.receivedDateTime).format('DD/MM/YYYY HH:mm')}</Text>
+                    </View>
+                    <Text style={Styles.itemTextSubject} numberOfLines={1} >{item.subject}</Text>
+                    <Text style={Styles.itemTextBodyPreview} numberOfLines={3}>{item.bodyPreview}</Text>
                   </View>
-                  <Text style={Styles.itemTextSubject} numberOfLines={1} >{item.subject}</Text>
-                  <Text style={Styles.itemTextBodyPreview} numberOfLines={3}>{item.bodyPreview}</Text>
                 </View>
-              </View>
-            )
-          }}
-          ItemSeparatorComponent={this.renderSeparator}
-          keyExtractor={item => item.id}
-        />
-      </View>
-    )
-
-    if (error) {
-      return <ErrorView />
+              )
+            }}
+            ItemSeparatorComponent={this.renderSeparator}
+            keyExtractor={item => item.id}
+          />
+        </View>
+      )
     }
   }
 }

@@ -13,8 +13,8 @@ export default StackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
       tabBarLabel: 'Eventos',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="event" size={27} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name="event" size={ focused ? 40 : 30 } color={tintColor} />
       )
     }
   })

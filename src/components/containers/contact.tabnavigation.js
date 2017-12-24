@@ -13,8 +13,8 @@ export default StackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
       tabBarLabel: 'Contatos',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="contact-mail" size={27} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name="contact-mail" size={focused ? 40 : 30} color={tintColor} />
       )
     }
   })

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Platform, StatusBar } from "react-native";
 import { connect } from 'react-redux';
 import _ from 'lodash';
+import color from '../style/color.theme';
 
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
@@ -17,7 +18,6 @@ import GoogleAccountView from '../views/google.account.view';
 
 import { hasAccount, outlookRefreshtoken } from "../../actions/account.action";
 
-import color from '../style/color.theme';
 
 export const AccountStackNavigation = StackNavigator({
   AddAccount: {
@@ -53,20 +53,20 @@ export const MainTabBarNavigation = TabNavigator({
     tabBarPosition: 'bottom',
     swipeEnabled: false,
     animationEnabled: false,
-    initialRouteName: 'Mail',
+    initialRouteName: 'Home',
     lazy: true,
     tabBarOptions: {
       showIcon: true,
       showLabel: false,
-      activeTintColor: color.ice,
-      inactiveTintColor: color.second,
+      // activeTintColor: color.second,
+      // inactiveTintColor: color.second,
       labelStyle: {
         fontSize: 11
       },
       pressOpacity: 2,
       animationEnabled: true,
       style: {
-        backgroundColor: color.primary,
+        // backgroundColor: color.primary,
         shadowColor: color.primary,
         shadowOpacity: 0.6,
         shadowOffset: {
@@ -104,37 +104,35 @@ export const createRootNavigator = (hasAccount = false) => {
 class MainContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      hasAccount: false,
-      checkedHasAccount: false
-    };
+    this.props.hasAccount();
   }
 
   componentWillMount() {
-    hasAccount()
-      .then(res => {
-        this.setState({ hasAccount: res, checkedHasAccount: true });
-        if (res) {
-          outlookRefreshtoken();
-        }
-
-      })
-      .catch(err => {
-        console.log(err);
-        alert("An error occurred")
-      });
+    this.props.outlookRefreshtoken()
   }
 
   render() {
-    const { checkedHasAccount, hasAccount } = this.state;
-
-    if (!checkedHasAccount) {
-      return null;
-    }
-
+    const { hasAccount } = this.props.accounts;
     const Main = createRootNavigator(hasAccount);
     return <Main />;
   }
 }
 
-export default connect()(MainContainer)
+function mapStateToProps(state) {
+  return {
+    accounts: state.accountReducer
+  };
+}
+
+function mapDispatchToProps(dispatch) {
+  return {
+    hasAccount() {
+      dispatch(hasAccount())
+    },
+    outlookRefreshtoken() {
+      dispatch(outlookRefreshtoken())
+    },
+  };
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(MainContainer)

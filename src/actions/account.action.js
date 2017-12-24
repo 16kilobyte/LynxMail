@@ -5,6 +5,10 @@ import { AzureInstance, Auth } from '../lib/azure-ad';
 import _ from 'lodash';
 import moment from 'moment';
 
+import * as types from './action.types';
+import AccountModel from '../models/account.model';
+
+
 const CREDENTIAILS = {
   client_id: Config.OUTLOOK_CLIENT_ID,
   client_secret: Config.OUTLOOK_CLIENT_SECRET,
@@ -16,25 +20,37 @@ const azureInstance = new AzureInstance(CREDENTIAILS);
 const refreshToken = new Auth(azureInstance);
 
 export const outlookRefreshtoken = () => {
-  const account = _.head(realm.objects('Account').filtered('id = $0', 'outlook'));
-  if(moment().isAfter(account.token.expireIn)) {
-    refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
-    .then(refreshTokenUpdate => {
-      try {
-        realm.write(() => {
-          account.token.accessToken = refreshTokenUpdate.accessToken;
-          account.token.refreshToken = refreshTokenUpdate.refreshToken;
-          account.token.expireIn = refreshTokenUpdate.expires_in;
-        });
-      } catch(err) {
-        console.log(err);
-      }
+  return (dispatch) => {
+    const account = _.head(AccountModel.get().filtered('id = $0', 'outlook'));
+    if (moment().isAfter(account.token.expireIn)) {
+      refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
+        .then(refreshTokenUpdate => {
+          try {
+            realm.write(() => {
+              account.token.accessToken = refreshTokenUpdate.accessToken;
+              account.token.refreshToken = refreshTokenUpdate.refreshToken;
+              account.token.expireIn = refreshTokenUpdate.expires_in;
+            });
 
-    })
-    .catch(err => {
-      console.log(err);
-      removeAccount(account.id);
-    });
+            dispatch({
+              type: types.ACCOUNT_ENABLED,
+              data: Array.from(account)
+            });
+
+          } catch (err) {
+            console.log(err);
+            dispatch({
+              type: types.ACCOUNT_EXPIRED,
+              data: Array.from(account)
+            });
+          }
+
+        })
+        .catch(err => {
+          console.log(err);
+          removeAccount(account.id);
+        });
+    }
   }
 }
 
@@ -52,26 +68,34 @@ export const addAccount = (account) => {
 };
 
 export const removeAccount = (id) => {
-  return new Promise((resolve, reject) => {
-    const account = _.head(realm.objects('Account').filtered('id = $0', id));
+  return (dispatch) => {
+    const account = _.head(AccountModel.get().filtered('id = $0', id));
     if (account != null) {
       try {
         realm.write(() => {
           realm.delete(account);
-          resolve(false);
         });
+        
+        dispatch({
+          type: types.ACCOUNT_DISABLED
+        });
+
       } catch (err) {
-        reject(err);
+        dispatch({
+          type: types.ACCOUNT_DISABLED
+        });
       }
     } else {
-      resolve(false);
+      dispatch({
+        type: types.ACCOUNT_DISABLED
+      });
     }
-  });
+  }
 };
 
 export const getAccessToken = (id) => {
   return new Promise((resolve, reject) => {
-    const account = _.head(realm.objects('Account').filtered('id = $0', id));
+    const account = _.head(AccountModel.get().filtered('id = $0', id));
     if (account != null) {
       resolve(account.token)
     } else {
@@ -81,12 +105,14 @@ export const getAccessToken = (id) => {
 }
 
 export const hasAccount = () => {
-  return new Promise((resolve, reject) => {
-    let account = realm.objects('Account');
+  return (dispatch) => {
+    let account = AccountModel.get();
     if (account.length > 0) {
-      resolve(true);
+      outlookRefreshtoken();
     } else {
-      resolve(false);
+      dispatch({
+        type: types.ACCOUNT_DISABLED
+      });
     }
-  });
-};
+  }
+}

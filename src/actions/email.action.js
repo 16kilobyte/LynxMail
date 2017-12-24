@@ -56,7 +56,6 @@ export function fetchListMessages() {
               realm.create('Email', email, true);
             });
           });
-
         } catch (err) {
           dispatch(requestError(err));
         }
@@ -64,6 +63,9 @@ export function fetchListMessages() {
       })
       .catch(err => {
         dispatch(requestError(err));
+      })
+      .finally(f => {
+        dispatch(cacheListMessages());
       });
   }
 };

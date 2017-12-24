@@ -15,7 +15,7 @@ export default StackNavigator({
       showLabel: false,
       tabBarLabel: 'Home',
       tabBarIcon: ({ tintColor, focused }) => (
-        <Icon name="home" size={27} color={tintColor} />
+        <Icon name="home" size={ focused ? 40 : 30 } color={tintColor} />
       ),
     }
   })

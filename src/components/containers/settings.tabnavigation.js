@@ -13,8 +13,8 @@ export default StackNavigator({
     navigationOptions: {
       gesturesEnabled: false,
       tabBarLabel: 'Ajustes',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="settings" size={27} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name="settings" size={focused ? 40 : 30 } color={tintColor} />
       )
     }
   })

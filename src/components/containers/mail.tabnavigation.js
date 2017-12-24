@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StackNavigator } from 'react-navigation';
 
-import Icon from 'react-native-vector-icons/Entypo';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
 
 import eMailsView from '../views/emails.view';
 import eMailComposeView from '../views/email.compose.view';
@@ -28,8 +28,8 @@ export default StackNavigator({
       headerStyle:{ backgroundColor: 'white'},
       headerTintColor: color.primary,
       tabBarLabel: 'e-Mails',
-      tabBarIcon: ({ tintColor }) => (
-        <Icon name="mail-with-circle" size={50} color={tintColor} />
+      tabBarIcon: ({ tintColor, focused }) => (
+        <Icon name="email" size={ focused ? 40 : 30 } color={tintColor} />
       )
     }
   })
