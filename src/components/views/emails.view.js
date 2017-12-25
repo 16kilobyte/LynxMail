@@ -101,7 +101,7 @@ class EmailsView extends Component {
 
 function mapStateToProps(state) {
   return {
-    emails: state.emailReducer
+    emails: state.emails
   };
 }
 

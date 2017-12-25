@@ -2,6 +2,7 @@ import * as types from '../actions/action.types';
 
 const initialState = {
   accounts: null,
+  isLoading: false,
   isExpired: false,
   hasAccount: false,
 }
@@ -12,6 +13,7 @@ export default function accountReducer(state = initialState, action) {
       return {
         ...state,
         accounts: action.data,
+        isLoading: false,
         isExpired: false,
         hasAccount: true,
       }
@@ -19,6 +21,7 @@ export default function accountReducer(state = initialState, action) {
       return {
         ...state,
         accounts: null,
+        isLoading: false,
         isExpired: false,
         hasAccount: false,
       }
@@ -26,9 +29,18 @@ export default function accountReducer(state = initialState, action) {
       return {
         ...state,
         accounts: action.data,
+        isLoading: false,
         isExpired: true,
         hasAccount: true
       }
+    case types.ACCOUNT_CHECKING:
+    return {
+      ...state,
+      accounts: null,
+      isLoading: true,
+      isExpired: false,
+      hasAccount: false
+    }
     default:
       return state
   }

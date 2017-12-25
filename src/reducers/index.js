@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
 
 import nav from './navigation.reducer';
-import emailReducer from './email.reducer';
-import accountReducer from './account.reducer';
+import emails from './email.reducer';
+import accounts from './account.reducer';
 
 export default combineReducers({
   nav,
-  emailReducer,
-  accountReducer
+  emails,
+  accounts
   })

@@ -21,6 +21,9 @@ const refreshToken = new Auth(azureInstance);
 
 export const outlookRefreshtoken = () => {
   return (dispatch) => {
+    dispatch({
+      type: types.ACCOUNT_CHECKING
+    });
     const account = _.head(AccountModel.get().filtered('id = $0', 'outlook'));
     if (moment().isAfter(account.token.expireIn)) {
       refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
@@ -34,14 +37,14 @@ export const outlookRefreshtoken = () => {
 
             dispatch({
               type: types.ACCOUNT_ENABLED,
-              data: Array.from(account)
+              data: Array.from(AccountModel.get())
             });
 
           } catch (err) {
             console.log(err);
             dispatch({
               type: types.ACCOUNT_EXPIRED,
-              data: Array.from(account)
+              data: Array.from(AccountModel.get())
             });
           }
 

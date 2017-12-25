@@ -6,6 +6,8 @@ import color from '../style/color.theme';
 
 import { StackNavigator, TabNavigator } from 'react-navigation';
 
+import { EmptyComponent, ErrorComponent, LoadComponent } from '../views/components/placeholder';
+
 import HomeTabBarNavigation from './home.tabnavigation';
 import MailTabBarNavigation from './mail.tabnavigation';
 import EventTabBarNavigation from './event.tabnavigation';
@@ -112,15 +114,19 @@ class MainContainer extends Component {
   }
 
   render() {
-    const { hasAccount } = this.props.accounts;
-    const Main = createRootNavigator(hasAccount);
-    return <Main />;
+    const { hasAccount, isLoading } = this.props.accounts;
+    if (isLoading) {
+      return <LoadComponent />
+    } else {
+      const Main = createRootNavigator(hasAccount);
+      return <Main />;
+    }
   }
 }
 
 function mapStateToProps(state) {
   return {
-    accounts: state.accountReducer
+    accounts: state.accounts
   };
 }
 
