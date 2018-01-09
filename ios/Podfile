@@ -11,4 +11,8 @@ target 'LynxMail' do
   commonPods
   # Pods for LynxMail
 
+  pod 'react-native-config', :path => '../node_modules/react-native-config'
+
+  pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
+
 end
