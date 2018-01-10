@@ -25,7 +25,7 @@ export const outlookRefreshtoken = () => {
       type: types.ACCOUNT_CHECKING
     });
     const account = _.head(AccountModel.get().filtered('id = $0', 'outlook'));
-    if (moment().isAfter(account.token.expireIn)) {
+    if (account != null && moment().isAfter(account.token.expireIn)) {
       refreshToken.getTokenFromRefreshToken(account.token.refreshToken)
         .then(refreshTokenUpdate => {
           try {
@@ -53,6 +53,10 @@ export const outlookRefreshtoken = () => {
           console.log(err);
           removeAccount(account.id);
         });
+    } else {
+      dispatch({
+        type: types.ACCOUNT_DISABLED
+      });
     }
   }
 }
@@ -73,7 +77,7 @@ export const addAccount = (account) => {
 export const removeAccount = (id) => {
   return (dispatch) => {
     const account = _.head(AccountModel.get().filtered('id = $0', id));
-    if (account != null) {
+    if (account) {
       try {
         realm.write(() => {
           realm.delete(account);
@@ -99,7 +103,7 @@ export const removeAccount = (id) => {
 export const getAccessToken = (id) => {
   return new Promise((resolve, reject) => {
     const account = _.head(AccountModel.get().filtered('id = $0', id));
-    if (account != null) {
+    if (account) {
       resolve(account.token)
     } else {
       reject(null);

@@ -20,7 +20,9 @@
       "request": "launch",
       "platform": "ios",
       "sourceMaps": true,
-      "outDir": "${workspaceRoot}/.vscode/.react"
+      "outDir": "${workspaceRoot}/.vscode/.react",
+      "target": "iPhone 6s",
+      "trace": "verbose"
     },
     {
       "name": "Attach to packager",
