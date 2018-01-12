@@ -26,7 +26,8 @@ class OutlookAccountView extends Component {
   };
 
   constructor(props){
-		super(props);
+    super(props);
+    console.log(CREDENTIAILS);
 		this.azureInstance = new AzureInstance(CREDENTIAILS);
   }
   
